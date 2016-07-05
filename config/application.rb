@@ -33,5 +33,6 @@ module Whatsinyourfood
     config.active_record.raise_in_transactional_callbacks = true
     
     config.serve_static_files = true
+    config.assets.precompile += %w( search.css )
   end
 end
