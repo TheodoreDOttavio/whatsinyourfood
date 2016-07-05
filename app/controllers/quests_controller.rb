@@ -11,7 +11,7 @@ class QuestsController < ApplicationController
     #The first step on a new question will be to sneak in new products.
     #   because... this project is supposed to be about parsing JSON
 
-=begin
+    if rand(10) < 2 then
       pick  = Quest.pickfreshone[0]
       myname = pick['name']
       myupc = pick['upc']
@@ -46,7 +46,7 @@ class QuestsController < ApplicationController
         end
 
       end
-=end
+  end #random
 
     #Select testfield
     case rand(12)
