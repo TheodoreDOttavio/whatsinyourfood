@@ -4,6 +4,4 @@ Rails.application.routes.draw do
   
   match '/quests', to: 'quests#index', via: 'get'
   match '/checks', to: 'quests#check', via: 'post'
-  #resources :quests
-
 end

@@ -22,6 +22,6 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: theaterstaff_production
-  username: nglyzrgexcjjsh
-  password: 3TDozn-VUovGJ0LXp4XFA0rfD4
+  database: da81pvf72s9dap
+  username: sjklkbhzuhopwe
+  password: o9cMIXW8DoJ3zJSDHtTOS9uKad
