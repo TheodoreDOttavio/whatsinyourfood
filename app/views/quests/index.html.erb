@@ -1,0 +1,20 @@
+<h2><%= @mytestquestion %></h2>
+
+<div id="sidebar">
+<ul>
+<% @quizquestions.each do |q| %>
+  <%= form_tag({action: :check}, multipart: false) do %>
+    <%= hidden_field_tag :answer, @winnerid %>
+    <%= hidden_field_tag :iam, q.id %>
+    <%= hidden_field_tag :mytest, @mytest %>
+    <li><%= submit_tag((q.brand_name + "  " + q.item_name ), class: 'line m') %>
+  <% end %>
+<% end %>
+</ul>
+</div>
+
+<!--
+<p>Player Comments:
+<%= @stars %> stars -  posted by <%= @user %>
+<br><%= @comment %>
+-->

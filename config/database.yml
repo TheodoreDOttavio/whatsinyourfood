@@ -1,0 +1,27 @@
+# SQLite version 3.x
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+  #Note heroku rake db:reset is not permitted
+  #  use heroku pg:reset --app theaterstaff DATABASE
+  #  and then heroku run rake db:migrate --app whatsinyourfood
+  #  and finally heroku run rake db:seed --app whatsinyourfood
+  #The database yml is re-configured at heroku, this is meaningless:
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: theaterstaff_production
+  username: nglyzrgexcjjsh
+  password: 3TDozn-VUovGJ0LXp4XFA0rfD4

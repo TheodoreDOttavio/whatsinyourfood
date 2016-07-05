@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Whatsinyourfood</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="wrap">
+  <div id="header">
+   <h1>What is in Your Food?</h1>
+   <h2>Test your knowledge of nutrition requirements</h2>
+  </div>
+
+<div id="menu">
+<ul>
+<li><%= link_to "New Question", 'quests' %></li>
+<li><a href="#">About</a></li>
+</ul>
+</div>
+
+<div id="contentwrap"> 
+<div id="content">
+<%= yield %>
+</div>
+<div style="clear: both;"> </div>
+</div>
+
+<div id="footer">
+<p>&copy; Copyright 2016 Theodore DOttavio</p>
+</div>
+
+</div>
+</body>
+</html>
