@@ -7,7 +7,7 @@ Quest.destroy_all
 require "net/http"
 
 for i in 2..44 #44 pages.
-  
+
 datastring = "http://www.grocerypricebooks.com/upc-list"
 datastring += "/?pn=#{i}" if i != 1
 

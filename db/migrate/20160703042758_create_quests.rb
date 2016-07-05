@@ -2,7 +2,7 @@ class CreateQuests < ActiveRecord::Migration
   #prepared by Ingesting data from the national database:
   #  https://ndb.nal.usda.gov/ndb/foods?format=&count=&max=1000&order=desc
   #with rake db:seed
-  
+
   def change
     create_table :quests do |t|
       t.string :upc, null: false #json queires use a string, so skip storing this as an integer
