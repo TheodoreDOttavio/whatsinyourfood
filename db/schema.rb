@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704125115) do
+ActiveRecord::Schema.define(version: 20160706061335) do
+
+  create_table "players", force: :cascade do |t|
+    t.string   "name",       default: "no name"
+    t.string   "sucesses"
+    t.string   "failures"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string   "upc"
@@ -58,6 +66,17 @@ ActiveRecord::Schema.define(version: 20160704125115) do
     t.boolean  "is_searched"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "question"
+    t.string   "statement"
+    t.boolean  "qtype"
+    t.string   "test_field"
+    t.integer  "sucesses"
+    t.integer  "failures"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

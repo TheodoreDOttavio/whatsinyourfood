@@ -16,13 +16,15 @@
 <div id="menu">
 <ul>
 <li><%= link_to "New Question", 'quests' %></li>
-<li><a href="#">About</a></li>
+<li><%= link_to "About", 'about' %></li>
 </ul>
 </div>
 
 <div id="contentwrap">
 <div id="content">
+	
 <%= yield %>
+
 </div>
 <div style="clear: both;"> </div>
 </div>
