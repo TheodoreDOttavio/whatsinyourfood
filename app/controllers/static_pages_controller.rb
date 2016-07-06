@@ -3,6 +3,8 @@ class StaticPagesController < ApplicationController
   end
   
   def about
+    @productcount = Product.count
+    
     # Find a quirky username
     userreview = Unirest.get("https://acedev-project-name-generator-v1.p.mashape.com/with-number",
         headers:{"X-Mashape-Key" => "Kh6nGtA4nXmshOKQSehm72xY5olDp1nTnUljsnvR1blvOPdH5l",
@@ -28,12 +30,12 @@ class StaticPagesController < ApplicationController
 
      #Generate a comment by feed a text spinner a synonym string that matches the star rating
      case @stars
-     when 1,2
-       spinnerstring = "{{omg |wtf |WTF |seriously? |}}This {{question|one|test|}} {{is ridiculous|is stupid|is sad|is lame|is impossible|makes no sense|needs to go}}!"
-     when 3
-       spinnerstring = "{{meh |ummm... |whatever |nope. |who writes these? |}}{{This one was too easy|easy...|not so tough|:/|}}"
+     when 1
+       spinnerstring = "{{omg |wtf |WTF |seriously? |}}This {{site|one|test|}} {{is ridiculous|is stupid|is sad|is lame|is impossible|makes no sense|needs to go}}!"
+     when 2,3
+       spinnerstring = "{{meh |ummm... |whatever |nope. |who writes these? |}}{{This is too easy|easy...|not so tough|:/|}}"
      when 4,5
-       spinnerstring = "{{Lol |lol |LOL |HA |Ja |}}{{So true!|That was easy!|I got this!|good one|Rockin' it!|}}{{ :)| :-)| :p||}}"
+       spinnerstring = "{{Lol |lol |LOL |HA |Ja |}}{{This is addictive!|That was easy!|I got this!|good one|Rockin' it!|}}{{ :)| :-)| :p||}}"
      end
 
      response = Unirest.post "https://pozzad-text-spinner.p.mashape.com/textspinner/spin",
