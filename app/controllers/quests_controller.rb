@@ -153,7 +153,10 @@ class QuestsController < ApplicationController
       end
     end
     obj = Player.find($userid.to_i)
+    puts "---------"
     puts obj.inspect
+    puts obj.sucesses
+    puts "---------"
     
     @mytest = params['mytest']
     @mytopic = params['mytopic']
@@ -161,19 +164,25 @@ class QuestsController < ApplicationController
     if params['iam'] == params['answer'] then
       @yourresults = "Winner!"
       Topic.update_counters @mytopic, sucesses: 1
-      if obj['sucesses'][@mytopic.to_s].nil? then
-        obj.sucesses[@mytopic.to_s] = 1
+      playerhash = obj.sucesses
+      playerhash = {} if playerhash.nil?
+      if playerhash[@mytopic.to_s].nil? then
+        playerhash[@mytopic.to_s] = 1
       else
-        obj.sucesses[@mytopic.to_s] = obj.sucesses[@mytopic.to_s] + 1
+        playerhash[@mytopic.to_s] = playerhash[@mytopic.to_s] + 1
       end
+      
     else
       @yourresults = "Wrong Answer"
       Topic.update_counters @mytopic, failures: 1
-      if obj['failures'][@mytopic.to_s].nil? then
-        obj.failures[@mytopic.to_s] = 1
+      playerhash = obj.failures
+      playerhash = {} if playerhash.nil?
+      if playerhash[@mytopic.to_s].nil? then
+        playerhash[@mytopic.to_s] = 1
       else
-        obj.failures[@mytopic.to_s] = obj.failures[@mytopic.to_s] + 1
+        playerhash[@mytopic.to_s] = playerhash[@mytopic.to_s] + 1
       end
+      
     end
     
     @quizquestion = Product.find_by(id: params['iam'])
