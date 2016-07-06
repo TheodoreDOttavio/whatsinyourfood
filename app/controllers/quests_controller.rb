@@ -60,6 +60,7 @@ class QuestsController < ApplicationController
     mytesttype = questionpick.qtype
     @mytestquestion = questionpick.question
     @mytest = questionpick.statement
+    @mytopic = questionpick.id
     
     
 
@@ -100,12 +101,17 @@ class QuestsController < ApplicationController
 
 
   def check
+    @mytest = params['mytest']
+    @mytopic = params['mytopic']
+    
     if params['iam'] == params['answer'] then
       @yourresults = "Winner!"
+      Topic.update_counters @mytopic, sucesses: 1
     else
       @yourresults = "Wrong Answer"
+      Topic.update_counters @mytopic, failures: 1
     end
-    @mytest = params['mytest']
+    
     @quizquestion = Product.find_by(id: params['iam'])
     @quizanswer = Product.find_by(id: params['answer'])
   end

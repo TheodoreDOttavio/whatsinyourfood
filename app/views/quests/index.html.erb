@@ -7,6 +7,7 @@
     <%= hidden_field_tag :answer, @winnerid %>
     <%= hidden_field_tag :iam, q.id %>
     <%= hidden_field_tag :mytest, @mytest %>
+    <%= hidden_field_tag :mytopic, @mytopic %>
     <li><%= submit_tag((q.brand_name + "  " + q.item_name ), class: 'line m') %>
   <% end %>
 <% end %>
