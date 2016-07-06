@@ -50,14 +50,14 @@ ActiveRecord::Schema.define(version: 20160704125115) do
   end
 
   create_table "quests", force: :cascade do |t|
-    t.string   "upc"
+    t.string   "upc",                           null: false
     t.string   "manufacturer"
     t.string   "name"
     t.string   "size"
-    t.boolean  "is_associated"
-    t.boolean  "is_searched"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.boolean  "is_associated", default: false
+    t.boolean  "is_searched",   default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
 end
