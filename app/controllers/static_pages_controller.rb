@@ -2,9 +2,22 @@ class StaticPagesController < ApplicationController
   def home
   end
   
+  #require 'json'
+  
   def about
     @productcount = Product.count
     
+    testresults = Hash.new
+    testresults[8] = 10
+    testresults[2] = 5
+    storage =  testresults.to_json
+    #puts fast_generate(testresults, opts = nil)
+    newtestresults = JSON.parse!(storage)
+    puts testresults
+    puts storage
+    puts newtestresults
+
+
     # Find a quirky username
     userreview = Unirest.get("https://acedev-project-name-generator-v1.p.mashape.com/with-number",
         headers:{"X-Mashape-Key" => "Kh6nGtA4nXmshOKQSehm72xY5olDp1nTnUljsnvR1blvOPdH5l",

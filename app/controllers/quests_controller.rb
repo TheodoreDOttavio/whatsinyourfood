@@ -54,56 +54,14 @@ class QuestsController < ApplicationController
   end #random
 
     #Select testfield
-    case rand(12)
-    when 0
-      myfield = "nf_calories"
-      @mytestquestion = "Which product has the most calories?"
-      @mytest = "The most calories:"
-    when 1
-      myfield = "nf_calories_from_fat"
-      @mytestquestion = "Which product has the most calories from fat?"
-      @mytest = "The most calories from fat:"
-    when 2
-      myfield = "nf_total_fat"
-      @mytestquestion = "Which product has the highest total fat content?"
-      @mytest = "The highest total fat content:"
-    when 3
-      myfield = "nf_saturated_fat"
-      @mytestquestion = "Which product has the most saturated fat?"
-      @mytest = "The most saturated fat:"
-    when 4
-      myfield = "nf_cholesterol"
-      @mytestquestion = "Which product has the highest amount of cholesterol?"
-      @mytest = "The highest amount of cholesterol:"
-    when 5
-      myfield = "nf_sodium"
-      @mytestquestion = "Which product has the most salt?"
-      @mytest = "The most salt:"
-    when 6
-      myfield = "nf_protein"
-      @mytestquestion = "Which product has the most protein?"
-      @mytest = "The most protein:"
-    when 7
-      myfield = "nf_vitamin_a_dv"
-      @mytestquestion = "Which product has the most vitamin A?"
-      @mytest = "The most vitamin A:"
-    when 8
-      myfield = "nf_calcium_dv"
-      @mytestquestion = "Which product has the most calcium?"
-      @mytest = "The most calcium:"
-    when 9
-      myfield = "nf_iron_dv"
-      @mytestquestion = "Which product has the most iron?"
-      @mytest = "The most iron:"
-    when 10
-      myfield = "nf_total_carbohydrate"
-      @mytestquestion = "Which product has the most total carbohydrates?"
-      @mytest = "The most total carbohydrates:"
-    when 11
-      myfield = "nf_vitamin_c_dv"
-      @mytestquestion = "Which product has the most vitamin C?"
-      @mytest = "The most vitamin C:"
-    end
+    questionpick = Topic.random[0]
+    puts questionpick.inspect
+    myfield = questionpick.test_field
+    mytesttype = questionpick.qtype
+    @mytestquestion = questionpick.question
+    @mytest = questionpick.statement
+    
+    
 
     #Select 5 products for testing
     test = [{'test_condition' => 0}, {'test_condition' => 0}]
@@ -134,6 +92,7 @@ class QuestsController < ApplicationController
       end
 
       test = @quizquestions.sort_by { |e| e['test_condition'] }
+      test = test.reverse if mytesttype == false
     end
 
     @winnerid = test[test.count-1]['id']
