@@ -4,8 +4,6 @@ class StaticPagesController < ApplicationController
 
   
   def about
-    @productcount = Product.count
-    
     # Find a quirky username
     userreview = Unirest.get("https://acedev-project-name-generator-v1.p.mashape.com/with-number",
         headers:{"X-Mashape-Key" => "Kh6nGtA4nXmshOKQSehm72xY5olDp1nTnUljsnvR1blvOPdH5l",
@@ -50,6 +48,8 @@ class StaticPagesController < ApplicationController
   end
 
   def stats
+    @productcount = Product.count
+    
     #check/set user from cookie
     if $userid.nil? then
       $userid = cookies[:user_id]

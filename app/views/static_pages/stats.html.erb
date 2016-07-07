@@ -1,8 +1,7 @@
 <h2><%= @name %></h2>
 
+<h4>Testing on <%= @productcount %> products</h4>
+
 <% @results.each do |r| %>
   <h3><%= r['percentcorrect'] %> %    <%= r['name'] %></h3>
 <% end %>
-
-<h4>statement</h4>
-<h3>parent</h3>
