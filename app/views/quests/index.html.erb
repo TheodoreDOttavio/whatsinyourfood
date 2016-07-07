@@ -1,3 +1,4 @@
+<div id="content">
 <h2><%= @mytestquestion %></h2>
 
 <div id="sidebar">
@@ -8,15 +9,17 @@
     <%= hidden_field_tag :iam, q.id %>
     <%= hidden_field_tag :mytest, @mytest %>
     <%= hidden_field_tag :mytopic, @mytopic %>
-    <li><%= submit_tag((q.brand_name + "  " + q.item_name ), class: 'line m') %>
+    <li><%= submit_tag((q.brand_name + "  " + q.item_name )) %>
   <% end %>
 <% end %>
 </ul>
+</div>
+
 
 <% @quizquestions.each do |q| %>
   <% if q.nf_ingredient_statement.nil? == false then %>
     <h3><%= q.item_name %></h3>
-    <h5><%= q.nf_ingredient_statement %></h5>
+    <h5><%= q.nf_ingredient_statement.capitalize! %></h5>
   <% end %>
 <% end %>
 </div>

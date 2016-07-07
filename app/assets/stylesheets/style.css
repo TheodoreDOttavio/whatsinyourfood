@@ -1,5 +1,7 @@
+@import "//fonts.googleapis.com/css?family=Archivo+Black|Indie+Flower";
+
 body {
-font-family: Arial, sans-serif;
+font-family: 'Archivo', Arial, sans-serif;
 line-height: 1.4;
 font-size: 13px;
 background: #bcbeb0;
@@ -18,12 +20,12 @@ margin: 20px auto;
 
 #header {
 background: url('header.jpg') no-repeat;
-height: 160px;
+height: 120px;
 }
 #header h1 {
-font-family: Arial, sans-serif;
+font-family: 'Indie Flower', 'Archivo',Arial, sans-serif;
 margin: 0;
-padding: 60px 0 0 40px;
+padding: 40px 0 0 40px;
 font-weight: 100;
 color: #FFB96F;
 font-size: 31px;
@@ -32,14 +34,19 @@ line-height: 27px;
 }
 #header h1 a { text-decoration: none; color: #fff; }
 #header h1 a:hover { text-decoration: none; color: #eee; }
-#header h2 { font-size: 21px; padding: 0 0 0 40px; margin: 0; color: #eee; font-weight: 100; }
+#header h2 { 
+font-size: 21px; 
+padding: 0 0 0 40px; 
+margin: 0; 
+color: #eee; 
+font-weight: 100; 
+}
 
 #menu {
 background: url('menu.jpg') no-repeat;
 height: 40px;
 line-height: 40px;
 }
-
 #menu ul {
 list-style-type: none;
 margin: 0;
@@ -69,7 +76,7 @@ padding: 0 20px 0 30px;
 #content {
 margin-top: 20px;
 float: left;
-width: 590px;
+width: 920px;
 }
 #content h2 {
 margin: 0;
@@ -83,8 +90,8 @@ font-size: 27px;
 #content ul { padding: 0 20px 10px 30px; }
 
 #sidebar {
-float: right;
-width: 320px;
+float: left;
+width: 420px;
 margin-top: 20px;
 }
 
