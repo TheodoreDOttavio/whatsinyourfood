@@ -12,4 +12,11 @@
   <% end %>
 <% end %>
 </ul>
+
+<% @quizquestions.each do |q| %>
+  <% if q.nf_ingredient_statement.nil? == false then %>
+    <h3><%= q.item_name %></h3>
+    <h5><%= q.nf_ingredient_statement %></h5>
+  <% end %>
+<% end %>
 </div>
