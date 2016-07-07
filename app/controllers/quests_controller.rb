@@ -142,10 +142,8 @@ class QuestsController < ApplicationController
   def check
     #check/set user from cookie
     if $userid.nil? then
-      puts "no id"
       $userid = cookies[:user_id]
       if $userid.nil? then
-        puts "making a cookie ref"
         obj = Player.new
         obj.save
         $userid = obj.id
@@ -164,24 +162,39 @@ class QuestsController < ApplicationController
     if params['iam'] == params['answer'] then
       @yourresults = "Winner!"
       Topic.update_counters @mytopic, sucesses: 1
+      
       playerhash = obj.sucesses
-      playerhash = {} if playerhash.nil?
+      if playerhash.nil? or playerhash == "" then
+        playerhash = {}
+      else
+        playerhash = JSON.parse!(obj.sucesses)
+      end
+      
       if playerhash[@mytopic.to_s].nil? then
         playerhash[@mytopic.to_s] = 1
       else
         playerhash[@mytopic.to_s] = playerhash[@mytopic.to_s] + 1
       end
+      obj.sucesses = JSON.fast_generate(playerhash)
+      obj.save
       
     else
       @yourresults = "Wrong Answer"
       Topic.update_counters @mytopic, failures: 1
+      
       playerhash = obj.failures
-      playerhash = {} if playerhash.nil?
+      if playerhash.nil? or playerhash == "" then
+        playerhash = {}
+      else
+        playerhash = JSON.parse!(obj.failures)
+      end
       if playerhash[@mytopic.to_s].nil? then
         playerhash[@mytopic.to_s] = 1
       else
         playerhash[@mytopic.to_s] = playerhash[@mytopic.to_s] + 1
       end
+      obj.failures = JSON.fast_generate(playerhash)
+      obj.save
       
     end
     

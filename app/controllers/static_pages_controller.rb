@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
     testresults = Hash.new
     testresults[8] = 10
     testresults[2] = 5
-    storage =  testresults.to_json
+    storage =  JSON.fast_generate(testresults)
     #puts fast_generate(testresults, opts = nil)
     newtestresults = JSON.parse!(storage)
     puts testresults
