@@ -151,10 +151,6 @@ class QuestsController < ApplicationController
       end
     end
     obj = Player.find($userid.to_i)
-    puts "---------"
-    puts obj.inspect
-    puts obj.sucesses
-    puts "---------"
     
     @mytest = params['mytest']
     @mytopic = params['mytopic']

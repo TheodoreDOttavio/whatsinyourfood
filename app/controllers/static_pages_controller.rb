@@ -6,17 +6,6 @@ class StaticPagesController < ApplicationController
   def about
     @productcount = Product.count
     
-    testresults = Hash.new
-    testresults[8] = 10
-    testresults[2] = 5
-    storage =  JSON.fast_generate(testresults)
-    #puts fast_generate(testresults, opts = nil)
-    newtestresults = JSON.parse!(storage)
-    puts testresults
-    puts storage
-    puts newtestresults
-
-
     # Find a quirky username
     userreview = Unirest.get("https://acedev-project-name-generator-v1.p.mashape.com/with-number",
         headers:{"X-Mashape-Key" => "Kh6nGtA4nXmshOKQSehm72xY5olDp1nTnUljsnvR1blvOPdH5l",
@@ -60,4 +49,43 @@ class StaticPagesController < ApplicationController
      @comment = response.body["variations"][0]
   end
 
+  def stats
+    #check/set user from cookie
+    if $userid.nil? then
+      $userid = cookies[:user_id]
+      if $userid.nil? then
+        obj = Player.new
+        obj.save
+        $userid = obj.id
+        cookies[:user_id] = $userid
+      end
+    end
+    obj = Player.find($userid.to_i)
+    
+    if obj.name == "no name" then
+      @name = "Your results"
+    else
+      @name = obj.name
+    end
+    
+    mytopics = Topic.forstats
+    @results = Array.new
+    mytopics.each do |t|
+      percentcorrect = 0
+      if t.sucesses.nil? == false then
+        if t.failures.nil? then
+          percentcorrect = 1
+        else
+          percentcorrect = t.sucesses/(t.sucesses + t.failures + 0.00) if t.sucesses != 0
+        end
+      end
+      percentcorrect = percentcorrect *100
+      
+      @results.push({"name" => t.statement,
+        "percentcorrect" => percentcorrect.round
+        })
+    end
+    
+  end #stats
+  
 end

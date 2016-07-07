@@ -1,6 +1,6 @@
 puts "--  Adding Topics to quiz on"
 Topic.create!(question: "Which product has the most calories?",
-                 statement: "The most calories",
+                 statement: "The most calories:",
                  test_field: "nf_calories",
                  qtype: true )
 Topic.create!(question: "Which product has the most calories from fat?",
