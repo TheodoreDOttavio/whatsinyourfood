@@ -3,5 +3,5 @@
 <h4>Testing on <%= @productcount %> products</h4>
 
 <% @results.each do |r| %>
-  <h3><%= r['percentcorrect'] %> %    <%= r['name'] %></h3>
+  <h3><%= r['playerpercentcorrect'] %> %  <%= r['percentcorrect'] %> %    <%= r['name'] %></h3>
 <% end %>

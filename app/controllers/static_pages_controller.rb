@@ -68,6 +68,20 @@ class StaticPagesController < ApplicationController
       @name = obj.name
     end
     
+    #generate a has of player succes scores
+    playersucesses = obj.sucesses
+      if playersucesses.nil? or playersucesses == "" then
+        playersucesses = {}
+      else
+        playersucesses = JSON.parse!(obj.sucesses)
+      end
+    playerfailures = obj.failures
+      if playerfailures.nil? or playerfailures == "" then
+        playerfailures = {}
+      else
+        playerfailures = JSON.parse!(obj.failures)
+      end
+    
     mytopics = Topic.forstats
     @results = Array.new
     mytopics.each do |t|
@@ -81,8 +95,19 @@ class StaticPagesController < ApplicationController
       end
       percentcorrect = percentcorrect *100
       
+      playerpercentcorrect = 0
+      if playersucesses[t.id.to_s].nil? == false then
+        if playerfailures[t.id.to_s].nil? then
+          playerpercentcorrect = 1
+        else
+          playerpercentcorrect = playersucesses[t.id.to_s]/(playersucesses[t.id.to_s] + playerfailures[t.id.to_s] + 0.00) if playersucesses[t.id.to_s] != 0
+        end
+      end
+      playerpercentcorrect = playerpercentcorrect *100
+      
       @results.push({"name" => t.statement,
-        "percentcorrect" => percentcorrect.round
+        "percentcorrect" => percentcorrect.round,
+        "playerpercentcorrect" => playerpercentcorrect.round
         })
     end
     
