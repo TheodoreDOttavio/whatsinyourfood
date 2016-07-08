@@ -1,169 +1,90 @@
 <h2><%= @mytest %></h2>
 
-<div style="width: 400px; margin-left: auto; margin-right: auto" ><table><tr><td>
-
-<div class="ui-page ui-page-theme-a ui-page-active" tabindex="0" data-url="label" data-role="page" id="label" data-theme="a" style="min-height: 703px;">
-<h1 aria-level="1" role="heading" class="ui-title" id="brandName"><%= @quizquestion.brand_name %></h1>
+<%= @yourresults %>
+<div id="nutri-label" style="{border-color: #ff0000;}" >
+  <p id="nutri-label-header"><%= @quizquestion.brand_name %></p>
+  <p id="nutri-label-info"><%= @quizquestion.item_name %>
+    <span id="nutri-label-value"><%= @quizquestion.nf_serving_size_qty %> <%= @quizquestion.nf_serving_size_unit %></p>
+  <div id="nutri-bar-thick">&nbsp;</div>
+  <p id="nutri-label-strong">Serving Size
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_serving_weight_grams %> g</span></p>
+  <p id="nutri-label-strong">Calories
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_calories %> g</span></p>
+  <p id="nutri-label-light">Calories from Fat
+    <span id ="nutri-label-value"><%= @quizquestion.nf_calories_from_fat %></span></p>
+  <p id="nutri-label-strong">Total Fat
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_total_fat %> g</span></p>
+  <p id="nutri-label-light">Saturated Fat
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_saturated_fat %> g</span></p>
+  <p id="nutri-label-light"><i>Trans</i> Fat
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_trans_fatty_acid %> g</span></p>
+  <p id="nutri-label-light">Polyunsaturated Fat
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_polyunsaturated_fat %> g</span></p>
+  <p id="nutri-label-light">Monounsaturated Fat
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_monounsaturated_fat %> g</span></p>	
+  <p id="nutri-label-strong">Cholesterol
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_cholesterol %> g</span></p>  
+  <p id="nutri-label-strong">Sodium
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_sodium %> g</span></p>  
+  <p id="nutri-label-strong">Total Carbohydrates
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_total_carbohydrate %> g</span></p>  
+  <p id="nutri-label-light">Dietary Fiber
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_dietary_fiber %> g</span></p>	
+<p id="nutri-label-light">Sugars
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_sugars %> g</span></p>
+<p id="nutri-label-strong">Protein
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_protein %> g</span></p>
+<div id="nutri-bar-thick">&nbsp;</div>
+<p id="nutri-label-light">Vitamin A
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_vitamin_a_dv %> %</span></p>
+<p id="nutri-label-light">Vitamin C
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_vitamin_c_dv %> %</span></p>
+<p id="nutri-label-light">Calcium
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_calcium_dv %> %</span></p>
+<p id="nutri-label-light">Iron
+  	<span id= "nutri-label-value"><%= @quizquestion.nf_iron_dv %> %</span></p>
 </div>
-<div role="main" data-role="content" data-theme="a" class="edge-to-edge apiSuccess ui-content ui-body-a">
-<div id="nutritionLabel"><div itemprop="nutrition" itemscope="" itemtype="http://schema.org/NutritionInformation" class="nutritionLabel" style="border: 0; width: auto;">
-  <div class="title"><%= @yourresults %></div>
-  <div class="name "><%= @quizquestion.item_name %> - From <%= @quizquestion.brand_name %></div>
-  <div class="serving">
-    <div class="cf">
-      <div style="display: none;" class="servingSizeText fl">Serving Size:</div>
-      <div class="rel servingSizeField fl">
-        <input value="<%= @quizquestion.nf_serving_size_qty %>" class="unitQuantityBox arrowsAreHidden" type="text">
-        <input value="1" id="nixLabelBeforeQuantity" type="hidden">
-      </div><!-- closing class="servingSizeField" -->
-      <div class="servingUnit fl unitHasTextbox"><%= @quizquestion.nf_serving_size_unit %></div>
-      <div class="servingWeightGrams fl gramsHasTextbox">(<span itemprop="servingSize"><%= @quizquestion.nf_serving_weight_grams %>g</span>)</div>
-    </div><!-- closing class="cf" -->
-  </div><!-- closing class="serving" -->
-  <div class="bar1"></div>
-  <div class="line m"><b>Amount Per Serving</b></div>
-  <div class="line">
-    <div class="fr">Calories from Fat <%= @quizquestion.nf_calories_from_fat %></div>
-    <div><b>Calories</b> <span itemprop="calories"><%= @quizquestion.nf_calories %></span></div>
-  </div>
-  <div class="bar2"></div>
-  <div class="line ar"><b>Value<sup></sup></b></div>
-  <div class="line">
-    <div class="dv"><b><%= @quizquestion.nf_total_fat %></b> g</div>
-    <b>Total Fat</b> <span itemprop="fatContent">
-  </span></div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizquestion.nf_saturated_fat %></b> g</div>
-    Saturated Fat <span itemprop="saturatedFatContent">
-  </span></div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizquestion.nf_trans_fatty_acid %></b> g</div>
-    <i>Trans</i> Fat <span itemprop="transFatContent">
-  </span></div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizquestion.nf_polyunsaturated_fat %></b> g</div>
-    Polyunsaturated Fat</div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizquestion.nf_monounsaturated_fat %></b> g</div>
-    Monounsaturated Fat</div>
-  <div class="line">
-    <div class="dv"><b><%= @quizquestion.nf_cholesterol %></b> mg</div>
-    <b>Cholesterol</b></div>
-  <div class="line">
-    <div class="dv"><b><%= @quizquestion.nf_sodium %></b> mg</div>
-    <b>Sodium</b></div>
-  <div class="line">
-    <div class="dv"><b><%= @quizquestion.nf_total_carbohydrate %></b> g</div>
-    <b>Total Carbohydrates</b></div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizquestion.nf_dietary_fiber %></b> g</div>
-    Dietary Fiber</div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizquestion.nf_sugars %></b> g</div>
-    Sugars</div>
-  <div class="line">
-    <div class="dv"><b><%= @quizquestion.nf_protein %></b> g</div>
-    <b>Protein</b></div>
-  <div class="bar1"></div>
-  <div class="line vitaminA">
-    <div class="dv"><%= @quizquestion.nf_vitamin_a_dv %> %</div>
-    Vitamin A
-  </div>
-  <div class="line vitaminC">
-    <div class="dv"><%= @quizquestion.nf_vitamin_c_dv %> %</div>
-    Vitamin C
-  </div>
-  <div class="line calcium">
-    <div class="dv"><%= @quizquestion.nf_calcium_dv %> %</div>
-    Calcium
-  </div>
-  <div class="line iron">
-    <div class="dv"><%= @quizquestion.nf_iron_dv %> %</div>
-    Iron
-  </div>
-</div><!-- closing class="nutritionLabel" -->
 
-</td><td>
-
-<div class="ui-page ui-page-theme-a ui-page-active" tabindex="0" data-url="label" data-role="page" id="label" data-theme="a" style="min-height: 703px;">
-<h1 aria-level="1" role="heading" class="ui-title" id="brandName"><%= @quizanswer.brand_name %></h1>
+<div id="nutri-label">
+  <p id="nutri-label-header"><%= @quizanswer.brand_name %></p>
+  <p id="nutri-label-info"><%= @quizanswer.item_name %>
+    <span id="nutri-label-value"><%= @quizanswer.nf_serving_size_qty %> <%= @quizanswer.nf_serving_size_unit %></p>
+  <div id="nutri-bar-thick">&nbsp;</div>
+  <p id="nutri-label-strong">Serving Size
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_serving_weight_grams %> g</span></p>
+  <p id="nutri-label-strong">Calories
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_calories %> g</span></p>
+  <p id="nutri-label-light">Calories from Fat
+    <span id ="nutri-label-value"><%= @quizanswer.nf_calories_from_fat %></span></p>
+  <p id="nutri-label-strong">Total Fat
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_total_fat %> g</span></p>
+  <p id="nutri-label-light">Saturated Fat
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_saturated_fat %> g</span></p>
+  <p id="nutri-label-light"><i>Trans</i> Fat
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_trans_fatty_acid %> g</span></p>
+  <p id="nutri-label-light">Polyunsaturated Fat
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_polyunsaturated_fat %> g</span></p>
+  <p id="nutri-label-light">Monounsaturated Fat
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_monounsaturated_fat %> g</span></p>	
+  <p id="nutri-label-strong">Cholesterol
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_cholesterol %> g</span></p>  
+  <p id="nutri-label-strong">Sodium
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_sodium %> g</span></p>  
+  <p id="nutri-label-strong">Total Carbohydrates
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_total_carbohydrate %> g</span></p>  
+  <p id="nutri-label-light">Dietary Fiber
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_dietary_fiber %> g</span></p>	
+<p id="nutri-label-light">Sugars
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_sugars %> g</span></p>
+<p id="nutri-label-strong">Protein
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_protein %> g</span></p>
+<div id="nutri-bar-thick">&nbsp;</div>
+<p id="nutri-label-light">Vitamin A
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_vitamin_a_dv %> %</span></p>
+<p id="nutri-label-light">Vitamin C
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_vitamin_c_dv %> %</span></p>
+<p id="nutri-label-light">Calcium
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_calcium_dv %> %</span></p>
+<p id="nutri-label-light">Iron
+  	<span id= "nutri-label-value"><%= @quizanswer.nf_iron_dv %> %</span></p>
 </div>
-<div role="main" data-role="content" data-theme="a" class="edge-to-edge apiSuccess ui-content ui-body-a">
-<div id="nutritionLabel"><div itemprop="nutrition" itemscope="" itemtype="http://schema.org/NutritionInformation" class="nutritionLabel" style="border: 0; width: auto;">
-  <div class="title">Correct Answer</div>
-  <div class="name "><%= @quizanswer.item_name %> - From <%= @quizanswer.brand_name %></div>
-  <div class="serving">
-    <div class="cf">
-      <div style="display: none;" class="servingSizeText fl">Serving Size:</div>
-      <div class="rel servingSizeField fl">
-        <input value="<%= @quizanswer.nf_serving_size_qty %>" class="unitQuantityBox arrowsAreHidden" type="text">
-        <input value="1" id="nixLabelBeforeQuantity" type="hidden">
-      </div><!-- closing class="servingSizeField" -->
-      <div class="servingUnit fl unitHasTextbox"><%= @quizanswer.nf_serving_size_unit %></div>
-      <div class="servingWeightGrams fl gramsHasTextbox">(<span itemprop="servingSize"><%= @quizanswer.nf_serving_weight_grams %>g</span>)</div>
-    </div><!-- closing class="cf" -->
-  </div><!-- closing class="serving" -->
-  <div class="bar1"></div>
-  <div class="line m"><b>Amount Per Serving</b></div>
-  <div class="line">
-    <div class="fr">Calories from Fat <%= @quizanswer.nf_calories_from_fat %></div>
-    <div><b>Calories</b> <span itemprop="calories"><%= @quizanswer.nf_calories %></span></div>
-  </div>
-  <div class="bar2"></div>
-  <div class="line ar"><b>Value<sup></sup></b></div>
-  <div class="line">
-    <div class="dv"><b><%= @quizanswer.nf_total_fat %></b> g</div>
-    <b>Total Fat</b> <span itemprop="fatContent">
-  </span></div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizanswer.nf_saturated_fat %></b> g</div>
-    Saturated Fat <span itemprop="saturatedFatContent">
-  </span></div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizanswer.nf_trans_fatty_acid %></b> g</div>
-    <i>Trans</i> Fat <span itemprop="transFatContent">
-  </span></div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizanswer.nf_polyunsaturated_fat %></b> g</div>
-    Polyunsaturated Fat</div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizanswer.nf_monounsaturated_fat %></b> g</div>
-    Monounsaturated Fat</div>
-  <div class="line">
-    <div class="dv"><b><%= @quizanswer.nf_cholesterol %></b> mg</div>
-    <b>Cholesterol</b></div>
-  <div class="line">
-    <div class="dv"><b><%= @quizanswer.nf_sodium %></b> mg</div>
-    <b>Sodium</b></div>
-  <div class="line">
-    <div class="dv"><b><%= @quizanswer.nf_total_carbohydrate %></b> g</div>
-    <b>Total Carbohydrates</b></div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizanswer.nf_dietary_fiber %></b> g</div>
-    Dietary Fiber</div>
-  <div class="line indent">
-    <div class="dv"><b><%= @quizanswer.nf_sugars %></b> g</div>
-    Sugars</div>
-  <div class="line">
-    <div class="dv"><b><%= @quizanswer.nf_protein %></b> g</div>
-    <b>Protein</b></div>
-  <div class="bar1"></div>
-  <div class="line vitaminA">
-    <div class="dv"><%= @quizanswer.nf_vitamin_a_dv %> %</div>
-    Vitamin A
-  </div>
-  <div class="line vitaminC">
-    <div class="dv"><%= @quizanswer.nf_vitamin_c_dv %> %</div>
-    Vitamin C
-  </div>
-  <div class="line calcium">
-    <div class="dv"><%= @quizanswer.nf_calcium_dv %> %</div>
-    Calcium
-  </div>
-  <div class="line iron">
-    <div class="dv"><%= @quizanswer.nf_iron_dv %> %</div>
-    Iron
-  </div>
-</div><!-- closing class="nutritionLabel" -->
-
-</td></tr></table></div>

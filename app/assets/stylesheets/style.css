@@ -120,6 +120,76 @@ margin: 0;
 }
 #sidebar ul li a {  }
 
+#nutri-label {
+  border-width: 3px;
+  border-color: #000000;
+  border-style: solid;
+  border-radius: 12px;
+  width: 250px;
+  min-height: 350px;
+  padding: 0px 3px 3px 2px;
+  float: left;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+
+#nutri-label-header {
+  font-size: 18px !important;
+  font-weight: bolder;
+  text-align: center;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: -3px;
+  margin-bottom: -14px;
+}
+
+#nutri-label-info {
+  font-weight: normal !important;
+  color: #333333;
+  text-align: left;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: -5px;
+  margin-bottom: -7px;
+}
+
+#nutri-label-strong {
+  font-weight: bold;
+  margin: -10;
+  text-align: left;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-top: -2px;
+  margin-bottom: -12px;
+  border-top: thin solid;
+}
+
+#nutri-label-light {
+  font-size: 11px;
+  text-align: left;
+  margin-left: 12px;
+  margin-right: 8px;
+  margin-top: -3px;
+  margin-bottom: -11px;
+  border-top: thin solid;
+}
+
+#nutri-label-value {
+  font-weight: lighter;
+  text-align: right;
+  float: right;
+}
+
+#nutri-bar-thick {
+  background-color: #000000;
+  width: auto;
+  max-height: 6px;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+
 #footer {
 text-align: center;
 color: #fff;
