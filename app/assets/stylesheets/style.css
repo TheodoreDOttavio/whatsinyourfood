@@ -190,6 +190,39 @@ margin: 0;
   -webkit-box-sizing: content-box;
 }
 
+#stats-block {
+  border-width: 3px;
+  border-color: #000000;
+  border-style: solid;
+  border-radius: 12px;
+  width: 300px;
+  padding: 0px 3px 3px 2px;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+
+#stats-header {
+  font-family: 'Indie Flower', 'Archivo',Arial, sans-serif;
+  font-size: 18px !important;
+  font-weight: normal;
+  text-align: center;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: -3px;
+  margin-bottom: -14px;
+}
+
+#stats-light {
+  font-size: 12px;
+  text-align: left;
+  margin-left: 12px;
+  margin-right: 8px;
+  margin-top: -3px;
+  margin-bottom: -11px;
+  border-top: thin solid;
+}
+
 #footer {
 text-align: center;
 color: #fff;

@@ -2,6 +2,12 @@
 
 <h4>Testing on <%= @productcount %> products</h4>
 
+<div id="stats-block">
+  
 <% @results.each do |r| %>
-  <h3><%= r['playerpercentcorrect'] %> %  <%= r['percentcorrect'] %> %    <%= r['name'] %></h3>
+  <p id="stats-light">
+  <%= r['playerpercentcorrect'] %> %  <%= r['percentcorrect'] %> %    <%= r['name'] %>
+  </p>
 <% end %>
+
+</div>
