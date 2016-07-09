@@ -49,6 +49,7 @@ class StaticPagesController < ApplicationController
 
   def stats
     @productcount = Product.count
+    @playercount = Player.count
     
     #check/set user from cookie
     if $userid.nil? then
