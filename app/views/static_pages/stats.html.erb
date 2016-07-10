@@ -1,10 +1,5 @@
-<h2><%= @name %></h2>
-
-<h4>Testing on <%= @productcount %> products</h4>
-<h4>Used by <%= @playercount %> players</h4>
-
 <div id="stats-block">
-  
+
 <% @results.each do |r| %>
   <p id="stats-light">
   <%= r['playerpercentcorrect'] %> %  <%= r['percentcorrect'] %> %    <%= r['name'] %>
@@ -12,3 +7,8 @@
 <% end %>
 
 </div>
+
+<h2><%= @name %></h2>
+
+<h4>Testing on <%= @productcount %> products</h4>
+<h4>Used by <%= @playercount %> players</h4>

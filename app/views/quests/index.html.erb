@@ -1,25 +1,20 @@
-<div id="content">
-<h2><%= @mytestquestion %></h2>
+<h1><%= @mytestquestion %></h1>
 
-<div id="sidebar">
-<ul>
 <% @quizquestions.each do |q| %>
   <%= form_tag({action: :check}, multipart: false) do %>
     <%= hidden_field_tag :answer, @winnerid %>
     <%= hidden_field_tag :iam, q.id %>
     <%= hidden_field_tag :mytest, @mytest %>
     <%= hidden_field_tag :mytopic, @mytopic %>
-    <li><%= submit_tag((q.brand_name + "  " + q.item_name )) %>
+    <p><%= submit_tag("go") %> <%= q.brand_name + "  " + q.item_name %></p>
   <% end %>
 <% end %>
-</ul>
-</div>
 
-
+<!--
 <% @quizquestions.each do |q| %>
   <% if q.nf_ingredient_statement.nil? == false then %>
     <h3><%= q.item_name %></h3>
     <h5><%= q.nf_ingredient_statement.capitalize! %></h5>
   <% end %>
 <% end %>
-</div>
+!-->

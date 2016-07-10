@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   def home
   end
 
-  
+
   def about
     # Find a quirky username
     userreview = Unirest.get("https://acedev-project-name-generator-v1.p.mashape.com/with-number",
@@ -50,7 +50,7 @@ class StaticPagesController < ApplicationController
   def stats
     @productcount = Product.count
     @playercount = Player.count
-    
+
     #check/set user from cookie
     if $userid.nil? then
       $userid = cookies[:user_id]
@@ -62,13 +62,13 @@ class StaticPagesController < ApplicationController
       end
     end
     obj = Player.find($userid.to_i)
-    
+
     if obj.name == "no name" then
       @name = "Your results"
     else
       @name = obj.name
     end
-    
+
     #generate a has of player succes scores
     playersucesses = obj.sucesses
       if playersucesses.nil? or playersucesses == "" then
@@ -82,7 +82,7 @@ class StaticPagesController < ApplicationController
       else
         playerfailures = JSON.parse!(obj.failures)
       end
-    
+
     mytopics = Topic.forstats
     @results = Array.new
     mytopics.each do |t|
@@ -95,7 +95,7 @@ class StaticPagesController < ApplicationController
         end
       end
       percentcorrect = percentcorrect *100
-      
+
       playerpercentcorrect = 0
       if playersucesses[t.id.to_s].nil? == false then
         if playerfailures[t.id.to_s].nil? then
@@ -105,13 +105,13 @@ class StaticPagesController < ApplicationController
         end
       end
       playerpercentcorrect = playerpercentcorrect *100
-      
+
       @results.push({"name" => t.statement,
         "percentcorrect" => percentcorrect.round,
         "playerpercentcorrect" => playerpercentcorrect.round
         })
     end
-    
+
   end #stats
-  
+
 end

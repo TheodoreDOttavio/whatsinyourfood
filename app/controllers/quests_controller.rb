@@ -61,8 +61,8 @@ class QuestsController < ApplicationController
     @mytestquestion = questionpick.question
     @mytest = questionpick.statement
     @mytopic = questionpick.id
-    
-    
+
+
 
     #Select 5 products for testing
     test = [{'test_condition' => 0}, {'test_condition' => 0}]
@@ -112,21 +112,21 @@ class QuestsController < ApplicationController
       end
     end
     obj = Player.find($userid.to_i)
-    
+
     @mytest = params['mytest']
     @mytopic = params['mytopic']
-    
+
     if params['iam'] == params['answer'] then
       @yourresults = "Winner!"
       Topic.update_counters @mytopic, sucesses: 1
-      
+
       playerhash = obj.sucesses
       if playerhash.nil? or playerhash == "" then
         playerhash = {}
       else
         playerhash = JSON.parse!(obj.sucesses)
       end
-      
+
       if playerhash[@mytopic.to_s].nil? then
         playerhash[@mytopic.to_s] = 1
       else
@@ -134,11 +134,11 @@ class QuestsController < ApplicationController
       end
       obj.sucesses = JSON.fast_generate(playerhash)
       obj.save
-      
+
     else
       @yourresults = "Wrong Answer"
       Topic.update_counters @mytopic, failures: 1
-      
+
       playerhash = obj.failures
       if playerhash.nil? or playerhash == "" then
         playerhash = {}
@@ -152,9 +152,9 @@ class QuestsController < ApplicationController
       end
       obj.failures = JSON.fast_generate(playerhash)
       obj.save
-      
+
     end
-    
+
     @quizquestion = Product.find_by(id: params['iam'])
     @quizanswer = Product.find_by(id: params['answer'])
   end
