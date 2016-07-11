@@ -17,6 +17,8 @@ class QuestsController < ApplicationController
     runjsonimport = false if Product.count>5000
 
     if runjsonimport == true then
+      include ApplicationHelper
+      
       pick  = Quest.pickfreshone[0]
       myname = pick['name']
       myupc = pick['upc']
