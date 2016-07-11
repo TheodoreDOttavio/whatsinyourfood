@@ -81,7 +81,7 @@ end
   desc "Calculate the percentages for product data"
   task :resetplayers => :environment do
     #Resets users
-    Players.destroy_all
+    Player.destroy_all
    end
     
     
