@@ -118,6 +118,7 @@ class QuestsController < ApplicationController
 
     if params['iam'] == params['answer'] then
       @yourresults = "Winner!"
+      @mystyle = "background-color: #9fde89;" #subdued green
       Topic.update_counters @mytopic, sucesses: 1
 
       playerhash = obj.sucesses
@@ -136,7 +137,8 @@ class QuestsController < ApplicationController
       obj.save
 
     else
-      @yourresults = "Wrong Answer"
+      @yourresults = "Incorrect."
+      @mystyle = "background-color: #de8989;" #subdued red
       Topic.update_counters @mytopic, failures: 1
 
       playerhash = obj.failures
