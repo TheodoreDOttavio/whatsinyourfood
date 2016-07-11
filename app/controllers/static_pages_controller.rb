@@ -106,9 +106,9 @@ class StaticPagesController < ApplicationController
           playerpercentcorrect = 1
         else
           playerpercentcorrect = playersucesses[t.id.to_s]/(playersucesses[t.id.to_s] + playerfailures[t.id.to_s] + 0.00) if playersucesses[t.id.to_s] != 0
-          @playertotal += playersucesses[t.id] + playerfailures[t.id]
-          psucesses += playersucesses[t.id]
-          pfailures += playerfailures[t.id]
+          @playertotal += playersucesses[t.id].to_i + playerfailures[t.id].to_i
+          psucesses += playersucesses[t.id].to_i
+          pfailures += playerfailures[t.id].to_i
         end
       end
       playerpercentcorrect = playerpercentcorrect *100
