@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 20160711190000) do
     t.string   "metric_uom"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.decimal  "nf_calories_from_fat_pergram",   default: 0.0
+    t.decimal  "nf_calories_pergram",            default: 0.0
     t.decimal  "nf_total_fat_percent",           default: 0.0
     t.decimal  "nf_saturated_fat_percent",       default: 0.0
     t.decimal  "nf_trans_fatty_acid_percent",    default: 0.0

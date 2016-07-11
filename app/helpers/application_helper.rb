@@ -11,6 +11,8 @@ module ApplicationHelper
     if obj['nf_serving_weight_grams'].to_i != 0 then
       mysize = obj['nf_serving_weight_grams'] + 0.000
 
+      obj.update(:nf_calories_from_fat_pergram => obj['nf_calories_from_fat'].to_i/mysize) if obj['nf_calories_from_fat'].to_i != 0
+      obj.update(:nf_calories_pergram => obj['nf_calories'].to_i/mysize ) if obj['nf_calories'].to_i != 0
       obj.update(:nf_total_fat_percent => (obj['nf_total_fat'].to_i/mysize)*100.00 ) if obj['nf_total_fat'].to_i != 0
       obj.update(:nf_saturated_fat_percent => (obj['nf_saturated_fat'].to_i/mysize)*100.00 ) if obj['nf_saturated_fat'].to_i != 0
       obj.update(:nf_trans_fatty_acid_percent => (obj['nf_trans_fatty_acid'].to_i/mysize)*100.00 ) if obj['nf_trans_fatty_acid'].to_i != 0
@@ -23,6 +25,8 @@ module ApplicationHelper
       obj.update(:nf_sugars_percent => (obj['nf_sugars'].to_i/mysize)*100.00 ) if obj['nf_sugars'].to_i != 0
       obj.update(:nf_protein_percent => (obj['nf_protein'].to_i/mysize)*100.00 ) if obj['nf_protein'].to_i != 0
       
+      obj.update(:nf_calories_from_fat_pergram => obj['nf_calories_from_fat_pergram'].round(3))
+      obj.update(:nf_calories_pergram => obj['nf_calories_pergram'].round(3))
       obj.update(:nf_total_fat_percent => obj['nf_total_fat_percent'].round(3))
       obj.update(:nf_saturated_fat_percent => obj['nf_saturated_fat_percent'].round(3))
       obj.update(:nf_trans_fatty_acid_percent => obj['nf_trans_fatty_acid_percent'].round(3))

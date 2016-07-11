@@ -12,27 +12,38 @@
   <h4>Calories from Fat
     <span class ="nutrivalue"><%= @quizquestion.nf_calories_from_fat %></span></h4>
   <h4>Total Fat
-    <span class= "nutrivalue"><%= @quizquestion.nf_total_fat %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizquestion.nf_total_fat %> g ->&nbsp;
+    	<%= @quizquestion.nf_total_fat_percent %> %%</span></h4>
   <h4>Saturated Fat
-    <span class= "nutrivalue"><%= @quizquestion.nf_saturated_fat %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizquestion.nf_saturated_fat %> g ->&nbsp;
+    	<%= @quizquestion.nf_saturated_fat_percent %></span></h4>
   <h5><i>Trans</i> Fat
-    <span class= "nutrivalue"><%= @quizquestion.nf_trans_fatty_acid %> g</span></h5>
+    <span class= "nutrivalue"><%= @quizquestion.nf_trans_fatty_acid %> g ->&nbsp;
+    	<%= @quizquestion.nf_trans_fatty_acid_percent %></span></h5>
   <h5>Polyunsaturated Fat
-    <span class= "nutrivalue"><%= @quizquestion.nf_polyunsaturated_fat %> g</span></h5>
+    <span class= "nutrivalue"><%= @quizquestion.nf_polyunsaturated_fat %> g ->&nbsp;
+    	<%= @quizquestion.nf_polyunsaturated_fat_percent %></span></h5>
   <h5>Monounsaturated Fat
-    <span class= "nutrivalue"><%= @quizquestion.nf_monounsaturated_fat %> g</span></h5>
+    <span class= "nutrivalue"><%= @quizquestion.nf_monounsaturated_fat %> g ->&nbsp;
+    	<%= @quizquestion.nf_monounsaturated_fat_percent %></span></h5>
   <h4>Cholesterol
-    <span class= "nutrivalue"><%= @quizquestion.nf_cholesterol %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizquestion.nf_cholesterol %> g ->&nbsp;
+    	<%= @quizquestion.nf_cholesterol_percent %></span></h4>
   <h4>Sodium
-    <span class= "nutrivalue"><%= @quizquestion.nf_sodium %> mg</span></h4>
+    <span class= "nutrivalue"><%= @quizquestion.nf_sodium %> mg ->&nbsp;
+    	<%= @quizquestion.nf_sodium_percent %></span></h4>
   <h4>Total Carbohydrates
-    <span class= "nutrivalue"><%= @quizquestion.nf_total_carbohydrate %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizquestion.nf_total_carbohydrate %> g ->&nbsp;
+    	<%= @quizquestion.nf_total_carbohydrate_percent %></span></h4>
   <h5>Dietary Fiber
-    <span class= "nutrivalue"><%= @quizquestion.nf_dietary_fiber %> g</span></h5>
+    <span class= "nutrivalue"><%= @quizquestion.nf_dietary_fiber %> g ->&nbsp;
+    	<%= @quizquestion.nf_dietary_fiber_percent %></span></h5>
 <h5>Sugars
-    <span class= "nutrivalue"><%= @quizquestion.nf_sugars %> g</span></h5>
+    <span class= "nutrivalue"><%= @quizquestion.nf_sugars %> g ->&nbsp;
+    	<%= @quizquestion.nf_sugars_percent %></span></h5>
 <h4>Protein
-    <span class= "nutrivalue"><%= @quizquestion.nf_protein %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizquestion.nf_protein %> g ->&nbsp;
+    	<%= @quizquestion.nf_protein_percent %></span></h4>
 <div id="nutri-bar-thick">&nbsp;</div>
 <h5>Vitamin A
     <span class= "nutrivalue"><%= @quizquestion.nf_vitamin_a_dv %> %</span></h5>
@@ -44,7 +55,8 @@
     <span class= "nutrivalue"><%= @quizquestion.nf_iron_dv %> %</span></h5>
 </div>
 
-<div id="nutri-label" style="background-color: #ffffff;" >
+
+<div id="nutri-label" style="<%= @mystyle %>" >
   <h2><%= @quizanswer.brand_name %></h2>
   <h3><%= removecommas(@quizanswer.item_name) %></h3>
     <h3>&nbsp;<span class="nutrivalue"><%= @quizanswer.nf_serving_size_qty %> <%= @quizanswer.nf_serving_size_unit %></h3>
@@ -56,27 +68,38 @@
   <h4>Calories from Fat
     <span class ="nutrivalue"><%= @quizanswer.nf_calories_from_fat %></span></h4>
   <h4>Total Fat
-    <span class= "nutrivalue"><%= @quizanswer.nf_total_fat %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizanswer.nf_total_fat %> g ->&nbsp;
+    	<%= @quizanswer.nf_total_fat_percent %> %%</span></h4>
   <h4>Saturated Fat
-    <span class= "nutrivalue"><%= @quizanswer.nf_saturated_fat %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizanswer.nf_saturated_fat %> g ->&nbsp;
+    	<%= @quizanswer.nf_saturated_fat_percent %></span></h4>
   <h5><i>Trans</i> Fat
-    <span class= "nutrivalue"><%= @quizanswer.nf_trans_fatty_acid %> g</span></h5>
+    <span class= "nutrivalue"><%= @quizanswer.nf_trans_fatty_acid %> g ->&nbsp;
+    	<%= @quizanswer.nf_trans_fatty_acid_percent %></span></h5>
   <h5>Polyunsaturated Fat
-    <span class= "nutrivalue"><%= @quizanswer.nf_polyunsaturated_fat %> g</span></h5>
+    <span class= "nutrivalue"><%= @quizanswer.nf_polyunsaturated_fat %> g ->&nbsp;
+    	<%= @quizanswer.nf_polyunsaturated_fat_percent %></span></h5>
   <h5>Monounsaturated Fat
-    <span class= "nutrivalue"><%= @quizanswer.nf_monounsaturated_fat %> g</span></h5>
+    <span class= "nutrivalue"><%= @quizanswer.nf_monounsaturated_fat %> g ->&nbsp;
+    	<%= @quizanswer.nf_monounsaturated_fat_percent %></span></h5>
   <h4>Cholesterol
-    <span class= "nutrivalue"><%= @quizanswer.nf_cholesterol %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizanswer.nf_cholesterol %> g ->&nbsp;
+    	<%= @quizanswer.nf_cholesterol_percent %></span></h4>
   <h4>Sodium
-    <span class= "nutrivalue"><%= @quizanswer.nf_sodium %> mg</span></h4>
+    <span class= "nutrivalue"><%= @quizanswer.nf_sodium %> mg ->&nbsp;
+    	<%= @quizanswer.nf_sodium_percent %></span></h4>
   <h4>Total Carbohydrates
-    <span class= "nutrivalue"><%= @quizanswer.nf_total_carbohydrate %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizanswer.nf_total_carbohydrate %> g ->&nbsp;
+    	<%= @quizanswer.nf_total_carbohydrate_percent %></span></h4>
   <h5>Dietary Fiber
-    <span class= "nutrivalue"><%= @quizanswer.nf_dietary_fiber %> g</span></h5>
+    <span class= "nutrivalue"><%= @quizanswer.nf_dietary_fiber %> g ->&nbsp;
+    	<%= @quizanswer.nf_dietary_fiber_percent %></span></h5>
 <h5>Sugars
-    <span class= "nutrivalue"><%= @quizanswer.nf_sugars %> g</span></h5>
+    <span class= "nutrivalue"><%= @quizanswer.nf_sugars %> g ->&nbsp;
+    	<%= @quizanswer.nf_sugars_percent %></span></h5>
 <h4>Protein
-    <span class= "nutrivalue"><%= @quizanswer.nf_protein %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizanswer.nf_protein %> g ->&nbsp;
+    	<%= @quizanswer.nf_protein_percent %></span></h4>
 <div id="nutri-bar-thick">&nbsp;</div>
 <h5>Vitamin A
     <span class= "nutrivalue"><%= @quizanswer.nf_vitamin_a_dv %> %</span></h5>

@@ -1,5 +1,7 @@
 class AddColumToProducts < ActiveRecord::Migration
   def change
+    add_column :products, :nf_calories_from_fat_pergram, :decimal, default: 0
+    add_column :products, :nf_calories_pergram, :decimal, default: 0
     add_column :products, :nf_total_fat_percent, :decimal, default: 0
     add_column :products, :nf_saturated_fat_percent, :decimal, default: 0
     add_column :products, :nf_trans_fatty_acid_percent, :decimal, default: 0
