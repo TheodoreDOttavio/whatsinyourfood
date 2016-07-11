@@ -47,6 +47,7 @@ class QuestsController < ApplicationController
             myfields.each do |key,value|
               fillerup.update(key => value)
             end
+            gramstopercent(fillerup.id)
           end
         end
 

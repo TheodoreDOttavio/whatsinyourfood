@@ -58,10 +58,18 @@ end
 
 end
 
-# Rake db:calculate percentages
+# Rake db:calcpercent
 
   desc "Calculate the percentages for product data"
   task :calcpercent => :environment do
+    include ApplicationHelper
+    
+    myset = Product.select(:id)
+    puts "loaded in " + myset.count.to_s + " products"
+    myset.each do |s|
+      #puts "updating " + s.item_name.to_s
+      gramstopercent(s.id)
+    end
   end
 
 end
