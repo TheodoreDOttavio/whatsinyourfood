@@ -2,6 +2,7 @@ class QuestsController < ApplicationController
   #before_action :set_quest, only: [:show, :edit, :update, :destroy]
 
   require 'unirest'
+  include ApplicationHelper
 
   def index
     #The API has a daily limit
@@ -16,9 +17,7 @@ class QuestsController < ApplicationController
     runjsonimport = true if rand(10)<2
     runjsonimport = false if Product.count>5000
 
-    if runjsonimport == true then
-      include ApplicationHelper
-      
+    if runjsonimport == true then      
       pick  = Quest.pickfreshone[0]
       myname = pick['name']
       myupc = pick['upc']
