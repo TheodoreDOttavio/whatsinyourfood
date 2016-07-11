@@ -8,7 +8,8 @@ namespace :db do
 require "net/http"
 
 ActiveRecord::Base.transaction do
-Quest.destroy_all
+puts Quest.destroy_all
+puts "cleaned out"
 
 for i in 2..44 #44 pages.
 
@@ -46,7 +47,9 @@ while myimportarray.empty? == false do
 Quest.create!(manufacturer: myimportarray.shift,
                  name: myimportarray.shift + " " + myimportarray.shift,
                  size: myimportarray.shift.strip,
-                 upc: myimportarray.shift)
+                 upc: myimportarray.shift,
+                 is_searched: false,
+                 is_associated: false)
 #  puts myimportarray.shift + myimportarray.shift + myimportarray.shift + myimportarray.shift.gsub(/\s+/, '') + myimportarray.shift + " next "
 #  puts myimportarray.shift + myimportarray.shift + myimportarray.shift + myimportarray.shift.strip + myimportarray.shift + " next "
 end
@@ -62,6 +65,8 @@ end
 
   desc "Calculate the percentages for product data"
   task :calcpercent => :environment do
+    #this application helper that calculates it is now in the index controller.
+    #  this rake task is to update legacy datum
     include ApplicationHelper
     
     myset = Product.select(:id)
@@ -70,7 +75,14 @@ end
       #puts "updating " + s.item_name.to_s
       gramstopercent(s.id)
     end
-  end
+    end
   
 
+  desc "Calculate the percentages for product data"
+  task :resetplayers => :environment do
+    #Resets users
+    Players.destroy_all
+   end
+    
+    
 end
