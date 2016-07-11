@@ -2,15 +2,15 @@
 
 <div id="nutri-label" style="<%= @mystyle %>" >
   <h2><%= @quizquestion.brand_name %></h2>
-  <h3><%= removecommas(@quizquestion.item_name) %>
-    <span class="nutrivalue"><%= @quizquestion.nf_serving_size_qty %> <%= @quizquestion.nf_serving_size_unit %></h3>
+  <h3><%= removecommas(@quizquestion.item_name) %></h3>
+    <h3>&nbsp;<span class="nutrivalue"><%= @quizquestion.nf_serving_size_qty %> <%= @quizquestion.nf_serving_size_unit %></h3>
   <div id="nutri-bar-thick">&nbsp;</div>
   <h4>Serving Size
     <span class= "nutrivalue"><%= @quizquestion.nf_serving_weight_grams %> g</span></h4>
   <h4>Calories
-    <span class= "nutrivalue"><%= @quizquestion.nf_calories %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizquestion.nf_calories %></span></h4>
   <h4>Calories from Fat
-    <span class ="nutrivalue"><%= @quizquestion.nf_calories_from_fat %> g</span></h4>
+    <span class ="nutrivalue"><%= @quizquestion.nf_calories_from_fat %></span></h4>
   <h4>Total Fat
     <span class= "nutrivalue"><%= @quizquestion.nf_total_fat %> g</span></h4>
   <h4>Saturated Fat
@@ -24,7 +24,7 @@
   <h4>Cholesterol
     <span class= "nutrivalue"><%= @quizquestion.nf_cholesterol %> g</span></h4>
   <h4>Sodium
-    <span class= "nutrivalue"><%= @quizquestion.nf_sodium %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizquestion.nf_sodium %> mg</span></h4>
   <h4>Total Carbohydrates
     <span class= "nutrivalue"><%= @quizquestion.nf_total_carbohydrate %> g</span></h4>
   <h5>Dietary Fiber
@@ -46,8 +46,8 @@
 
 <div id="nutri-label" style="background-color: #ffffff;" >
   <h2><%= @quizanswer.brand_name %></h2>
-  <h3><%= removecommas(@quizanswer.item_name) %>
-    <span class="nutrivalue"><%= @quizanswer.nf_serving_size_qty %> <%= @quizanswer.nf_serving_size_unit %></h3>
+  <h3><%= removecommas(@quizanswer.item_name) %></h3>
+    <h3>&nbsp;<span class="nutrivalue"><%= @quizanswer.nf_serving_size_qty %> <%= @quizanswer.nf_serving_size_unit %></h3>
   <div id="nutri-bar-thick">&nbsp;</div>
   <h4>Serving Size
     <span class= "nutrivalue"><%= @quizanswer.nf_serving_weight_grams %> g</span></h4>
@@ -68,7 +68,7 @@
   <h4>Cholesterol
     <span class= "nutrivalue"><%= @quizanswer.nf_cholesterol %> g</span></h4>
   <h4>Sodium
-    <span class= "nutrivalue"><%= @quizanswer.nf_sodium %> g</span></h4>
+    <span class= "nutrivalue"><%= @quizanswer.nf_sodium %> mg</span></h4>
   <h4>Total Carbohydrates
     <span class= "nutrivalue"><%= @quizanswer.nf_total_carbohydrate %> g</span></h4>
   <h5>Dietary Fiber

@@ -57,4 +57,11 @@ end
 end
 
 end
+
+# Rake db:calculate percentages
+
+  desc "Calculate the percentages for product data"
+  task :calcpercent => :environment do
+  end
+
 end
