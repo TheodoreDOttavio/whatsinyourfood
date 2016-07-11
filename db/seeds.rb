@@ -1,6 +1,6 @@
 puts "--  Adding Topics to quiz on"
 
-Topic..destroy_all
+Topic.destroy_all
 
 Topic.create!(question: "Which product has the most calories?",
                  statement: "The most calories:",
