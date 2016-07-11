@@ -83,6 +83,10 @@ class StaticPagesController < ApplicationController
         playerfailures = JSON.parse!(obj.failures)
       end
 
+    @playertotal = 0
+    psucesses = 0
+    pfailures = 0
+
     mytopics = Topic.forstats
     @results = Array.new
     mytopics.each do |t|
@@ -106,11 +110,20 @@ class StaticPagesController < ApplicationController
       end
       playerpercentcorrect = playerpercentcorrect *100
 
+      @playertotal += t.sucesses + t.failures
+      psucesses += t.sucesses
+      pfailures += t.failures
+
       @results.push({"name" => t.statement,
         "percentcorrect" => percentcorrect.round,
         "playerpercentcorrect" => playerpercentcorrect.round
         })
     end
+    
+    playerpercent = 0
+    playerpercent = psucesses/(psucesses + pfailures + 0.00) if psucesses != 0
+    playerpercent = playerpercent *100
+    @playerpercent = playerpercent.round
 
   end #stats
 
