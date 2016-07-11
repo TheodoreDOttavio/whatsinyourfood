@@ -83,7 +83,6 @@ class StaticPagesController < ApplicationController
         playerfailures = JSON.parse!(obj.failures)
       end
 
-    @playertotal = 0
     psucesses = 0
     pfailures = 0
 
@@ -106,9 +105,6 @@ class StaticPagesController < ApplicationController
           playerpercentcorrect = 1
         else
           playerpercentcorrect = playersucesses[t.id.to_s]/(playersucesses[t.id.to_s] + playerfailures[t.id.to_s] + 0.00) if playersucesses[t.id.to_s] != 0
-          @playertotal += playersucesses[t.id].to_i + playerfailures[t.id].to_i
-          psucesses += playersucesses[t.id].to_i
-          pfailures += playerfailures[t.id].to_i
         end
       end
       playerpercentcorrect = playerpercentcorrect *100
@@ -117,12 +113,16 @@ class StaticPagesController < ApplicationController
         "percentcorrect" => percentcorrect.round,
         "playerpercentcorrect" => playerpercentcorrect.round
         })
+        psucesses += playersucesses[t.id.to_s].to_i
+        pfailures += playerfailures[t.id.to_s].to_i
     end
     
     playerpercent = 0
     playerpercent = psucesses/(psucesses + pfailures + 0.00) if psucesses != 0
     playerpercent = playerpercent *100
     @playerpercent = playerpercent.round
+    
+    @playertotal = psucesses + pfailures
 
   end #stats
 
