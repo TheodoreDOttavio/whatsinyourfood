@@ -86,12 +86,13 @@ end
    end
     
     
-
   task :addproducts => :environment do
     #Pound in some products
-    (0..10).each do
+    ActiveRecord::Base.transaction do
+    (0..100).each do
       loadnewproducts if Product.count<5000
     end
+  end
   end
     
 end
