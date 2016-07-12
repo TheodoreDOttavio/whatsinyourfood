@@ -110,7 +110,9 @@ class QuestsController < ApplicationController
         $userid = newplayer
       end
     end
+    
     obj = Player.find_by(id: $userid.to_i)
+    #in the event that the Web-app data is cleared but a cookie remains:
     if obj.nil? then
       $userid = newplayer
       obj = Player.find_by(id: $userid.to_i)

@@ -1,4 +1,4 @@
-<h1><%= @mytestquestion %> *</h1>
+<h1><%= @mytestquestion %></h1>
 
 <% @quizquestions.each_with_index do |q,i| %>
   <%= form_tag({action: :check}, multipart: false) do %>
@@ -6,7 +6,7 @@
     <%= hidden_field_tag :iam, q.id %>
     <%= hidden_field_tag :mytest, @mytest %>
     <%= hidden_field_tag :mytopic, @mytopic %>
-    <p><%= submit_tag((i+1).to_s) %> <%= q.brand_name + "  " + removecommas(q.item_name) %> (serving size of <%= q.nf_serving_weight_grams %> grams)</p>
+    <p><%= submit_tag((i+1).to_s) %> <%= q.brand_name + "  " + removecommas(q.item_name) %></p>
   <% end %>
 <% end %>
 

@@ -8,9 +8,9 @@ module ApplicationHelper
   def newplayer
     obj = Player.new
     obj.save
-    $userid = obj.id
-    cookies[:user_id] = $userid
-    return $userid
+    userid = obj.id
+    cookies[:user_id] = userid
+    return userid
   end
 
   def gramstopercent(product_id)
