@@ -1,4 +1,7 @@
 module ApplicationHelper
+  require 'unirest'
+  
+  
   def removecommas mytext
     mysample = mytext.split(",")
     myreturn = mysample.pop
