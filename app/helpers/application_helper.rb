@@ -5,6 +5,13 @@ module ApplicationHelper
     return myreturn.to_s + " " + mysample.join(",")
   end
 
+  def newplayer
+    obj = Player.new
+    obj.save
+    $userid = obj.id
+    cookies[:user_id] = $userid
+  end
+
   def gramstopercent(product_id)
     #nf_serving_weight_grams
     obj = Product.find(product_id)

@@ -107,13 +107,14 @@ class QuestsController < ApplicationController
     if $userid.nil? then
       $userid = cookies[:user_id]
       if $userid.nil? then
-        obj = Player.new
-        obj.save
-        $userid = obj.id
-        cookies[:user_id] = $userid
+        newplayer
       end
     end
-    obj = Player.find($userid.to_i)
+    obj = Player.find_by(id: $userid.to_i)
+    if obj.nil? then
+      newplayer
+      obj = Player.find_by(id: $userid.to_i)
+    end
 
     @mytest = params['mytest']
     @mytopic = params['mytopic']
