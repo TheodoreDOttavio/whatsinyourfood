@@ -97,6 +97,10 @@ module ApplicationHelper
 
       end
 
+      else
+        setsearch = Quest.find_by(upc: myupc)
+        setsearch.update(is_searched: true)
+        setsearch.update(is_associated: false)
       end #URI error
   end
 end
