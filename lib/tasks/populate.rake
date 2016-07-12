@@ -87,9 +87,10 @@ end
     
   desc "bulk load product data"
   task :addproducts => :environment do
+    include ApplicationHelper
     #Pound in some products
     (0..100).each do
-       loadnewproducts
+       loadnewproducts()
     end
   end
     

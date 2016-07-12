@@ -1,7 +1,6 @@
 class QuestsController < ApplicationController
   #before_action :set_quest, only: [:show, :edit, :update, :destroy]
 
-  require 'unirest'
   include ApplicationHelper
 
   def index
