@@ -85,14 +85,12 @@ end
     Player.destroy_all
    end
     
-    
+  desc "bulk load product data"
   task :addproducts => :environment do
     #Pound in some products
-    ActiveRecord::Base.transaction do
     (0..100).each do
-      loadnewproducts if Product.count<5000
+       loadnewproducts
     end
-  end
   end
     
 end
