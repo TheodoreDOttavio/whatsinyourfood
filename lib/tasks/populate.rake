@@ -6,6 +6,7 @@ namespace :db do
 #Booleans in the model will flag it as 'is searched ' and 'is_associated'
 
 require "net/http"
+include ApplicationHelper
 
 ActiveRecord::Base.transaction do
 puts Quest.destroy_all
@@ -84,5 +85,13 @@ end
     Player.destroy_all
    end
     
+    
+
+  task :addproducts => :environment do
+    #Pound in some products
+    (0..10).each do
+      loadnewproducts if Product.count<5000
+    end
+  end
     
 end

@@ -116,12 +116,12 @@ class StaticPagesController < ApplicationController
         psucesses += playersucesses[t.id.to_s].to_i
         pfailures += playerfailures[t.id.to_s].to_i
     end
-    
+
     playerpercent = 0
     playerpercent = psucesses/(psucesses + pfailures + 0.00) if psucesses != 0
     playerpercent = playerpercent *100
     @playerpercent = playerpercent.round
-    
+
     @playertotal = psucesses + pfailures
 
   end #stats
