@@ -107,12 +107,12 @@ class QuestsController < ApplicationController
     if $userid.nil? then
       $userid = cookies[:user_id]
       if $userid.nil? then
-        newplayer
+        $userid = newplayer
       end
     end
     obj = Player.find_by(id: $userid.to_i)
     if obj.nil? then
-      newplayer
+      $userid = newplayer
       obj = Player.find_by(id: $userid.to_i)
     end
 

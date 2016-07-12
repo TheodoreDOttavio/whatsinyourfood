@@ -10,6 +10,7 @@ module ApplicationHelper
     obj.save
     $userid = obj.id
     cookies[:user_id] = $userid
+    return $userid
   end
 
   def gramstopercent(product_id)
