@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714020000) do
+ActiveRecord::Schema.define(version: 20160714153300) do
 
   create_table "players", force: :cascade do |t|
     t.string   "name",       default: "no name"
@@ -57,17 +57,17 @@ ActiveRecord::Schema.define(version: 20160714020000) do
     t.datetime "updated_at",                                   null: false
     t.decimal  "nf_calories_from_fat_pergram",   default: 0.0
     t.decimal  "nf_calories_pergram",            default: 0.0
-    t.decimal  "nf_total_fat_percent",           default: 0.0
-    t.decimal  "nf_saturated_fat_percent",       default: 0.0
-    t.decimal  "nf_trans_fatty_acid_percent",    default: 0.0
-    t.decimal  "nf_polyunsaturated_fat_percent", default: 0.0
-    t.decimal  "nf_monounsaturated_fat_percent", default: 0.0
-    t.decimal  "nf_cholesterol_percent",         default: 0.0
-    t.decimal  "nf_sodium_percent",              default: 0.0
-    t.decimal  "nf_total_carbohydrate_percent",  default: 0.0
-    t.decimal  "nf_dietary_fiber_percent",       default: 0.0
-    t.decimal  "nf_sugars_percent",              default: 0.0
-    t.decimal  "nf_protein_percent",             default: 0.0
+    t.decimal  "nf_total_fat_pergram",           default: 0.0
+    t.decimal  "nf_saturated_fat_pergram",       default: 0.0
+    t.decimal  "nf_trans_fatty_acid_pergram",    default: 0.0
+    t.decimal  "nf_polyunsaturated_fat_pergram", default: 0.0
+    t.decimal  "nf_monounsaturated_fat_pergram", default: 0.0
+    t.decimal  "nf_cholesterol_pergram",         default: 0.0
+    t.decimal  "nf_sodium_pergram",              default: 0.0
+    t.decimal  "nf_total_carbohydrate_pergram",  default: 0.0
+    t.decimal  "nf_dietary_fiber_pergram",       default: 0.0
+    t.decimal  "nf_sugars_pergram",              default: 0.0
+    t.decimal  "nf_protein_pergram",             default: 0.0
     t.decimal  "nf_vitamin_a_dv_pergram",        default: 0.0
     t.decimal  "nf_vitamin_c_dv_pergram",        default: 0.0
     t.decimal  "nf_calcium_dv_pergram",          default: 0.0

@@ -62,9 +62,9 @@ end
 
 end
 
-# Rake db:calcpercent
-  desc "Calculate the percentages for product data"
-  task :calcpercent => :environment do
+# Rake db:calcpergram
+  desc "Calculate the per gram values for product data"
+  task :calcpergram => :environment do
     #this application helper that calculates it is now in the index controller.
     #  this rake task is to update legacy datum
     include ApplicationHelper
@@ -73,7 +73,7 @@ end
     puts "loaded in " + myset.count.to_s + " products"
     myset.each do |s|
       #puts "updating " + s.item_name.to_s
-      gramstopercent(s.id)
+      gramstopergram(s.id)
     end
     end
 
