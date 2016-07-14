@@ -63,13 +63,12 @@ end
 end
 
 # Rake db:calcpercent
-
   desc "Calculate the percentages for product data"
   task :calcpercent => :environment do
     #this application helper that calculates it is now in the index controller.
     #  this rake task is to update legacy datum
     include ApplicationHelper
-    
+
     myset = Product.select(:id)
     puts "loaded in " + myset.count.to_s + " products"
     myset.each do |s|
@@ -77,21 +76,20 @@ end
       gramstopercent(s.id)
     end
     end
-  
 
   desc "Calculate the percentages for product data"
   task :resetplayers => :environment do
     #Resets users
     Player.destroy_all
    end
-    
+
   desc "bulk load product data"
   task :addproducts => :environment do
     include ApplicationHelper
     #Pound in some products
-    (0..100).each do
+    (0..10).each do
        loadnewproducts()
     end
   end
-    
+
 end

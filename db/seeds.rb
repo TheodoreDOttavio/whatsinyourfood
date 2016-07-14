@@ -32,15 +32,15 @@ Topic.create!(question: "Which product has the most protein?",
                  qtype: true)
 Topic.create!(question: "Which product has the most vitamin A?",
                  statement: "The most vitamin A:",
-                 test_field: "nf_vitamin_a_dv",
+                 test_field: "nf_vitamin_a_dv_pergram",
                  qtype: true)
 Topic.create!(question: "Which product has the most calcium?",
                  statement: "The most calcium:",
-                 test_field: "nf_calcium_dv",
+                 test_field: "nf_calcium_dv_pergram",
                  qtype: true)
 Topic.create!(question: "Which product has the most iron?",
                  statement: "The most iron:",
-                 test_field: "nf_iron_dv",
+                 test_field: "nf_iron_dv_pergram",
                  qtype: true)
 Topic.create!(question: "Which product has the most total carbohydrates?",
                  statement: "The most total carbohydrates:",
@@ -48,7 +48,7 @@ Topic.create!(question: "Which product has the most total carbohydrates?",
                  qtype: true)
 Topic.create!(question: "Which product has the most vitamin C?",
                  statement: "The most vitamin C:",
-                 test_field: "nf_vitamin_c_dv",
+                 test_field: "nf_vitamin_c_dv_pergram",
                  qtype: true)
 
 Topic.create!(question: "Which product has the least calories?",
@@ -81,15 +81,15 @@ Topic.create!(question: "Which product has the least protein?",
                  qtype: false)
 Topic.create!(question: "Which product has the least vitamin A?",
                  statement: "The least vitamin A:",
-                 test_field: "nf_vitamin_a_dv",
+                 test_field: "nf_vitamin_a_dv_pergram",
                  qtype: false)
 Topic.create!(question: "Which product has the least calcium?",
                  statement: "The least calcium:",
-                 test_field: "nf_calcium_dv",
+                 test_field: "nf_calcium_dv_pergram",
                  qtype: false)
 Topic.create!(question: "Which product has the least iron?",
                  statement: "The least iron:",
-                 test_field: "nf_iron_dv",
+                 test_field: "nf_iron_dv_pergram",
                  qtype: false)
 Topic.create!(question: "Which product has the least total carbohydrates?",
                  statement: "The least total carbohydrates:",
@@ -97,5 +97,5 @@ Topic.create!(question: "Which product has the least total carbohydrates?",
                  qtype: false)
 Topic.create!(question: "Which product has the least vitamin C?",
                  statement: "The least vitamin C:",
-                 test_field: "nf_vitamin_c_dv",
+                 test_field: "nf_vitamin_c_dv_pergram",
                  qtype: false)
