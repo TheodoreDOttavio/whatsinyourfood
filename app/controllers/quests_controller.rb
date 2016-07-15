@@ -28,6 +28,40 @@ class QuestsController < ApplicationController
     @mytest = questionpick.statement
     @mytopic = questionpick.id
 
+
+=begin
+    #Select 5 products for testing
+    test = [{'test_condition' => 0}, {'test_condition' => 0}]
+    loadcount = 4 #usually hits on one run... but this drops to loop and correct
+
+    until test[test.count-1]['test_condition'] != test[test.count-2]['test_condition'] do
+      #  Prepare up five brands to keep the products selected varied
+      brands = Product.allbrands(myfield)
+      brandlist = Hash.new
+      for i in 0..loadcount
+        pick = rand(brands.count)
+        selectbrand = brands.delete_at(pick)
+        brandlist[selectbrand] = rand(Product.brandcount(selectbrand))
+      end
+
+      brandlist.each do |brand, offsets|
+        if @quizquestions.nil? then
+          @quizquestions = Product.tester(brand, offsets, myfield)
+        else
+          @quizquestions += Product.tester(brand, offsets, myfield)
+        end
+      end
+
+      #in the event that this is looping
+      until @quizquestions.count < 6 do
+        @quizquestions.delete_at(rand(4))
+        loadcount = 2 #need new entries. drop this down to avoid repeating brands (which have similar items in different packages)
+      end
+
+      test = @quizquestions.sort_by { |e| e['test_condition'] }
+      test = test.reverse if mytesttype == false
+    end
+=end
     #Select 5 products for testing
     #  begin with a list of two, conflicting
     test = [{'test_condition' => 0}, {'test_condition' => 0}]
@@ -38,6 +72,7 @@ class QuestsController < ApplicationController
         @quizquestions += Product.random(myfield)
       end
       test = @quizquestions.sort_by { |e| e['test_condition'] }
+      test = test.reverse if mytesttype == false
     end
 
     @winnerid = test[test.count-1]['id']
