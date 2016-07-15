@@ -77,7 +77,10 @@ module ApplicationHelper
         headers:{"X-Mashape-Key" => "e7ND2LrilQmshpZ9jDTEQbjStoBLp1LiRUSjsniR0pkkRebIAj",
           "Accept" => "application/json"}
 
-      if mysearch.body.nil == false then#error check
+puts "testing what this error looks like ---->"
+puts mysearch.body.inspect
+puts "<----"
+      if mysearch.body.nil? == false then#error check
       result = mysearch.body
       #Remove the Quest item from future searches
       setsearch = Quest.find_by(upc: myupc)
