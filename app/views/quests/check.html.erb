@@ -44,7 +44,7 @@
     <span class = "nutrivalue"><%= @quizquestion.nf_iron_dv_pergram %> %/g</span></h5>
 </div>
 
-
+<% if @yourresults == 'Incorrect.' then %>
 <div id="nutri-label" style="background-color: #ffffff;" >
   <h2><%= @quizanswer.brand_name %></h2>
   <h3><%= removecommas(@quizanswer.item_name) %></h3>
@@ -88,5 +88,6 @@
 <h5>Iron  <%= @quizanswer.nf_iron_dv %> %
     <span class = "nutrivalue"><%= @quizanswer.nf_iron_dv_pergram %> %/g</span></h5>
 </div>
+<% end %>
 
 <h1 style="text-align: right;"><%= link_to "Next >>", 'quests' %></h1>
