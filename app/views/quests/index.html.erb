@@ -12,13 +12,4 @@
 
 <h1 style="text-align: center;"><%= link_to "Another Question", 'quests' %></h1>
 
-<p>* Amounts are compared by the percentage of the serving size.</p>
-
-<!--
-<% @quizquestions.each do |q| %>
-  <% if q.nf_ingredient_statement.nil? == false then %>
-    <h3><%= q.item_name %></h3>
-    <h5><%= q.nf_ingredient_statement.capitalize! %></h5>
-  <% end %>
-<% end %>
-!-->
+<p>* Amounts are compared per gram due to different serving sizes.</p>
