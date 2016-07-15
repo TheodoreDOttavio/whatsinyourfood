@@ -17,50 +17,27 @@ class QuestsController < ApplicationController
     runjsonimport = false if Product.count>5000
 
     if runjsonimport == true then
-      loadnewproducts
+      #loadnewproducts
     end
 
     #Select testfield
     questionpick = Topic.random[0]
-    puts questionpick.inspect
     myfield = questionpick.test_field
     mytesttype = questionpick.qtype
     @mytestquestion = questionpick.question
     @mytest = questionpick.statement
     @mytopic = questionpick.id
 
-
-
     #Select 5 products for testing
+    #  begin with a list of two, conflicting
     test = [{'test_condition' => 0}, {'test_condition' => 0}]
-    loadcount = 4 #usually hits on one run... but this drops to loop and correct
 
-    until test[test.count-1]['test_condition'] != test[test.count-2]['test_condition'] do
-      #  Prepare up five brands to keep the products selected varied
-      brands = Product.allbrands(myfield)
-      brandlist = Hash.new
-      for i in 0..loadcount
-        pick = rand(brands.count)
-        selectbrand = brands.delete_at(pick)
-        brandlist[selectbrand] = rand(Product.brandcount(selectbrand))
+    until test[test.count-1]['test_condition'] != test[test.count-2]['test_condition'] do #makes sure the answer and next value are not identicle so one wins
+      @quizquestions = Product.random(myfield)
+      4.times do
+        @quizquestions += Product.random(myfield)
       end
-
-      brandlist.each do |brand, offsets|
-        if @quizquestions.nil? then
-          @quizquestions = Product.tester(brand, offsets, myfield)
-        else
-          @quizquestions += Product.tester(brand, offsets, myfield)
-        end
-      end
-
-      #in the event that this is looping
-      until @quizquestions.count < 6 do
-        @quizquestions.delete_at(rand(4))
-        loadcount = 2 #need new entries. drop this down to avoid repeating brands (which have similar items in different packages)
-      end
-
       test = @quizquestions.sort_by { |e| e['test_condition'] }
-      test = test.reverse if mytesttype == false
     end
 
     @winnerid = test[test.count-1]['id']
