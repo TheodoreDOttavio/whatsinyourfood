@@ -1,9 +1,135 @@
 class StaticPagesController < ApplicationController
   def home
+    @needlogin = true
+    @loginmessage = params['loginmsg']
+
+    if $userid.nil? then
+      $userid = cookies[:user_id]
+      if $userid.nil? == false then
+        obj = Player.find_by(id: $userid.to_i)
+        if obj.password != "" then
+          @needlogin = false
+          @playername = obj.name
+        end
+      end
+    end
+
+  end
+
+
+  def login
+    #first- check to see if they just left both fields blank
+    if params['myname'] == "display name" and params['mypassword'] == "password" then
+      #Do nothing, just redirect
+    else
+      logmsg = ""
+      #This may have data and is different than the login
+      #  Record current id,
+      #  do a lookup - ask again or create/assign
+      #  merge in current id,
+      #  reset cookies
+      currentid = $userid
+
+      storedpass = Digest::SHA1.hexdigest(params['mypassword'])
+
+      #Do a lookup
+      if params['myname'] != "display name"
+        obj = Player.find_by(name: params['myname'])
+      else
+        params['myname'] = ""
+        obj = Player.find_by(password: storedpass)
+      end
+
+      if obj.nil? then #Create because nothing was found on name or password
+        obj = Player.new
+        $userid = obj.id
+        obj.update(:name => params['myname'])
+        obj.update(:password => storedpass)
+        obj.save
+        cookies[:user_id] = $userid
+        logmsg = "Your account has been created."
+      else
+        #doublecheck password
+        if obj['password'] == storedpass then #login!
+          $userid = obj.id
+          obj.update(:name => params['myname'])
+          obj.save
+          cookies[:user_id] = $userid
+          logmsg = "Welcome back #{params['myname']}"
+        else
+          logmsg = "The name #{params['myname']} does not match the password."
+        end
+      end
+
+      #check for a merge
+      if currentid != $userid then
+        oldobj = Player.find_by(id: currentid)
+        if oldobj.nil == false then
+          #generate a hash of player succes scores
+          playersucesses = obj.sucesses
+          if playersucesses.nil? or playersucesses == "" then
+            playersucesses = {}
+          else
+            playersucesses = JSON.parse!(obj.sucesses)
+          end
+          playerfailures = obj.failures
+          if playerfailures.nil? or playerfailures == "" then
+            playerfailures = {}
+          else
+            playerfailures = JSON.parse!(obj.failures)
+          end
+
+          #generate a hash of old player succes scores
+          oldplayersucesses = oldobj.sucesses
+          if oldplayersucesses.nil? or oldplayersucesses == "" then
+            oldplayersucesses = {}
+          else
+            oldplayersucesses = JSON.parse!(oldobj.sucesses)
+          end
+          oldplayerfailures = oldobj.failures
+          if oldplayerfailures.nil? or oldplayerfailures == "" then
+            oldplayerfailures = {}
+          else
+            oldplayerfailures = JSON.parse!(oldobj.failures)
+          end
+
+          oldplayersucesses.each do |id,val|
+            if playersucesses[id].nil? then
+              playersucesses[id] = val
+            else
+              playersucesses[id] += val
+            end
+          end
+
+          oldplayerfailures.each do |id,val|
+            if playerfailures[id].nil? then
+              playerfailures[id] = val
+            else
+              playerfailures[id] += val
+            end
+          end
+
+          obj.sucesses = JSON.fast_generate(playersucesses)
+          obj.failures = JSON.fast_generate(playerfailures)
+          obj.save
+
+          oldobj.delete
+
+          #just to be clear... re-assert the cookies
+          $userid = obj.id
+          cookies[:user_id] = $userid
+        end #if oldobj.nil?
+      end #end merge
+
+    end #check for doing nothing
+    redirect_to root_path(loginmsg: logmsg)
   end
 
 
   def about
+    #depreciating this to just send the user to the home page...
+    #  it was a fun exercise, but no need to be silly...
+
     # Find a quirky username
     userreview = Unirest.get("https://acedev-project-name-generator-v1.p.mashape.com/with-number",
         headers:{"X-Mashape-Key" => "Kh6nGtA4nXmshOKQSehm72xY5olDp1nTnUljsnvR1blvOPdH5l",
@@ -47,6 +173,7 @@ class StaticPagesController < ApplicationController
      @comment = response.body["variations"][0]
   end
 
+
   def stats
     @productcount = Product.count
     @playercount = Player.count
@@ -69,19 +196,19 @@ class StaticPagesController < ApplicationController
       @name = obj.name
     end
 
-    #generate a has of player succes scores
+    #generate a hash of player succes scores
     playersucesses = obj.sucesses
-      if playersucesses.nil? or playersucesses == "" then
-        playersucesses = {}
-      else
-        playersucesses = JSON.parse!(obj.sucesses)
-      end
+    if playersucesses.nil? or playersucesses == "" then
+      playersucesses = {}
+    else
+      playersucesses = JSON.parse!(obj.sucesses)
+    end
     playerfailures = obj.failures
-      if playerfailures.nil? or playerfailures == "" then
-        playerfailures = {}
-      else
-        playerfailures = JSON.parse!(obj.failures)
-      end
+    if playerfailures.nil? or playerfailures == "" then
+      playerfailures = {}
+    else
+      playerfailures = JSON.parse!(obj.failures)
+    end
 
     psucesses = 0
     pfailures = 0
@@ -125,5 +252,6 @@ class StaticPagesController < ApplicationController
     @playertotal = psucesses + pfailures
 
   end #stats
+
 
 end
