@@ -3,14 +3,13 @@ class StaticPagesController < ApplicationController
     @needlogin = true
     @loginmessage = params['loginmsg']
 
-    if $userid.nil? then
-      $userid = cookies[:user_id]
-      if $userid.nil? == false then
-        obj = Player.find_by(id: $userid.to_i)
-        if obj.password != "" then
-          @needlogin = false
-          @playername = obj.name
-        end
+    $userid = cookies[:user_id]
+
+    if $userid.nil? == false then
+      obj = Player.find_by(id: $userid.to_i)
+      if obj.password != "" then
+        @needlogin = false
+        @playername = obj.name
       end
     end
 
@@ -64,7 +63,7 @@ class StaticPagesController < ApplicationController
       #check for a merge
       if currentid != $userid then
         oldobj = Player.find_by(id: currentid)
-        if oldobj.nil == false then
+        if oldobj.nil? == false then
           #generate a hash of player succes scores
           playersucesses = obj.sucesses
           if playersucesses.nil? or playersucesses == "" then
