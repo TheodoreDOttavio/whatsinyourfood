@@ -14,3 +14,7 @@
 <% end %>
 
 <h2 style="padding: 5px 60px 0px 40px;"><%= @loginmessage %></h2>
+
+<% if $userid? then %>
+  <%= link_to "Share", postme_path %>
+<% end %>

@@ -100,4 +100,14 @@ response = Unirest.post "https://twinword-sentiment-analysis.p.mashape.com/analy
 #neutral
 {{meh |ummm... |whatever |nope. |who writes these? |}}{{This one was too easy|not so tough|:/|}}
 
+
+gem "browser"
+
+browser = Browser.new(:ua => "some string", :accept_language => "en-us")
+if browser.mobile? then
+  ismobile = "yup, a mobile Browser"
+else
+  ismobile = "Not a mobile browser"
+end
+
 =end
