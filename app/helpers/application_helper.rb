@@ -101,21 +101,22 @@ puts "<----"
   end
 
   def getscore (playersuccesfield, playerfailurefield, myparam)
+    stot = 0
     if playersuccesfield.nil? == false then
       answ = JSON.parse!(playersuccesfield)
-      stot = 0
       answ.each do |key,val|
         stot += val.to_i
       end
     end
 
+    ftot = 0
     if playerfailurefield.nil? == false then
       answ = JSON.parse!(playerfailurefield)
-      ftot = 0
       answ.each do |key,val|
         ftot += val.to_i
       end
     end
+
     spercent = 0
     spercent = (stot/(stot+ftot))*100 if stot != 0
 
