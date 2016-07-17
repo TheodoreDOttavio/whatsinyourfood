@@ -105,7 +105,7 @@ puts "<----"
       answ = JSON.parse!(playersuccesfield)
       stot = 0
       answ.each do |key,val|
-        stot += val
+        stot += val.to_i
       end
     end
 
@@ -113,7 +113,7 @@ puts "<----"
       answ = JSON.parse!(playerfailurefield)
       ftot = 0
       answ.each do |key,val|
-        ftot += val
+        ftot += val.to_i
       end
     end
     spercent = 0
