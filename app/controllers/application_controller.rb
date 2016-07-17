@@ -2,6 +2,29 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+
+  def getscore (playersuccesfield, playerfailurefield)
+    if playersuccesfield.nil? == false then
+      answ = JSON.parse!(playersuccesfield)
+      stot = 0
+      answ.each do |key,val|
+        stot += val
+      end
+    end
+
+    if playerfailurefield.nil? == false then
+      answ = JSON.parse!(playerfailurefield)
+      ftot = 0
+      answ.each do |key,val|
+        ftot += val
+      end
+    end
+
+    score = {}
+
+    return (stot)
+  end
+
 end
 
 

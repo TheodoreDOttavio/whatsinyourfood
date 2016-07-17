@@ -1,2 +1,3 @@
-<h4><%= player.id %>: <%= player.name %> - <%= if player.password? then 'Yes' else 'nil' end %> -
-<%= link_to "Delete", player, method: :delete, data: { confirm: "Are you sure?" } %>
+<h4><%= link_to "Delete", player, method: :delete, data: { confirm: "Are you sure?" } %>
+<%= player.id %>: <%= player.name %> - <%= if player.password? then 'Yes' else 'nil' end %>
+</h4>
