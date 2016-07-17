@@ -100,4 +100,32 @@ puts "<----"
 
   end
 
+  def getscore (playersuccesfield, playerfailurefield, myparam)
+    if playersuccesfield.nil? == false then
+      answ = JSON.parse!(playersuccesfield)
+      stot = 0
+      answ.each do |key,val|
+        stot += val
+      end
+    end
+
+    if playerfailurefield.nil? == false then
+      answ = JSON.parse!(playerfailurefield)
+      ftot = 0
+      answ.each do |key,val|
+        ftot += val
+      end
+    end
+    spercent = 0
+    spercent = (stot/(stot+ftot))*100 if stot != 0
+
+    #myparam symbols:
+    score = {:total_questions => ftot + stot,
+      :total => ftot + stot,
+      :percent => spercent.round(0)}
+
+    return (score[myparam])
+  end
+
+
 end
