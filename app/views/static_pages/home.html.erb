@@ -16,12 +16,11 @@
 <h2 style="padding: 5px 60px 0px 40px;"><%= @loginmessage %></h2>
 
 <% if !$userid.nil? then %>
-  <%= link_to "View Score", postme_path %>
-
-  <div class="fb-share-button" data-href="<%= root_url %>"
-  data-layout="button"
-  data-size="large"
-  data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
-  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwhatsinyourfood.herokuapp.com%2F&amp;src=sdkpreparse">Share</a></div>
-
+  <div style="padding: 0px 570px 0px 0px;">
+    <div class="fb-share-button" data-href="<%= root_url %>"
+    data-layout="button"
+    data-size="large"
+    data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
+    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwhatsinyourfood.herokuapp.com%2F&amp;src=sdkpreparse">Share</a></div>
+  </div>
 <% end %>
