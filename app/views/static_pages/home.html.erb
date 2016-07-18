@@ -17,7 +17,8 @@
 
 <% if !$userid.nil? then %>
   <%= link_to "View Score", postme_path %>
-
+  
+  <div id="fb-root"></div>
   <div class="fb-share-button"
   data-href="<%= url_for :controller => 'players', :action => 'show', :only_path => false %>"
   data-layout="button_count"
