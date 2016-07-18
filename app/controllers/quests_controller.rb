@@ -102,6 +102,7 @@ class QuestsController < ApplicationController
         playerhash[@mytopic.to_s] = playerhash[@mytopic.to_s] + 1
       end
       obj.failures = JSON.fast_generate(playerhash)
+      #getscore (playersuccesfield, playerfailurefield, :percent)
       obj.save
 
     end
