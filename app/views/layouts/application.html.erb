@@ -4,17 +4,6 @@
   <title>Whatsinyourfood</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-
-  <!-- Facebook Open Graph tags !-->
-  <meta property="og:url"         content="<%= root_url %>" />
-  <meta property="og:type"        content="article" />
-  <meta property="og:title"       content="Whats in your Food?" />
-  <meta property="og:description" content="A quiz based on nutrition information." />
-  <meta property="og:image"       content="<%= root_url + 'assets/logo.png' %>" />
-
-</head>
-<body>
   <script>
     window.fbAsyncInit = function() {
       FB.init({
@@ -32,7 +21,17 @@
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
   </script>
+  <%= csrf_meta_tags %>
 
+  <!-- Facebook Open Graph tags !-->
+  <meta property="og:url"         content="<%= root_url %>" />
+  <meta property="og:type"        content="article" />
+  <meta property="og:title"       content="Whats in your Food?" />
+  <meta property="og:description" content="A quiz based on nutrition information." />
+  <meta property="og:image"       content="<%= root_url + 'assets/logo.png' %>" />
+
+</head>
+<body>
   <!--Div and Script for Facebook Share !-->
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
