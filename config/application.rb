@@ -10,6 +10,10 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
+#adding two lines to patch gem Mobylette
+#  without this the rails s server crashes.
+require "action_view"
+require "action_view/template/resolver"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -31,9 +35,9 @@ module Whatsinyourfood
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    
+
     config.serve_static_files = true
-    
+
     #config.serve_static_files = true
     config.assets.precompile += %w( style.css )
   end

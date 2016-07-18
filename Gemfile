@@ -5,6 +5,7 @@ ruby '2.1.7'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jbuilder', '~> 2.0'          # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-rails'
+gem 'mobylette', '~> 3.5' #Note required addition to application.rb
 gem 'rails', '4.2.5'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc

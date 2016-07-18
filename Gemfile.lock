@@ -73,6 +73,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
+    mobylette (3.5)
+      actionpack (>= 3.0)
     multi_json (1.12.1)
     nokogiri (1.6.8-x64-mingw32)
       mini_portile2 (~> 2.1.0)
@@ -170,6 +172,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
+  mobylette (~> 3.5)
   pg
   rails (= 4.2.5)
   rails_12factor
