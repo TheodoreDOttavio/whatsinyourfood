@@ -1,85 +1,31 @@
-@import "//fonts.googleapis.com/css?family=Archivo+Black|Indie+Flower";
-
-body {
-font-family: 'Archivo', Arial, sans-serif;
-font-size: 16px;
-background: #cccef4;
-margin: 0;
-color: #112211;
-}
-
-a { color: #ffffff; text-decoration: none;}
-a:hover { text-decoration: underline; }
-
-#wrap {
-  width: 650px;
+#mobile-header {
   padding: 0;
-  margin: 10px auto;
-}
-
-#header {
-  border-width: 1px;
-  border-color: #ffffff;
-  border-style: solid;
-  border-radius: 50px 50px 5px 5px;
   background: #b1b3d4;
-  width: 650px;
+  width: 100%;
   min-height: 100px;
   font-weight: 100;
   box-sizing: content-box;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
 }
-#header h1 {
+#mobile-header h1 {
   font-family: 'Indie Flower',Arial, sans-serif;
-  margin: 0;
-  padding: 30px 60px 0 30px;
+  text-align: center;
+  margin-bottom: -0.7em;
   color: #ffffff;
-  font-size: 31px;
-  letter-spacing: -1px;
-  line-height: 27px;
+  font-size: 5em;
 }
-#header h2 {
-  font-size: 21px;
-  padding: 0 0 0 40px;
-  margin: 0;
+#mobile-header h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: -0.2em;
   color: #333333;
 }
 
-#menu {
-  height: 30px;
-  line-height: 30px;
-}
-#menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding-left: 170px;
-}
-#menu ul li {
-  font-family: 'Indie Flower',Arial, sans-serif;
-  font-size: 18px;
-  display: block;
-  float: left;
-}
-#menu ul li a {
-  display: block;
-  padding: 0 10px 0 10px;
-  text-decoration: none;
-  color: #333333;
-  font-weight: 100;
-}
-#menu ul li a:hover {
-  color: #333333;
-  background: #b1b3d4;
-}
 
-#content {
-  border-width: 1px;
-  border-color: #ffffff;
-  border-style: solid;
-  border-radius: 5px 5px 0px 0px;
+#mobile-content {
   background: #b1b3d4;
-  width: 650px;
+  width: 100%;
   min-height: 460px;
   text-align: left;
   color: #333333;
@@ -87,58 +33,60 @@ a:hover { text-decoration: underline; }
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
 }
-#content h1 {
+#mobile-content h1 {
   color: #ffffff;
   font-weight: 100;
-  font-size: 27px;
-  padding: 5px 40px 0px 40px;
+  font-size: 3.5em;
+  text-align: center;
+  margin: 0.2em;
 }
-#content input {
-  border-width: 1px;
-  border-radius: 5px 5px 5px 5px;
+#mobile-content input {
+  border-width: 2px;
+  border-radius: 15px 15px 15px 15px;
   border-color: #ffffff;
   border-style: solid;
   background: #b1b3d4;
   color: #454545;
+  font-size: 2em;
   font-weight: 100;
   padding: 1px 12px 1px 12px;
 }
-#content p {
+#mobile-content p {
   color: #454545;
+  font-size: 2.5em;
   font-weight: bold;
   padding: 1px 20px 1px 20px;
 }
 
-#nutri-label {
-  border-width: 3px;
+#mobile-nutri-label {
+  border-width: 4px;
   border-color: #000000;
   border-style: solid;
   border-radius: 12px;
-  width: 200px;
+  width: 85%;
   min-height: 250px;
   padding: 0px 3px 3px 2px;
   margin-bottom:10px;
-  margin-left:75px;
-  float: left;
+  margin-left: 7%;
   box-sizing: content-box;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
 }
-#nutri-bar-thick {
+#mobile-nutri-bar-thick {
   border-top: thick solid;
   margin-top: 2px;
   margin-bottom: -15px;
 }
-#nutri-label h2 {
-  font-size: 18px;
+#mobile-nutri-label h2 {
+  font-size: 3em;
   font-weight: bolder;
   text-align: center;
   margin-top: -3px;
   margin-bottom: -3px;
 }
 /* Name Info */
-#nutri-label h3 {
-  font-size: 12px;
+#mobile-nutri-label h3 {
+  font-size: 2em;
   font-weight: normal !important;
   color: #333333;
   text-align: left;
@@ -148,30 +96,30 @@ a:hover { text-decoration: underline; }
   margin-bottom: -2px;
 }
 /* Bold Line Items */
-#nutri-label h4 {
-  font-size: 11px;
+#mobile-nutri-label h4 {
+  font-size: 2em;
   font-weight: bold;
   text-align: left;
-  text-indent: 4px;
+  text-indent: 8px;
   margin-top: -1px;
   margin-bottom: -1px;
   border-top: thin solid;
   overflow: auto;
 }
 /* Lighter Line Items */
-#nutri-label h5 {
-  font-size: 11px;
+#mobile-nutri-label h5 {
+  font-size: 2em;
   font-weight: 100;
   text-align: left;
-  text-indent: 20px;
+  text-indent: 40px;
   margin-top: -2px;
   margin-bottom: -2px;
   border-top: thin solid;
   overflow: auto;
 }
 /* Lighter Line Items for stats */
-#nutri-label h6 {
-  font-size: 12px;
+#mobile-nutri-label h6 {
+  font-size: 2em;
   font-weight: 100;
   text-align: left;
   margin-top: -1px;
@@ -179,17 +127,12 @@ a:hover { text-decoration: underline; }
   border-top: thin solid;
   overflow: auto;
 }
-.nutrivalue {
-  font-weight: 100;
-  float: right;
-  text-align: right;
-}
 
-#stats-block {
-  border-width: 3px;
+#mobile-stats-block {
+  border-width: 4px;
   border-color: #000000;
   border-style: solid;
-  border-radius: 12px;
+  border-radius: 2em;
   width: 300px;
   padding: 0px 3px 3px 2px;
   float: right;
@@ -197,7 +140,7 @@ a:hover { text-decoration: underline; }
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
 }
-#stats-header {
+#mobile-stats-header {
   font-family: 'Indie Flower',Arial, sans-serif;
   font-size: 18px !important;
   font-weight: normal;
@@ -207,7 +150,7 @@ a:hover { text-decoration: underline; }
   margin-top: -3px;
   margin-bottom: -14px;
 }
-#stats-light {
+#mobile-stats-light {
   font-size: 11px;
   text-align: left;
   margin-left: 12px;
@@ -217,13 +160,10 @@ a:hover { text-decoration: underline; }
   border-top: thin solid;
 }
 
-#footer {
-  border-width: 1px;
-  border-color: #ffffff;
-  border-style: solid;
-  border-radius: 0px 0px 50px 50px;
+
+#mobile-footer {
   background: #b1b3d4;
-  width: 650px;
+  width: 100%;
   max-height: 40px;
   text-align: center;
   color: #eeeeee;
@@ -232,6 +172,28 @@ a:hover { text-decoration: underline; }
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
 }
-#footer p { line-height: 30px; margin: 0; }
-#footer a { color: #fff; }
-#footer a:hover { text-decoration: underline; }
+#mobile-footer ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 170px;
+}
+#mobile-footer ul li {
+  font-family: 'Indie Flower',Arial, sans-serif;
+  font-size: 18px;
+  display: block;
+  float: left;
+}
+#mobile-footer ul li a {
+  display: block;
+  padding: 0 10px 0 10px;
+  text-decoration: none;
+  color: #333333;
+  font-weight: 100;
+}
+#mobile-footer ul li a:hover {
+  color: #333333;
+  background: #b1b3d4;
+}
+#mobile-footer p { line-height: 30px; margin: 0; }
+#mobile-footer a { color: #fff; }
+#mobile-footer a:hover { text-decoration: underline; }

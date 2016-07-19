@@ -4,23 +4,6 @@
   <title>Whatsinyourfood</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '260554340991212',
-        xfbml      : true,
-        version    : 'v2.7'
-      });
-    };
-
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "//connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-  </script>
   <%= csrf_meta_tags %>
 
   <!-- Facebook Open Graph tags !-->
@@ -44,29 +27,21 @@
   }(document, 'script', 'facebook-jssdk'));</script>
   <!--end Div and Script for Facebook Share !-->
 
-<div id="wrap">
-  <div id="header">
-    <h1>What is in Your Food?</h1>
-    <h2>Test your knowledge of nutrition requirements</h2>
-  </div>
+<div id="mobile-header">
+  <h1>What is in Your Food?</h1>
+  <h2>Test your knowledge of nutrition requirements</h2>
+</div>
 
-<div id="menu">
+<div id="mobile-content">
+ <%= yield %>
+</div>
+
+<div id="mobile-footer">
   <ul>
-    <li><%= link_to "New Question", 'quests' %></li>
     <li><%= link_to "Stats for nerds", 'stats' %></li>
     <li><%= link_to "About", root_path %></li>
+    <li>&copy; 2016 Theodore DOttavio</li>
   </ul>
-</div>
-
-<div id="content">
-  <h1>MOBILE app detected!</h1>
-<%= yield %>
-</div>
-
-<div id="footer">
-<p>&copy; 2016 Theodore DOttavio</p>
-</div>
-
 </div>
 
 <% if Rails.env.development? then %>

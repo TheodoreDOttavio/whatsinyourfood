@@ -1,0 +1,26 @@
+<h2 style="padding: 40px 60px 40px 40px;">This site uses the Nutritionix API to randomly select five products and quiz you on the nutrition label information. If you find that sort of thing fun:</h2>
+
+<h1 style="text-align: center;"><%= link_to "Try Some Quiz Questions", 'quests' %></h1>
+
+<% if @needlogin == true then %>
+  <h2 style="padding: 40px 60px 0px 40px;">This site uses cookies to store your results. If you would like to return and add to your score, then enter a password:</h2>
+  <%= form_tag({action: :login}, multipart: false, style: "padding: 0px 60px 0px 40px;") do %>
+    <%= text_field_tag :myname, "display name" %>&nbsp;
+    <%= text_field_tag :mypassword, "password" %>&nbsp;&nbsp;&nbsp;
+    <%= submit_tag("login") %>
+  <% end %>
+<% else %>
+  <h2 style="padding: 40px 60px 40px 40px;">Welcome <%= @playername %></h2>
+<% end %>
+
+<h2 style="padding: 5px 60px 0px 40px;"><%= @loginmessage %></h2>
+
+<% if !$userid.nil? then %>
+  <h1 style="text-align: center;">
+    <div class="fb-share-button" data-href="<%= root_url %>"
+    data-layout="button"
+    data-size="large"
+    data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
+    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwhatsinyourfood.herokuapp.com%2F&amp;src=sdkpreparse">Share</a></div>
+  </h1>
+<% end %>
