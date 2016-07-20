@@ -184,6 +184,7 @@ a:hover { text-decoration: underline;}
   overflow: auto;
 }
 .nutrivalue {
+  color: #000000;
   font-weight: 100;
   float: right;
   text-align: right;
