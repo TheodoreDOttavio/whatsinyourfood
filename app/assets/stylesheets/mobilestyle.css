@@ -49,13 +49,12 @@
   color: #454545;
   font-size: 2em;
   font-weight: 100;
-
 }
 #mobile-content p {
   color: #454545;
   font-size: 2.5em;
   font-weight: bold;
-  padding: 1px 20px 1px 0px;
+  padding: 1px 0px 1px 0px;
 }
 
 #mobile-nutri-label {
