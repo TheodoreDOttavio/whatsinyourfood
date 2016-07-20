@@ -29,6 +29,7 @@
   min-height: 460px;
   text-align: left;
   color: #333333;
+  padding: 0px;
   box-sizing: content-box;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
@@ -52,9 +53,8 @@
 }
 #mobile-content p {
   color: #454545;
-  font-size: 2.5em;
+  font-size: 3em;
   font-weight: bold;
-  padding: 1px 0px 1px 0px;
 }
 
 #mobile-nutri-label {
