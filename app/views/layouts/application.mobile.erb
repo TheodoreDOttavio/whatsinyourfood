@@ -33,7 +33,7 @@
 
 </head>
 <body>
-  <!--Div and Script for Facebook Share !-->
+  <!--Div and Script for Facebook Share
   <div id="fb-root"></div>
   <!--end Div and Script for Facebook Share !-->
 
@@ -51,6 +51,16 @@
     <li><%= link_to "About", root_path %></li>
     <li> - </li>
     <li><%= link_to "Stats for nerds", 'stats' %></li>
+    <li>
+      <% if !$userid.nil? then %>
+          <div class="fb-share-button" data-href="<%= root_url %>"
+          data-layout="button"
+          data-size="large"
+          data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
+          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwhatsinyourfood.herokuapp.com%2F&amp;src=sdkpreparse">Share</a>
+        </div>
+      <% end %>
+    </li>
   </ul>
 </div>
 

@@ -10,7 +10,7 @@ body {
 }
 
 a {
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
 }
 a:hover { text-decoration: underline;}
@@ -118,15 +118,12 @@ a:hover { text-decoration: underline;}
   border-color: #000000;
   border-style: solid;
   border-radius: 12px;
-  width: 200px;
+  width: 210px;
   min-height: 250px;
   padding: 0px 3px 3px 2px;
   margin-bottom:10px;
-  margin-left:75px;
+  margin-left:70px;
   float: left;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
 }
 #nutri-bar-thick {
   border-top: thick solid;
@@ -198,9 +195,6 @@ a:hover { text-decoration: underline;}
   width: 300px;
   padding: 0px 3px 3px 2px;
   float: right;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
 }
 #stats-header {
   font-family: 'Indie Flower',Arial, sans-serif;

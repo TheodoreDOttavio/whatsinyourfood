@@ -3,7 +3,7 @@
 <div id="nutri-label" style="<%= @mystyle %>" >
   <h2><%= @quizquestion.brand_name %></h2>
   <h3><%= removecommas(@quizquestion.item_name) %></h3>
-    <h3>&nbsp;<span class = "nutrivalue"><%= @quizquestion.nf_serving_size_qty %> <%= @quizquestion.nf_serving_size_unit %></h3>
+    <h4>&nbsp;<span class = "nutrivalue"><%= @quizquestion.nf_serving_size_qty %> <%= @quizquestion.nf_serving_size_unit %></h3>
   <div id="nutri-bar-thick">&nbsp;</div>
   <h4>Serving Size
     <span class = "nutrivalue"><%= @quizquestion.nf_serving_weight_grams %> g</span></h4>

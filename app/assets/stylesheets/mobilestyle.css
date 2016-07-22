@@ -65,9 +65,6 @@
   padding: 0px 3px 3px 2px;
   margin-bottom:10px;
   margin-left: 7%;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
 }
 #mobile-nutri-bar-thick {
   border-top: thick solid;
@@ -140,9 +137,6 @@
   width: 80%;
   padding: 0px 3px 3px 2px;
   float: right;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
 }
 #mobile-stats-header {
   font-family: 'Indie Flower',Arial, sans-serif;

@@ -51,8 +51,10 @@ module ApplicationHelper
       end
 
       #salt is in milligrams .. convert it to grams and extend it to 6 decimals instead of 4
-      obj.update(:nf_sodium_pergram => (obj['nf_sodium'].to_i/1000.000)/mysize) if obj['nf_sodium'].to_i != 0
-      obj.update(:nf_sodium_pergram => obj['nf_sodium_pergram'].round(6))
+      storevalue = 0
+      storevalue = (obj['nf_sodium'].to_i/1000.000)/mysize if obj['nf_sodium'].to_i != 0
+      storevalue = storevalue.round(6)
+      obj.update(:nf_sodium_pergram => storevalue)
 
       obj.save(:validate => false)
     else
