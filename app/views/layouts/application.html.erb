@@ -63,7 +63,15 @@
 </div>
 
 <div id="footer">
-<p>&copy; 2016 Theodore DOttavio</p>
+   <% if !$userid.nil? then %>
+      <div class="fb-share-button" data-href="<%= root_url %>"
+      data-layout="button"
+      data-size="small"
+      data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
+      href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwhatsinyourfood.herokuapp.com%2F&amp;src=sdkpreparse">Share</a>
+     </div>
+   <% end %>
+   <p>&copy; 2016 Theodore DOttavio</p>
 </div>
 
 </div>
