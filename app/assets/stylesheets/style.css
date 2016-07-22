@@ -97,6 +97,9 @@ a:hover { text-decoration: underline;}
   font-size: 27px;
   padding: 5px 40px 0px 40px;
 }
+#content h2 {
+  padding: 0px;
+}
 #content input {
   border-width: 1px;
   border-radius: 5px 5px 5px 5px;
