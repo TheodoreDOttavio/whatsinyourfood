@@ -17,8 +17,7 @@ class QuestsController < ApplicationController
     runjsonimport = false if Product.count>5000
 
     if runjsonimport == true then
-      #to_do A Bad URI error chokes the page - throws an application error...
-      #loadnewproducts
+      loadnewproducts
     end
 
     #Select testfield
