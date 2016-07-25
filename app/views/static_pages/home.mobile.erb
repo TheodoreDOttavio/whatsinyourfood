@@ -3,7 +3,7 @@
 <h1 style="text-align: center;"><%= link_to "Try Some Quiz Questions", 'quests' %></h1>
 
 <% if @needlogin == true then %>
-  <h2 style="padding: 40px 60px 0px 40px;">This site uses cookies to store your results. If you would like to return and add to your score, then enter a password:</h2>
+  <h2 style="padding: 40px 60px 0px 40px;">Your results are stored in a cookie. If you would like to return and add to your score, then enter a password:</h2>
   <%= form_tag({action: :login}, multipart: false, style: "padding: 0px 60px 0px 40px;") do %>
     <%= text_field_tag :myname, "display name" %>&nbsp;
     <%= text_field_tag :mypassword, "password" %>&nbsp;&nbsp;&nbsp;
