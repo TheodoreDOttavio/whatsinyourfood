@@ -158,7 +158,7 @@
   border-top: thin solid;
 }
 
-.fb-share-button {
+.mobile-scale-for-fb {
     transform: scale(3);
     -webkit-transform: scale(3);
     -moz-transform: scale(3);
