@@ -59,7 +59,7 @@ module ApplicationHelper
       obj.save(:validate => false)
     else
       #trash it bcause there is no serving size in grams!
-      puts "deleting product id " + product_id.to_s
+      #puts "deleting product id " + product_id.to_s
       Product.destroy(product_id)
     end
 

@@ -1,49 +1,5 @@
 <h1><%= @mytest %> <%= @yourresults %></h1>
 
-<div id="nutri-label" style="<%= @mystyle %>" >
-  <h2><%= @quizquestion.brand_name %></h2>
-  <h3><%= removecommas(@quizquestion.item_name) %></h3>
-    <h4>&nbsp;<span class = "nutrivalue"><%= @quizquestion.nf_serving_size_qty %> <%= @quizquestion.nf_serving_size_unit %></h3>
-  <div id="nutri-bar-thick">&nbsp;</div>
-  <h4>Serving Size
-    <span class = "nutrivalue"><%= @quizquestion.nf_serving_weight_grams %> g</span></h4>
-  <h4>Calories  <%= @quizquestion.nf_calories %>
-    <span class = "nutrivalue"><%= @quizquestion.nf_calories_pergram %> /g</span></h4>
-  <h4>Calories from Fat  <%= @quizquestion.nf_calories_from_fat %>
-    <span class = "nutrivalue"><%= @quizquestion.nf_calories_from_fat_pergram %> /g</span></h4>
-  <h4>Total Fat  <%= @quizquestion.nf_total_fat %> g
-    <span class = "nutrivalue"><%= @quizquestion.nf_total_fat_pergram %> /g</span></h4>
-  <h4>Saturated Fat  <%= @quizquestion.nf_saturated_fat %> g
-    <span class = "nutrivalue"><%= @quizquestion.nf_saturated_fat_pergram %> /g</span></h4>
-  <h5><i>Trans</i> Fat  <%= @quizquestion.nf_trans_fatty_acid %> g
-    <span class = "nutrivalue"><%= @quizquestion.nf_trans_fatty_acid_pergram %> /g</span></h5>
-  <h5>Polyunsaturated Fat  <%= @quizquestion.nf_polyunsaturated_fat %> g
-    <span class = "nutrivalue"><%= @quizquestion.nf_polyunsaturated_fat_pergram %> /g</span></h5>
-  <h5>Monounsaturated Fat  <%= @quizquestion.nf_monounsaturated_fat %> g
-    <span class = "nutrivalue"><%= @quizquestion.nf_monounsaturated_fat_pergram %> /g</span></h5>
-  <h4>Cholesterol  <%= @quizquestion.nf_cholesterol %> g
-    <span class = "nutrivalue"><%= @quizquestion.nf_cholesterol_pergram %> /g</span></h4>
-  <h4>Sodium  <%= @quizquestion.nf_sodium %> mg
-    <span class = "nutrivalue"><%= @quizquestion.nf_sodium_pergram %> /g</span></h4>
-  <h4>Total Carbohydrates  <%= @quizquestion.nf_total_carbohydrate %> g
-    <span class = "nutrivalue"><%= @quizquestion.nf_total_carbohydrate_pergram %> /g</span></h4>
-  <h5>Dietary Fiber  <%= @quizquestion.nf_dietary_fiber %> g
-    <span class = "nutrivalue"><%= @quizquestion.nf_dietary_fiber_pergram %> /g</span></h5>
-<h5>Sugars  <%= @quizquestion.nf_sugars %> g
-    <span class = "nutrivalue"><%= @quizquestion.nf_sugars_pergram %> /g</span></h5>
-<h4>Protein  <%= @quizquestion.nf_protein %> g
-    <span class = "nutrivalue"><%= @quizquestion.nf_protein_pergram %> /g</span></h4>
-<div id="nutri-bar-thick">&nbsp;</div>
-<h5>Vitamin A  <%= @quizquestion.nf_vitamin_a_dv %> %
-    <span class = "nutrivalue"><%= @quizquestion.nf_vitamin_a_dv_pergram %> %/g</span></h5>
-<h5>Vitamin C  <%= @quizquestion.nf_vitamin_c_dv %> %
-    <span class = "nutrivalue"><%= @quizquestion.nf_vitamin_c_dv_pergram %> %/g</span></h5>
-<h5>Calcium  <%= @quizquestion.nf_calcium_dv %> %
-    <span class = "nutrivalue"><%= @quizquestion.nf_calcium_dv_pergram %> %/g</span></h5>
-<h5>Iron  <%= @quizquestion.nf_iron_dv %> %
-    <span class = "nutrivalue"><%= @quizquestion.nf_iron_dv_pergram %> %/g</span></h5>
-</div>
-
 <% if @yourresults == 'Incorrect.' then %>
 <div id="nutri-label" style="background-color: #ffffff;" >
   <h2><%= @quizanswer.brand_name %></h2>
@@ -89,5 +45,50 @@
     <span class = "nutrivalue"><%= @quizanswer.nf_iron_dv_pergram %> %/g</span></h5>
 </div>
 <% end %>
+
+<div id="nutri-label" style="<%= @mystyle %>" >
+  <h2><%= @quizquestion.brand_name %></h2>
+  <h3><%= removecommas(@quizquestion.item_name) %></h3>
+    <h4>&nbsp;<span class = "nutrivalue"><%= @quizquestion.nf_serving_size_qty %> <%= @quizquestion.nf_serving_size_unit %></h3>
+  <div id="nutri-bar-thick">&nbsp;</div>
+  <h4>Serving Size
+    <span class = "nutrivalue"><%= @quizquestion.nf_serving_weight_grams %> g</span></h4>
+  <h4>Calories  <%= @quizquestion.nf_calories %>
+    <span class = "nutrivalue"><%= @quizquestion.nf_calories_pergram %> /g</span></h4>
+  <h4>Calories from Fat  <%= @quizquestion.nf_calories_from_fat %>
+    <span class = "nutrivalue"><%= @quizquestion.nf_calories_from_fat_pergram %> /g</span></h4>
+  <h4>Total Fat  <%= @quizquestion.nf_total_fat %> g
+    <span class = "nutrivalue"><%= @quizquestion.nf_total_fat_pergram %> /g</span></h4>
+  <h4>Saturated Fat  <%= @quizquestion.nf_saturated_fat %> g
+    <span class = "nutrivalue"><%= @quizquestion.nf_saturated_fat_pergram %> /g</span></h4>
+  <h5><i>Trans</i> Fat  <%= @quizquestion.nf_trans_fatty_acid %> g
+    <span class = "nutrivalue"><%= @quizquestion.nf_trans_fatty_acid_pergram %> /g</span></h5>
+  <h5>Polyunsaturated Fat  <%= @quizquestion.nf_polyunsaturated_fat %> g
+    <span class = "nutrivalue"><%= @quizquestion.nf_polyunsaturated_fat_pergram %> /g</span></h5>
+  <h5>Monounsaturated Fat  <%= @quizquestion.nf_monounsaturated_fat %> g
+    <span class = "nutrivalue"><%= @quizquestion.nf_monounsaturated_fat_pergram %> /g</span></h5>
+  <h4>Cholesterol  <%= @quizquestion.nf_cholesterol %> g
+    <span class = "nutrivalue"><%= @quizquestion.nf_cholesterol_pergram %> /g</span></h4>
+  <h4>Sodium  <%= @quizquestion.nf_sodium %> mg
+    <span class = "nutrivalue"><%= @quizquestion.nf_sodium_pergram %> /g</span></h4>
+  <h4>Total Carbohydrates  <%= @quizquestion.nf_total_carbohydrate %> g
+    <span class = "nutrivalue"><%= @quizquestion.nf_total_carbohydrate_pergram %> /g</span></h4>
+  <h5>Dietary Fiber  <%= @quizquestion.nf_dietary_fiber %> g
+    <span class = "nutrivalue"><%= @quizquestion.nf_dietary_fiber_pergram %> /g</span></h5>
+<h5>Sugars  <%= @quizquestion.nf_sugars %> g
+    <span class = "nutrivalue"><%= @quizquestion.nf_sugars_pergram %> /g</span></h5>
+<h4>Protein  <%= @quizquestion.nf_protein %> g
+    <span class = "nutrivalue"><%= @quizquestion.nf_protein_pergram %> /g</span></h4>
+<div id="nutri-bar-thick">&nbsp;</div>
+<h5>Vitamin A  <%= @quizquestion.nf_vitamin_a_dv %> %
+    <span class = "nutrivalue"><%= @quizquestion.nf_vitamin_a_dv_pergram %> %/g</span></h5>
+<h5>Vitamin C  <%= @quizquestion.nf_vitamin_c_dv %> %
+    <span class = "nutrivalue"><%= @quizquestion.nf_vitamin_c_dv_pergram %> %/g</span></h5>
+<h5>Calcium  <%= @quizquestion.nf_calcium_dv %> %
+    <span class = "nutrivalue"><%= @quizquestion.nf_calcium_dv_pergram %> %/g</span></h5>
+<h5>Iron  <%= @quizquestion.nf_iron_dv %> %
+    <span class = "nutrivalue"><%= @quizquestion.nf_iron_dv_pergram %> %/g</span></h5>
+</div>
+
 
 <h1 style="text-align: right;"><%= link_to "Next >>", 'quests' %></h1>
