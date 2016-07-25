@@ -54,6 +54,12 @@
   font-size: 3em;
   font-weight: bold;
 }
+#mobile-content a {
+  border-width: 2px;
+  border-radius: 15px 15px 15px 15px;
+  border-color: #ffffff;
+  border-style: solid;
+}
 
 #mobile-nutri-label {
   border-width: 6px;
@@ -65,6 +71,9 @@
   padding: 0px 3px 3px 2px;
   margin-bottom:10px;
   margin-left: 7%;
+}
+#mobile-nutri-label a {
+  border-width: 0;
 }
 #mobile-nutri-bar-thick {
   border-top: thick solid;

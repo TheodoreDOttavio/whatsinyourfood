@@ -1,6 +1,6 @@
 <h1><%= @mytest %> <%= @yourresults %></h1>
 
-<h1 style="text-align: right;"><%= link_to "Next >>", 'quests' %></h1>
+<h1 style="text-align: right;"><%= link_to " Next ", 'quests' %></h1>
 
 <div id="mobile-nutri-label" style="<%= @mystyle %>" >
   <h2><%= @quizquestion.brand_name %></h2>
@@ -50,7 +50,7 @@
 <div id="mobile-nutri-label" style="background-color: #ffffff;" >
   <h2><%= @quizanswer.brand_name %></h2>
   <h3><%= removecommas(@quizanswer.item_name) %></h3>
-    <h3>&nbsp;<span class="mobile-nutrivalue" ><%= @quizanswer.nf_serving_size_qty %> <%= @quizanswer.nf_serving_size_unit %></h3>
+    <h4>&nbsp;<span class="mobile-nutrivalue" ><%= @quizanswer.nf_serving_size_qty %> <%= @quizanswer.nf_serving_size_unit %></h4>
   <div id="mobile-nutri-bar-thick">&nbsp;</div>
   <h4>Serving Size
     <span class="mobile-nutrivalue" ><%= @quizanswer.nf_serving_weight_grams %> g</span></h4>
