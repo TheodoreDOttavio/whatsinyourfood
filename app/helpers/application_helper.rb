@@ -73,7 +73,7 @@ module ApplicationHelper
         headers:{"X-Mashape-Key" => "e7ND2LrilQmshpZ9jDTEQbjStoBLp1LiRUSjsniR0pkkRebIAj",
           "Accept" => "application/json"}
 
-    if !mysearch.body['error_code'].nil? then #error check
+    if mysearch.body['total_hits'].nil? then #error check
       setsearch = Quest.find_by(upc: myupc)
       setsearch.update(is_searched: true)
       setsearch.update(is_associated: false)
