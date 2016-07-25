@@ -1,7 +1,4 @@
 class StaticPagesController < ApplicationController
-  def admin
-  end
-
   def home
     @needlogin = true
     @loginmessage = params['loginmsg']

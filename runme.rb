@@ -1,7 +1,3 @@
-tester = "Spaghetti O\'s Plus Calcium"
-#puts tester.gsub(((?:[-a-z0-9]+\.)*[-a-z0-9]+.*)/i, "")
-puts URI.escape(tester)
-
 testresults = {"6" => 10, "9" =>1}
 
 puts testresults
