@@ -158,11 +158,11 @@
   border-top: thin solid;
 }
 
-#fb---thingy {
-    transform: scale(2);
-    -webkit-transform: scale(2);
-    -moz-transform: scale(2);
-    -ms-transform: scale(2);
+.fb-share-button {
+    transform: scale(3);
+    -webkit-transform: scale(3);
+    -moz-transform: scale(3);
+    -ms-transform: scale(3);
 }
 
 #mobile-footer {
@@ -179,7 +179,7 @@
 }
 #mobile-footer ul {
   list-style-type: none;
-  margin-left: 10%;
+  margin-left: 20%;
 }
 #mobile-footer ul li {
   font-family: 'Indie Flower',Arial, sans-serif;

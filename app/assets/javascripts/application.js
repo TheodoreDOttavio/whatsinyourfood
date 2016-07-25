@@ -15,13 +15,13 @@
 //= require turbolinks
 //= require_tree .
 
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '260554340991212',
-      xfbml      : true,
-      version    : 'v2.7'
-    });
-  };
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '260554340991212',
+    xfbml      : true,
+    version    : 'v2.7'
+  });
+};
 
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
