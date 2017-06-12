@@ -8,6 +8,7 @@ module ApplicationHelper
     return myreturn.to_s + " " + mysample.join(",")
   end
 
+
   def newplayer
     obj = Player.new
     obj.save
@@ -15,6 +16,7 @@ module ApplicationHelper
     cookies[:user_id] = userid
     return userid
   end
+
 
   def gramstopergram(product_id)
     #nf_serving_weight_grams
@@ -59,15 +61,16 @@ module ApplicationHelper
       obj.save(:validate => false)
     else
       #trash it bcause there is no serving size in grams!
-      #puts "deleting product id " + product_id.to_s
       Product.destroy(product_id)
     end
 
   end
 
+
   def loadnewproducts
       pick  = Quest.pickfreshone[0]
       myname = URI.escape(pick['name'])
+      #puts "searching on #{myname}"
       #myname = "(?:[-a-z0-9]+\.)*[-a-z0-9]+.*)/i".match pick['name']
       myupc = pick['upc']
       mysearch = Unirest.get "https://nutritionix-api.p.mashape.com/v1_1/search/#{myname}?fields=upc%2Cbrand_name%2Citem_name%2Cbrand_id%2Citem_id%2Cupc%2Citem_description%2Cnf_ingredient_statement%2Cnf_calories%2Cnf_calories_from_fat%2Cnf_total_fat%2Cnf_saturated_fat%2Cnf_trans_fatty_acid%2Cnf_polyunsaturated_fat%2Cnf_monounsaturated_fat%2Cnf_cholesterol%2Cnf_sodium%2Cnf_total_carbohydrate%2Cnf_dietary_fiber%2Cnf_sugars%2Cnf_protein%2Cnf_vitamin_a_dv%2Cnf_vitamin_c_dv%2Cnf_calcium_dv%2Cnf_iron_dv%2Cnf_potassium%2Cnf_servings_per_container%2Cnf_serving_size_qty%2Cnf_serving_size_unit%2Cnf_serving_weight_grams%2Cmetric_qty%2Cmetric_uom",
@@ -89,8 +92,8 @@ module ApplicationHelper
       resulthits = result['hits']
       resulthits.each do |oneproduct|
         #check if the product exists locally
+        #TODO consider converting to pergram and then checking for similar across several fields. These item_id fails and differenmt sized packages fail. Also.. too many db hits.
         checkremoteid = oneproduct['fields']['item_id']
-        #puts checkremoteid
         if Product.find_by(item_id: checkremoteid).nil? then
           myfields = oneproduct['fields']
           fillerup = Product.new
@@ -103,6 +106,7 @@ module ApplicationHelper
     end #error check
 
   end
+
 
   def getscore (playersuccesfield, playerfailurefield, myparam)
     stot = 0

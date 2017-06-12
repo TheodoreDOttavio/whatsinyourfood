@@ -7,6 +7,7 @@ gem 'jbuilder', '~> 2.0'          # Build JSON APIs with ease. Read more: https:
 gem 'jquery-rails'
 gem 'mobylette', '~> 3.5' #Note required addition to application.rb
 gem 'rails', '4.2.5'
+gem 'therubyracer', platforms: :ruby
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'turbolinks'
@@ -27,6 +28,6 @@ group :development do
 end
 
 group :production do
-  gem 'rails_12factor'
-  gem 'pg'
+  #gem 'rails_12factor'
+  #gem 'pg'
 end

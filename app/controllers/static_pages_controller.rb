@@ -121,6 +121,7 @@ class StaticPagesController < ApplicationController
       end #end merge
 
     end #check for doing nothing
+
     redirect_to root_path(loginmsg: logmsg)
   end
 

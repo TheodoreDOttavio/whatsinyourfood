@@ -4,6 +4,7 @@ class QuestsController < ApplicationController
   include ApplicationHelper
 
   def index
+    $myheader = nil
     #The API has a daily limit
     #  Going to use the Quest data to look for a new product by Name
     #  The API returns very few fields on a UPC lookup.
@@ -12,8 +13,9 @@ class QuestsController < ApplicationController
     #   because... this project is supposed to be about parsing JSON
 
     runjsonimport = false
-    runjsonimport = true if Product.count<200
-    runjsonimport = true if rand(10)<2
+    #TODO the next two lines are commented out for development
+    #runjsonimport = true if Product.count<200
+    #runjsonimport = true if rand(10)<2
     runjsonimport = false if Product.count>5000
 
     if runjsonimport == true then
@@ -27,6 +29,8 @@ class QuestsController < ApplicationController
     @mytestquestion = questionpick.question
     @mytest = questionpick.statement
     @mytopic = questionpick.id
+    @mysubject = questionpick.name
+    @mypoints = 5
 
     #Select 5 products for testing
     #  begin with a list of two, conflicting
@@ -63,6 +67,8 @@ class QuestsController < ApplicationController
 
     @mytest = params['mytest']
     @mytopic = params['mytopic']
+    @mysubject = params['mysubject']
+    @mypoints = params['mypoints'].to_i
 
     if params['iam'] == params['answer'] then
       @yourresults = "Winner!"
@@ -76,12 +82,27 @@ class QuestsController < ApplicationController
         playerhash = JSON.parse!(obj.sucesses)
       end
 
-      if playerhash[@mytopic.to_s].nil? then
-        playerhash[@mytopic.to_s] = 1
+      if playerhash[@mysubject.to_s].nil? then
+        playerhash[@mysubject.to_s] = 1
       else
-        playerhash[@mytopic.to_s] = playerhash[@mytopic.to_s] + 1
+        playerhash[@mysubject.to_s] = playerhash[@mysubject.to_s] + 1
       end
       obj.sucesses = JSON.fast_generate(playerhash)
+
+      #add points
+      playerhash = obj.scores
+      if playerhash.nil? or playerhash == "" then
+        playerhash = {}
+      else
+        playerhash = JSON.parse!(obj.scores)
+      end
+
+      if playerhash[@mysubject.to_s].nil? then
+        playerhash[@mysubject.to_s] = @mypoints
+      else
+        playerhash[@mysubject.to_s] = playerhash[@mysubject.to_s] + @mypoints
+      end
+      obj.scores = JSON.fast_generate(playerhash)
       obj.save
 
     else
@@ -95,10 +116,10 @@ class QuestsController < ApplicationController
       else
         playerhash = JSON.parse!(obj.failures)
       end
-      if playerhash[@mytopic.to_s].nil? then
-        playerhash[@mytopic.to_s] = 1
+      if playerhash[@mysubject.to_s].nil? then
+        playerhash[@mysubject.to_s] = 1
       else
-        playerhash[@mytopic.to_s] = playerhash[@mytopic.to_s] + 1
+        playerhash[@mysubject.to_s] = playerhash[@mysubject.to_s] + 1
       end
       obj.failures = JSON.fast_generate(playerhash)
       #getscore (playersuccesfield, playerfailurefield, :percent)
@@ -108,6 +129,9 @@ class QuestsController < ApplicationController
 
     @quizquestion = Product.find_by(id: params['iam'])
     @quizanswer = Product.find_by(id: params['answer'])
+
+    #TODO Throw a bonus? count Q answered.. or just show award for  Topic.name
+    $myheader = 'award'
   end
 
 end
