@@ -9,7 +9,9 @@
     <%= hidden_field_tag :mytopic, @mytopic %>
     <%= hidden_field_tag :mysubject, @mysubject %>
     <%= hidden_field_tag :mypoints, @mypoints %>
-    <p><%= submit_tag((i+1).to_s) %>
+    <p><%= submit_tag((i+1).to_s, :name => 'option[default]') %>
+       <%= image_submit_tag("#{root_url}assets/button-cherry.png", :name => 'option[cherry]') %>
+       <%= image_submit_tag("#{root_url}assets/button-grain.png", :name => 'option[grain]') %>
 
     <%= q.brand_name + "  " + removecommas(q.item_name) %></p>
   <% end %>

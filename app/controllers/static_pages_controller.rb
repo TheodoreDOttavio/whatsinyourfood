@@ -127,6 +127,8 @@ class StaticPagesController < ApplicationController
 
 
   def stats
+    $myheader = nil
+
     @productcount = Product.count
     @playercount = Player.count
 
@@ -148,7 +150,7 @@ class StaticPagesController < ApplicationController
       @name = obj.name
     end
 
-    #generate a hash of player succes scores
+    #generate a hash of player succes counts
     playersucesses = obj.sucesses
     if playersucesses.nil? or playersucesses == "" then
       playersucesses = {}
