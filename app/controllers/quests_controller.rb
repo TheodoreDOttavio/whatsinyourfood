@@ -6,12 +6,10 @@ class QuestsController < ApplicationController
   def index
     $myheader = nil
     #The API has a daily limit
-    #  Going to use the Quest data to look for a new product by Name
+    #  Uses the Quest data to look for a new product by Name
     #  The API returns very few fields on a UPC lookup.
 
     #The first step on a new question will be to sneak in new products.
-    #   because... this project is supposed to be about parsing JSON
-
     runjsonimport = false
     #TODO the next two lines are commented out for development
     #runjsonimport = true if Product.count<200
@@ -22,8 +20,18 @@ class QuestsController < ApplicationController
       loadnewproducts
     end
 
-    #Select testfield
-    questionpick = Topic.random[0]
+    #Take a look at the user and select topic/difficulty
+    if $userid.nil? then
+      #Select testfield
+      questionpick = Topic.random[0]
+      questiondifficulty = 0
+    else
+      #Select testfield and level from user datum
+      questionpick = Topic.random[0]
+      #check level by topic
+      questiondifficulty = 0 #0,1,2
+    end
+
     myfield = questionpick.test_field
     mytesttype = questionpick.qtype
     @mytestquestion = questionpick.question
@@ -31,40 +39,108 @@ class QuestsController < ApplicationController
     @mytopic = questionpick.id
     @mysubject = questionpick.name
 
-    #TODO determine easy 5, med 10, or hard 20 level for points and test Q selection
-    @mypoints = 5
-
     checkmaxvalue = (Product.pergrammax(myfield)[0].top_value).to_f
-    # note mytesttype == false for least
-    if mytesttype == false then
-      testmin = 0.0001
-      testmax = checkmaxvalue * 0.30000
-      ansmin = checkmaxvalue * 0.30000
-      ansmax = checkmaxvalue + 1
-    else
-      testmin = checkmaxvalue * 0.60000
-      testmax = checkmaxvalue + 1
-      ansmin = 0.0001
-      ansmax = checkmaxvalue * 0.60000
-    end
-
-    #select uniq winner and four questions
-    newquizquestion = []
-    while newquizquestion == [] do
-      newquizquestion = Product.random(myfield, testmin, testmax)
-    end
-    @quizquestions = newquizquestion
-    @winnerid = @quizquestions[0]['id']
-    selectedids = @winnerid.to_s# + " or " + (@winnerid + 1).to_s
-    newquizquestion = []
-
-    4.times do
-      while newquizquestion == [] do
-        newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
+    case questiondifficulty
+    when 1
+      #medium difficulty - All random
+      @mypoints = 10
+      if mytesttype == false then
+        testmin = 0.0001
+        testmax = checkmaxvalue * 0.80000
+      else
+        testmin = checkmaxvalue * 0.20000
+        testmax = checkmaxvalue + 1
       end
-      selectedids += " and id is not " + newquizquestion[0]['id'].to_s
-      @quizquestions += newquizquestion
+
+      #select uniq winner and four questions
       newquizquestion = []
+      while newquizquestion == [] do
+        newquizquestion = Product.random(myfield, testmin, testmax)
+      end
+      @quizquestions = newquizquestion
+      @winnerid = @quizquestions[0]['id']
+      selectedids = @winnerid.to_s
+      if mytesttype == false then # note mytesttype == false for least
+        ansmin = @quizquestions[0][myfield] + 0.0001
+        ansmax = checkmaxvalue + 1
+      else
+        ansmin = 0.0001
+        ansmax = @quizquestions[0][myfield] - 0.0001
+      end
+      newquizquestion = []
+
+      4.times do
+        while newquizquestion == [] do
+          newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
+        end
+        selectedids += " and id is not " + newquizquestion[0]['id'].to_s
+        @quizquestions += newquizquestion
+        newquizquestion = []
+      end
+
+    when 2
+      #Challenging, select from a tight range of values
+      @mypoints = 20
+      #select uniq winner and four questions
+      newquizquestion = []
+      while newquizquestion == [] do
+        newquizquestion = Product.random(myfield)
+      end
+      @quizquestions = newquizquestion
+      @winnerid = @quizquestions[0]['id']
+      selectedids = @winnerid.to_s
+      if mytesttype == false then # note mytesttype == false for least
+        ansmin = @quizquestions[0][myfield] + 0.0001
+        ansmax = @quizquestions[0][myfield] + (checkmaxvalue * 0.30000)
+      else
+        ansmin = @quizquestions[0][myfield] - (checkmaxvalue * 0.30000)
+        ansmax = @quizquestions[0][myfield] - 0.0001
+      end
+      newquizquestion = []
+
+      4.times do
+        while newquizquestion == [] do
+          newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
+        end
+        selectedids += " and id is not " + newquizquestion[0]['id'].to_s
+        @quizquestions += newquizquestion
+        newquizquestion = []
+      end
+
+    else
+      #the easiest, Answer from the end 30% of value, wrong Answres from the other 60%
+      @mypoints = 5
+      # note mytesttype == false for least
+      if mytesttype == false then
+        testmin = 0.0001
+        testmax = checkmaxvalue * 0.30000
+        ansmin = checkmaxvalue * 0.30000
+        ansmax = checkmaxvalue + 1
+      else
+        testmin = checkmaxvalue * 0.60000
+        testmax = checkmaxvalue + 1
+        ansmin = 0.0001
+        ansmax = checkmaxvalue * 0.60000
+      end
+
+      #select uniq winner and four questions
+      newquizquestion = []
+      while newquizquestion == [] do
+        newquizquestion = Product.random(myfield, testmin, testmax)
+      end
+      @quizquestions = newquizquestion
+      @winnerid = @quizquestions[0]['id']
+      selectedids = @winnerid.to_s
+      newquizquestion = []
+
+      4.times do
+        while newquizquestion == [] do
+          newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
+        end
+        selectedids += " and id is not " + newquizquestion[0]['id'].to_s
+        @quizquestions += newquizquestion
+        newquizquestion = []
+      end
     end
 
     @quizquestions.shuffle!

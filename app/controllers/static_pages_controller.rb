@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+    $myheader = nil
     @needlogin = true
     @loginmessage = params['loginmsg']
 
@@ -17,6 +18,7 @@ class StaticPagesController < ApplicationController
 
 
   def login
+    $myheader = nil
     #first- check to see if they just left both fields blank
     if params['myname'] == "display name" and params['mypassword'] == "password" then
       #Do nothing, just redirect
