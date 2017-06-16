@@ -79,7 +79,7 @@ class QuestsController < ApplicationController
         while newquizquestion == [] do
           newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
         end
-        selectedids += " and id is not " + newquizquestion[0]['id'].to_s
+        selectedids += " and id <> " + newquizquestion[0]['id'].to_s
         @quizquestions += newquizquestion
         newquizquestion = []
       end
@@ -108,7 +108,7 @@ class QuestsController < ApplicationController
         while newquizquestion == [] do
           newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
         end
-        selectedids += " and id is not " + newquizquestion[0]['id'].to_s
+        selectedids += " and id <> " + newquizquestion[0]['id'].to_s
         @quizquestions += newquizquestion
         newquizquestion = []
       end
@@ -143,7 +143,7 @@ class QuestsController < ApplicationController
         while newquizquestion == [] do
           newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
         end
-        selectedids += " and id is not " + newquizquestion[0]['id'].to_s
+        selectedids += " and id <> " + newquizquestion[0]['id'].to_s
         @quizquestions += newquizquestion
         newquizquestion = []
       end
