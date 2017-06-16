@@ -27,9 +27,25 @@ class QuestsController < ApplicationController
       questiondifficulty = 0
     else
       #Select testfield and level from user datum
-      questionpick = Topic.random[0]
+      obj = Player.find_by(id: $userid.to_i)
+      if obj.nil? then
+        $userid = newplayer
+        obj = Player.find_by(id: $userid.to_i)
+      end
+
+      if obj.subject == "" then
+        questionpick = Topic.random[0]
+      else
+        questionpick = Topic.randomsubject(obj.subject)[0]
+      end
+
+      scores = JSON.parse!(obj.scores)
+      myscore = scores[questionpick.name].to_i
+
       #check level by topic
-      questiondifficulty = 0 #0,1,2
+      questiondifficulty = 2
+      questiondifficulty = 1 if myscore < 500
+      questiondifficulty = 0 if myscore < 100
     end
 
     myfield = questionpick.test_field
@@ -145,22 +161,20 @@ class QuestsController < ApplicationController
 
     @quizquestions.shuffle!
 
-    # #Select 5 products for testing
-    # #  begin with a list of two, conflicting
-    # test = [{'test_condition' => 0}, {'test_condition' => 0}]
-    #
-    # #make sure the answer and next value are not identicle with until loop so one wins
-    # until test[test.count-1]['test_condition'] != test[test.count-2]['test_condition'] do
-    #   @quizquestions = Product.random(myfield, testmin, testmax)
-    #   #while @quizquestions.count <= 5 do
-    #   4.times do
-    #     @quizquestions += Product.random(myfield, ansmin, ansmax)
-    #   end
-    #   test = @quizquestions.sort_by { |e| e['test_condition'] }
-    #   test = test.reverse if mytesttype == false
-    # end
-    #
-    # @winnerid = test[test.count-1]['id']
+    #show any bonuses for answering questions
+    bonuses = obj.bonuses
+    @mybonus = []
+    if !bonuses.nil? or bonuses != "" then
+      bonuses = JSON.parse!(obj.bonuses)
+      bonuses.each do |k,v|
+        if k != "event" and v > 0 then
+          @mybonus.push(k)
+          bonuses[k] -= 1 #Reloading questions deteriorates the options for bonus things
+        end
+      end
+    end
+    obj.bonuses = JSON.fast_generate(bonuses)
+    obj.save
   end
 
 
@@ -185,10 +199,58 @@ class QuestsController < ApplicationController
     @mysubject = params['mysubject']
     @mypoints = params['mypoints'].to_i
 
-    #evaluate bonuses
+    #Baiting the player with bonuses
+    #  track how many q's answered since last award and randomly ad award
+    #  used further on in the function... going a little procedural oldschool here...
+    bonuses = obj.bonuses
+    if bonuses.nil? or bonuses == "" then
+      bonuses = {"event" => 0}
+    else
+      bonuses = JSON.parse!(obj.bonuses)
+    end
+    bonuses['event'] += 1 #the longer you go with no event, the higher your chances of something happening
+
     buttontype = params['option'].first[0]
-    @mypoints *= 3 if buttontype == "cherry"
-    @mypoints *= 2 if buttontype == "grain"
+    case buttontype
+    when "broccoli"
+      @mypoints += 10
+      bonuses["broccoli"] = 0
+    when "cherry"
+      @mypoints *= 3
+      bonuses["cherry"] = 0
+    when "grain"
+      @mypoints *= 2
+      bonuses["grain"] = 0
+    when "lettuce"
+      @mypoints += 5
+      bonuses["lettuce"] = 0
+    when "strawberry"
+      @mypoints += 20
+      bonuses["strawberry"] = 0
+    else #passed as "default"
+      #TODO Add Alerts
+    end
+
+    diceroll = rand(50) - (bonuses['event']*2)
+    diceroll = rand(12) if diceroll <= 0
+    case diceroll
+    when 1
+      bonuses["cherry"] = rand(6)+6
+      #Use the cherry to answer a question for triple score!
+      bonuses['event'] = 0
+    when 2,3
+      bonuses["grain"] = rand(6)+6
+      bonuses['event'] = 0
+    when 3,4
+      bonuses["strawberry"] = rand(6)+6
+      bonuses['event'] = 0
+    when 5,6,7,8
+      bonuses["broccoli"] = rand(6)+6
+      bonuses['event'] = 0
+    when 9,10,11,12
+      bonuses["lettuce"] = rand(6)+6
+      bonuses['event'] = 0
+    end
 
     if params['iam'] == params['answer'] then
       @yourresults = "Winner!"
@@ -223,7 +285,7 @@ class QuestsController < ApplicationController
         playerhash[@mysubject.to_s] = playerhash[@mysubject.to_s] + @mypoints
       end
       obj.scores = JSON.fast_generate(playerhash)
-      obj.save
+      #obj.save
 
     else
       @yourresults = "Incorrect."
@@ -242,9 +304,17 @@ class QuestsController < ApplicationController
         playerhash[@mysubject.to_s] = playerhash[@mysubject.to_s] + 1
       end
       obj.failures = JSON.fast_generate(playerhash)
-      obj.save
+      #obj.save
 
+      @mypoints = 0
     end
+
+
+    obj.bonuses = JSON.fast_generate(bonuses)
+    obj.save
+
+    scores = JSON.parse!(obj.scores)
+    @myscore = scores[params['mysubject']].to_i
 
     @quizquestion = Product.find_by(id: params['iam'])
     @quizanswer = Product.find_by(id: params['answer'])

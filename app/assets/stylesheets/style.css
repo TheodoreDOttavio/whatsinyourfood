@@ -100,7 +100,7 @@ a:hover { text-decoration: underline;}
 #content h2 {
   padding: 0px;
 }
-#content input {
+.input_text_as_button {
   border-width: 1px;
   border-radius: 5px 5px 5px 5px;
   border-color: #ffffff;
@@ -110,10 +110,21 @@ a:hover { text-decoration: underline;}
   font-weight: 100;
   padding: 1px 12px 1px 12px;
 }
+#content input {
+  border-width: 0px;
+  background: #b1b3d4;
+  color: #454545;
+  padding: 0px;
+}
 #content p {
   color: #454545;
   font-weight: bold;
   padding: 1px 20px 1px 20px;
+}
+.pointsvalue {
+  color: #000000;
+  float: right;
+  text-align: right;
 }
 
 #nutri-label {
