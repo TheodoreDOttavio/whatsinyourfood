@@ -25,3 +25,10 @@ production:
   database: da81pvf72s9dap
   username: sjklkbhzuhopwe
   password: o9cMIXW8DoJ3zJSDHtTOS9uKad
+
+
+#Setting up heroku
+# sudo add-apt-repository "deb https://cli-assets.heroku.com/branches/stable/apt ./"
+# curl -L https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
+# sudo apt-get update
+# sudo apt-get install heroku 
