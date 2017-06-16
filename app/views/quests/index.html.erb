@@ -1,14 +1,16 @@
-<h1><span class = "nutrivalue"><img src=<%= root_url + "assets/#{@mypoints}point.png" %>></span><%= @mytestquestion %></h1>
+<h1>
+  <span class = "nutrivalue"><img src=<%= root_url + "assets/#{@mypoints}point.png" %>></span>
+  <%= @mytestquestion %>
+</h1>
 
 <% @quizquestions.each_with_index do |q,i| %>
-
   <%= form_tag({action: :check}, multipart: false) do %>
     <%= hidden_field_tag :answer, @winnerid %>
     <%= hidden_field_tag :iam, q.id %>
     <%= hidden_field_tag :mytest, @mytest %>
     <%= hidden_field_tag :mytopic, @mytopic %>
-    <%= hidden_field_tag :mysubject, @mysubject %>
     <%= hidden_field_tag :mypoints, @mypoints %>
+    <%= hidden_field_tag :mysubject, @mysubject %>
     <p><span class = "input_text_as_button">
       <%= submit_tag((i+1).to_s, :name => 'option[default]') %></span>
       <% @mybonus.each do |name| %>
@@ -16,7 +18,6 @@
       <% end %>
     <%= q.brand_name + "  " + removecommas(q.item_name) %></p>
   <% end %>
-
 <% end %>
 
 <p>* Amounts are compared per gram due to different serving sizes.</p>

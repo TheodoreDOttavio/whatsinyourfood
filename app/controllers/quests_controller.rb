@@ -4,7 +4,6 @@ class QuestsController < ApplicationController
   include ApplicationHelper
 
   def index
-    $myheader = nil
     #The API has a daily limit
     #  Uses the Quest data to look for a new product by Name
     #  The API returns very few fields on a UPC lookup.
@@ -33,19 +32,21 @@ class QuestsController < ApplicationController
         obj = Player.find_by(id: $userid.to_i)
       end
 
-      if obj.subject == "" then
+      if obj.subject == "" or obj.subject == nil then
         questionpick = Topic.random[0]
+        @playersubject = ""
       else
-        questionpick = Topic.randomsubject(obj.subject)[0]
+        @playersubject = obj.subject
+        questionpick = Topic.randomsubject(@playersubject.to_s)[0]
       end
 
       scores = JSON.parse!(obj.scores)
-      myscore = scores[questionpick.name].to_i
+      @myscore = scores[questionpick.name].to_i
 
       #check level by topic
       questiondifficulty = 2
-      questiondifficulty = 1 if myscore < 500
-      questiondifficulty = 0 if myscore < 100
+      questiondifficulty = 1 if @myscore < 500
+      questiondifficulty = 0 if @myscore < 100
     end
 
     myfield = questionpick.test_field
@@ -169,7 +170,9 @@ class QuestsController < ApplicationController
       bonuses.each do |k,v|
         if k != "event" and v > 0 then
           @mybonus.push(k)
-          bonuses[k] -= 1 #Reloading questions deteriorates the options for bonus things
+          #Reloading questions deteriorates the options for bonus things
+          flash[k] = "Last chance to use the #{k}!" if bonuses[k] == 1
+          bonuses[k] -= 1
         end
       end
     end
@@ -178,7 +181,20 @@ class QuestsController < ApplicationController
   end
 
 
+  def setsubject
+    obj = Player.find_by(id: $userid.to_i)
+    if !obj.nil? then
+      obj.subject = params['mysubject']
+      obj.save
+    end
+    redirect_to quests_path
+  end
+
+
   def check
+    #selection to lock in subject, or randomize it
+    @subjectlist = Topic.subjectnames
+
     #check/set user from cookie
     if $userid.nil? then
       $userid = cookies[:user_id]
@@ -204,7 +220,7 @@ class QuestsController < ApplicationController
     #  used further on in the function... going a little procedural oldschool here...
     bonuses = obj.bonuses
     if bonuses.nil? or bonuses == "" then
-      bonuses = {"event" => 0}
+      bonuses = {"event" => 15}
     else
       bonuses = JSON.parse!(obj.bonuses)
     end
@@ -214,21 +230,26 @@ class QuestsController < ApplicationController
     case buttontype
     when "broccoli"
       @mypoints += 10
+      flash["star"] = "+10 bonus: #{@mypoints} points!"
       bonuses["broccoli"] = 0
     when "cherry"
       @mypoints *= 3
+      flash["star"] = "Triple bonus: #{@mypoints} points!"
       bonuses["cherry"] = 0
     when "grain"
       @mypoints *= 2
+      flash["star"] = "Double bonus: #{@mypoints} points!"
       bonuses["grain"] = 0
     when "lettuce"
       @mypoints += 5
+      flash["star"] = "+5 bonus: #{@mypoints} points!"
       bonuses["lettuce"] = 0
     when "strawberry"
       @mypoints += 20
+      flash["star"] = "+20 bonus: #{@mypoints} points!"
       bonuses["strawberry"] = 0
     else #passed as "default"
-      #TODO Add Alerts
+      flash["star"] = "#{@mypoints} points!"
     end
 
     diceroll = rand(50) - (bonuses['event']*2)
@@ -236,19 +257,24 @@ class QuestsController < ApplicationController
     case diceroll
     when 1
       bonuses["cherry"] = rand(6)+6
+      flash["cherry"] = "Answer with Cherry for a TRIPLE score!"
       #Use the cherry to answer a question for triple score!
       bonuses['event'] = 0
     when 2,3
       bonuses["grain"] = rand(6)+6
+      flash["grain"] = "Answer with Grain for a DOUBLE score!"
       bonuses['event'] = 0
     when 3,4
       bonuses["strawberry"] = rand(6)+6
+      flash["strawberry"] = "Answer with Strawberry for +20 points!"
       bonuses['event'] = 0
     when 5,6,7,8
       bonuses["broccoli"] = rand(6)+6
+      flash["broccoli"] = "Answer with Broccoli for +10 points!"
       bonuses['event'] = 0
     when 9,10,11,12
       bonuses["lettuce"] = rand(6)+6
+      flash["lettuce"] = "Answer with Lettuce for +5 points!"
       bonuses['event'] = 0
     end
 
@@ -285,8 +311,6 @@ class QuestsController < ApplicationController
         playerhash[@mysubject.to_s] = playerhash[@mysubject.to_s] + @mypoints
       end
       obj.scores = JSON.fast_generate(playerhash)
-      #obj.save
-
     else
       @yourresults = "Incorrect."
       @mystyle = "background-color: #de8989;" #subdued red
@@ -304,23 +328,19 @@ class QuestsController < ApplicationController
         playerhash[@mysubject.to_s] = playerhash[@mysubject.to_s] + 1
       end
       obj.failures = JSON.fast_generate(playerhash)
-      #obj.save
 
-      @mypoints = 0
+      flash.delete("star")
     end
-
 
     obj.bonuses = JSON.fast_generate(bonuses)
     obj.save
 
     scores = JSON.parse!(obj.scores)
-    @myscore = scores[params['mysubject']].to_i
+    @myscore = scores[@mysubject].to_i
+    #@myscore = scores[params['mysubject']].to_i
 
     @quizquestion = Product.find_by(id: params['iam'])
     @quizanswer = Product.find_by(id: params['answer'])
-
-    #TODO Throw a bonus? count Q answered.. or just show award for  Topic.name
-    $myheader = 'award'
   end
 
 end

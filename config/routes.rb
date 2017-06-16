@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   match '/login', to: 'static_pages#login', via: 'post'
 
   match '/quests', to: 'quests#index', via: 'get'
+  match '/setsubject', to: 'quests#setsubject', via: 'post'
   match '/checks', to: 'quests#check', via: 'post'
 
   match '/postme', to: 'players#show', via: 'get'

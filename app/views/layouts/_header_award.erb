@@ -1,8 +1,12 @@
 <h1>
 <img src=<%= root_url + 'assets/ribbon-blue.png' %>>
 <img src=<%= root_url + 'assets/ribbon-tease.png' %>>
-<img src=<%= root_url + 'assets/ribbon-tease.png' %>>
 </h1>
+
+<% flash.each do |key, value| %>
+  <h2><img src=<%= root_url + "assets/header-#{key}.png" %>>
+  <%= value %></h2>
+<% end %>
 
 <h2>
 you win <%= @mypoints %> !

@@ -91,4 +91,11 @@
 </div>
 
 
+<h2>
+  <%= form_tag({action: :setsubject}, multipart: false) do %>
+    <%= select_tag 'mysubject', options_from_collection_for_select(@subjectlist, "name", "name", @playersubject), include_blank: "Random" %>
+    Pick the subject for the next question
+    <%= submit_tag("Go") %>
+  <% end %>
+</h2>
 <h1 style="text-align: right;"><%= link_to "Next >>", 'quests' %></h1>
