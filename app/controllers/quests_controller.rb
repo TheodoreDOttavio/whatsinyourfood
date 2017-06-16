@@ -10,9 +10,8 @@ class QuestsController < ApplicationController
 
     #The first step on a new question will be to sneak in new products.
     runjsonimport = false
-    #TODO the next two lines are commented out for development
-    #runjsonimport = true if Product.count<200
-    #runjsonimport = true if rand(10)<2
+    runjsonimport = true if Product.count<200
+    runjsonimport = true if rand(10)<2
     runjsonimport = false if Product.count>5000
 
     if runjsonimport == true then
