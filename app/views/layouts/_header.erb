@@ -1,8 +1,14 @@
 <% if flash.count == 0 then %>
-  <h1><span class = "nutrivalue"><img src=<%= root_url + "assets/ribbon-#{@mypoints}.png" %>></span>
-    What is in Your Food?</h1>
-  <h2><span class = "nutrivalue"><%= @mysubject %> : <%= @myscore %> pts </span>
-    Test your knowledge of nutrition requirements</h2>
+  <% if @mypoints then %>
+    <h1><span class = "nutrivalue">
+      <img src=<%= root_url + "assets/ribbon-#{@mypoints}.png" %>></span>
+      What is in Your Food?</h1>
+    <h2><span class = "nutrivalue"><%= @myscore %> pts </span>
+      The <%= @mysubject %> challenge</h2>
+  <% else %>
+    <h1>What is in Your Food?</h1>
+    <h2>Test your knowledge of nutrition requirements</h2>
+  <% end %>
 <% else %>
   <h1>What is in Your Food?</h1>
 <% end %>

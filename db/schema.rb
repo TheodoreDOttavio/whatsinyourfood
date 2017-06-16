@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615201300) do
+ActiveRecord::Schema.define(version: 20170616094300) do
 
   create_table "players", force: :cascade do |t|
     t.string   "name",       default: "no name"
-    t.string   "sucesses"
-    t.string   "failures"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.string   "sucesses",   default: "{}"
+    t.string   "failures",   default: "{}"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "password",   default: ""
-    t.string   "scores",     default: ""
+    t.string   "scores",     default: "{}"
     t.string   "subject",    default: ""
-    t.string   "bonuses",    default: "{'event':0}"
+    t.string   "bonuses",    default: "{}"
   end
 
   create_table "products", force: :cascade do |t|

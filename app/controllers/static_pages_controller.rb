@@ -79,6 +79,12 @@ class StaticPagesController < ApplicationController
           else
             playerfailures = JSON.parse!(obj.failures)
           end
+          playerscores = obj.scores
+          if playerscores.nil? or playerscores == "" then
+            playerscores = {}
+          else
+            playerscores = JSON.parse!(obj.scores)
+          end
 
           #generate a hash of old player succes scores
           oldplayersucesses = oldobj.sucesses
@@ -92,6 +98,12 @@ class StaticPagesController < ApplicationController
             oldplayerfailures = {}
           else
             oldplayerfailures = JSON.parse!(oldobj.failures)
+          end
+          oldplayerscores = oldobj.scores
+          if oldplayerscores.nil? or oldplayerscores == "" then
+            oldplayerscores = {}
+          else
+            oldplayerscores = JSON.parse!(oldobj.scores)
           end
 
           oldplayersucesses.each do |id,val|
@@ -110,8 +122,17 @@ class StaticPagesController < ApplicationController
             end
           end
 
+          oldplayerscores.each do |id,val|
+            if playerscores[id].nil? then
+              playerscores[id] = val
+            else
+              playerscores[id] += val
+            end
+          end
+
           obj.sucesses = JSON.fast_generate(playersucesses)
           obj.failures = JSON.fast_generate(playerfailures)
+          obj.scores = JSON.fast_generate(playerscores)
           obj.save
 
           oldobj.delete

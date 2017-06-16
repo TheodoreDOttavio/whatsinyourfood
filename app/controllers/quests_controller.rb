@@ -19,35 +19,25 @@ class QuestsController < ApplicationController
       loadnewproducts
     end
 
-    #Take a look at the user and select topic/difficulty
-    if $userid.nil? then
-      #Select testfield
+    #establish a player object
+    $userid = newplayer if $userid.nil?
+    obj = Player.find_by(id: $userid.to_i)
+
+    if obj.subject == "" or obj.subject == nil then
       questionpick = Topic.random[0]
-      questiondifficulty = 0
+      @playersubject = ""
     else
-      #Select testfield and level from user datum
-      obj = Player.find_by(id: $userid.to_i)
-      if obj.nil? then
-        $userid = newplayer
-        obj = Player.find_by(id: $userid.to_i)
-      end
-
-      if obj.subject == "" or obj.subject == nil then
-        questionpick = Topic.random[0]
-        @playersubject = ""
-      else
-        @playersubject = obj.subject
-        questionpick = Topic.randomsubject(@playersubject.to_s)[0]
-      end
-
-      scores = JSON.parse!(obj.scores)
-      @myscore = scores[questionpick.name].to_i
-
-      #check level by topic
-      questiondifficulty = 2
-      questiondifficulty = 1 if @myscore < 500
-      questiondifficulty = 0 if @myscore < 100
+      @playersubject = obj.subject
+      questionpick = Topic.randomsubject(@playersubject.to_s)[0]
     end
+
+    scores = JSON.parse!(obj.scores)
+    @myscore = scores[questionpick.name].to_i
+
+    #check level by topic
+    questiondifficulty = 2
+    questiondifficulty = 1 if @myscore < 500
+    questiondifficulty = 0 if @myscore < 100
 
     myfield = questionpick.test_field
     mytesttype = questionpick.qtype
@@ -63,9 +53,9 @@ class QuestsController < ApplicationController
       @mypoints = 10
       if mytesttype == false then
         testmin = 0.0001
-        testmax = checkmaxvalue * 0.80000
+        testmax = checkmaxvalue * 0.70000
       else
-        testmin = checkmaxvalue * 0.20000
+        testmin = checkmaxvalue * 0.30000
         testmax = checkmaxvalue + 1
       end
 
@@ -163,7 +153,7 @@ class QuestsController < ApplicationController
     @quizquestions.shuffle!
 
     #show any bonuses for answering questions
-    bonuses = obj.bonuses
+    bonuses = obj.bonuses if !obj.nil?
     @mybonus = []
     if !bonuses.nil? or bonuses != "" then
       bonuses = JSON.parse!(obj.bonuses)
@@ -219,7 +209,7 @@ class QuestsController < ApplicationController
     #  track how many q's answered since last award and randomly ad award
     #  used further on in the function... going a little procedural oldschool here...
     bonuses = obj.bonuses
-    if bonuses.nil? or bonuses == "" then
+    if bonuses == "{}" then
       bonuses = {"event" => 15}
     else
       bonuses = JSON.parse!(obj.bonuses)
