@@ -308,7 +308,18 @@ class QuestsController < ApplicationController
       if playerhash[@mysubject.to_s].nil? then
         playerhash[@mysubject.to_s] = @mypoints
       else
-        playerhash[@mysubject.to_s] = playerhash[@mysubject.to_s] + @mypoints
+        currentpoints = playerhash[@mysubject.to_s]
+        #Check for leveling up
+        if currentpoints < 100 and (currentpoints + @mypoints) >= 100 then
+          flash["levelup"] = "You know #{@mysubject}! Level up to 10pt questions!"
+        end
+        if currentpoints < 500 and (currentpoints + @mypoints) >= 500 then
+          flash["levelup"] = "The #{@mysubject} ultimate challenge begins! Level up to 20pt questions!"
+        end
+        if currentpoints < 1000 and (currentpoints + @mypoints) >= 1000 then
+          flash["levelup"] = "You are a #{@mysubject} master!"
+        end
+        playerhash[@mysubject.to_s] = currentpoints + @mypoints
       end
       obj.scores = JSON.fast_generate(playerhash)
     else
@@ -337,10 +348,11 @@ class QuestsController < ApplicationController
 
     scores = JSON.parse!(obj.scores)
     @myscore = scores[@mysubject].to_i
-    #@myscore = scores[params['mysubject']].to_i
 
     @quizquestion = Product.find_by(id: params['iam'])
     @quizanswer = Product.find_by(id: params['answer'])
+
+    @playersubject = obj.subject
   end
 
 end
