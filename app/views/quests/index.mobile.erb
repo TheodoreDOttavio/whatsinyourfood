@@ -1,4 +1,7 @@
-<h1><%= @mytestquestion %></h1>
+<h1>
+<!-- <span class = "nutrivalue"><img src=<%= root_url + "assets/#{@mypoints}point.png" %>></span> -->
+<%= @mytestquestion %>
+</h1>
 
 <% @quizquestions.each_with_index do |q,i| %>
   <%= form_tag({action: :check}, multipart: false) do %>
@@ -6,10 +9,16 @@
     <%= hidden_field_tag :iam, q.id %>
     <%= hidden_field_tag :mytest, @mytest %>
     <%= hidden_field_tag :mytopic, @mytopic %>
-    <p><%= submit_tag((i+1).to_s) %> <%= q.brand_name + "  " + removecommas(q.item_name) %></p>
+    <%= hidden_field_tag :mypoints, @mypoints %>
+    <%= hidden_field_tag :mysubject, @mysubject %>
+    <p><!--<span class = "mobile_input_text_as_button">
+      <%= submit_tag((i+1).to_s, :name => 'option[default]') %></span> -->
+      <% @mybonus.each do |name| %>
+        <%= image_submit_tag("#{root_url}assets/header-#{name}.png", :name => "option[#{name}]") %>
+      <% end %>
+      <%= image_submit_tag("#{root_url}assets/header-#{@mypoints.to_s}.png", :name => "option[default]") %>
+    <%= q.brand_name + "  " + removecommas(q.item_name) %></p>
   <% end %>
 <% end %>
 
-<h1 style="text-align: center;"><%= link_to "Another Question", 'quests' %></h1>
-
-<p>* Amounts are compared per gram due to different serving sizes.</p>
+<p style="text-align: center;"><%= link_to "Another Question", 'quests' %></p>

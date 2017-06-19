@@ -1,0 +1,18 @@
+<% if flash.count == 0 then %>
+  <% if @mypoints then %>
+    <h2>
+      <img src=<%= root_url + "assets/ribbon-#{@mypoints}.png" %>>
+      <span class = "nutrivalue"><%= @myscore %> pts </span>
+      &nbsp;The <%= @mysubject %> challenge
+    </h2>
+  <% else %>
+    <h1>What is in Your Food?</h1>
+    <h2>Test your knowledge of nutrition requirements</h2>
+  <% end %>
+<% else %>
+  <% flash.each do |key, value| %>
+    <h2><img src=<%= root_url + "assets/header-#{key}.png" %>>
+    <%= value %></h2>
+    <% flash.delete(key) %>
+  <% end %>
+<% end %>

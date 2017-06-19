@@ -1,5 +1,4 @@
 <h1>
-  <span class = "nutrivalue"><img src=<%= root_url + "assets/#{@mypoints}point.png" %>></span>
   <%= @mytestquestion %>
 </h1>
 
@@ -11,11 +10,12 @@
     <%= hidden_field_tag :mytopic, @mytopic %>
     <%= hidden_field_tag :mypoints, @mypoints %>
     <%= hidden_field_tag :mysubject, @mysubject %>
-    <p><span class = "input_text_as_button">
-      <%= submit_tag((i+1).to_s, :name => 'option[default]') %></span>
+    <p><!--<span class = "input_text_as_button">
+       <%= submit_tag((i+1).to_s, :name => 'option[default]') %></span> -->
       <% @mybonus.each do |name| %>
         <%= image_submit_tag("#{root_url}assets/button-#{name}.png", :name => "option[#{name}]") %>
       <% end %>
+      <%= image_submit_tag("#{root_url}assets/button-#{@mypoints.to_s}.png", :name => "option[default]") %>
     <%= q.brand_name + "  " + removecommas(q.item_name) %></p>
   <% end %>
 <% end %>

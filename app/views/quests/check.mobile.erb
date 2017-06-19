@@ -1,6 +1,9 @@
-<h1><%= @mytest %> <%= @yourresults %></h1>
-
-<h1 style="text-align: right;"><%= link_to " Next ", 'quests' %></h1>
+<%= form_tag({action: :setsubject}, multipart: false) do %>
+  <p style="text-align: center;">Pick your Challenge:
+    <%= select_tag 'mysubject', options_from_collection_for_select(@subjectlist, "name", "name", @playersubject), include_blank: "Random", :onchange => "this.form.submit();", :class => "mobile_select" %>
+  </p>
+<% end %>
+<h1 style="text-align: center;"><%= link_to "Next", 'quests' %></h1>
 
 <% if @yourresults == 'Incorrect.' then %>
 <div id="mobile-nutri-label" style="background-color: #ffffff;" >

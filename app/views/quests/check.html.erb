@@ -1,5 +1,13 @@
 <!-- <h1><%= @mytest %> <%= @yourresults %></h1> -->
-<h1 style="text-align: right;"><%= link_to "Next >>", 'quests' %></h1>
+<%= form_tag({action: :setsubject}, multipart: false) do %>
+  <p style="text-align: center;">Pick your subject:
+    <%= select_tag 'mysubject', options_from_collection_for_select(@subjectlist, "name", "name", @playersubject), include_blank: "Random", :onchange => "this.form.submit();" %>
+  </p>
+<% end %>
+
+<p style="text-align: center;">
+  <%= link_to "Next >>", 'quests' %>
+</p>
 
 <% if @yourresults == 'Incorrect.' then %>
 <div id="nutri-label" style="background-color: #ffffff;" >
@@ -90,9 +98,3 @@
 <h5>Iron  <%= @quizquestion.nf_iron_dv %> %
     <span class = "nutrivalue"><%= @quizquestion.nf_iron_dv_pergram %> %/g</span></h5>
 </div>
-
-<%= form_tag({action: :setsubject}, multipart: false) do %>
-  <h1>Pick your subject:
-    <%= select_tag 'mysubject', options_from_collection_for_select(@subjectlist, "name", "name", @playersubject), include_blank: "Random", :onchange => "this.form.submit();" %>
-  </h1>
-<% end %>

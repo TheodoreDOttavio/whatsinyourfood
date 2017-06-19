@@ -44,6 +44,9 @@ class QuestsController < ApplicationController
     @mytest = questionpick.statement
     @mytopic = questionpick.id
     @mysubject = questionpick.name
+    #TODO the escape counter simply breaks out of the endless loop.
+    #  Change to recursive callback functions
+    escapecounter = 0
 
     checkmaxvalue = (Product.pergrammax(myfield)[0].top_value).to_f
     case questiondifficulty
@@ -78,6 +81,8 @@ class QuestsController < ApplicationController
       4.times do
         while newquizquestion == [] do
           newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
+          escapecounter += 1
+          break if escapecounter > 10
         end
         selectedids += " and id <> " + newquizquestion[0]['id'].to_s
         @quizquestions += newquizquestion
@@ -107,6 +112,8 @@ class QuestsController < ApplicationController
       4.times do
         while newquizquestion == [] do
           newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
+          escapecounter += 1
+          break if escapecounter > 10
         end
         selectedids += " and id <> " + newquizquestion[0]['id'].to_s
         @quizquestions += newquizquestion
@@ -133,6 +140,8 @@ class QuestsController < ApplicationController
       newquizquestion = []
       while newquizquestion == [] do
         newquizquestion = Product.random(myfield, testmin, testmax)
+        escapecounter += 1
+        break if escapecounter > 10
       end
       @quizquestions = newquizquestion
       @winnerid = @quizquestions[0]['id']

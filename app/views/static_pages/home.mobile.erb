@@ -1,13 +1,23 @@
-<h2 style="padding: 40px 60px 40px 40px;">This site uses the Nutritionix API to randomly select five products and quiz you on the nutrition label information. If you find that sort of thing fun:</h2>
+<div style="padding: 10px 200px 10px 200px;">
+  <div class="cycle-slideshow"
+    data-cycle-fx="scrollHorz"
+    data-cycle-speed="200">
+    <% 7.times do |i| %>
+      <img src=<%= root_url + "assets/display/display-" + i.to_s + ".png" %> >
+    <% end %>
+  </div>
+</div>
 
-<h1 style="text-align: center;"><%= link_to "Try Some Quiz Questions", 'quests' %></h1>
+<h1 style="text-align: center;"><%= link_to "Go!", 'quests' %></h1>
 
 <% if @needlogin == true then %>
-  <h2 style="padding: 40px 60px 0px 40px;">Your results are stored in a cookie. If you would like to return and add to your score, then enter a password:</h2>
+  <h2 style="padding: 40px 60px 0px 40px;">Create a name and password if you would like to keep your scores</h2>
   <%= form_tag({action: :login}, multipart: false, style: "padding: 0px 60px 0px 40px;") do %>
-    <%= text_field_tag :myname, "display name" %>&nbsp;
+    <p class = "mobile_input_text_as_button">
+      <%= text_field_tag :myname, "display name" %>&nbsp;
     <%= text_field_tag :mypassword, "password" %>&nbsp;&nbsp;&nbsp;
     <%= submit_tag("login") %>
+    </p>
   <% end %>
 <% else %>
   <h2 style="padding: 40px 60px 40px 40px;">Welcome <%= @playername %></h2>
