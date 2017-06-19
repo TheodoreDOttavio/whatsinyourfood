@@ -11,7 +11,7 @@
 <h1 style="text-align: center;"><%= link_to "Go!", 'quests' %></h1>
 
 <% if @needlogin == true then %>
-  <h2 style="padding: 40px 60px 0px 40px;">Create a name and password if you would like to keep your scores</h2>
+  <p style="padding: 40px 60px 0px 40px;">Create a name and password if you would like to keep your scores</p>
   <%= form_tag({action: :login}, multipart: false, style: "padding: 0px 60px 0px 40px;") do %>
     <p class = "mobile_input_text_as_button">
       <%= text_field_tag :myname, "display name" %>&nbsp;
