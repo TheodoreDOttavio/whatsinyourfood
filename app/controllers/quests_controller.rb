@@ -79,11 +79,11 @@ class QuestsController < ApplicationController
       newquizquestion = []
 
       4.times do
+        escapecounter = 0
         while newquizquestion == [] do
           newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
           escapecounter += 1
           break if escapecounter > 10
-          puts "not breaking!!!" if escapecounter > 10
         end
         selectedids += " and id <> " + newquizquestion[0]['id'].to_s
         @quizquestions += newquizquestion
@@ -111,11 +111,11 @@ class QuestsController < ApplicationController
       newquizquestion = []
 
       4.times do
+        escapecounter = 0
         while newquizquestion == [] do
           newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
           escapecounter += 1
           break if escapecounter > 10
-          puts "not breaking!!!" if escapecounter > 10
         end
         selectedids += " and id <> " + newquizquestion[0]['id'].to_s
         @quizquestions += newquizquestion
@@ -149,6 +149,7 @@ class QuestsController < ApplicationController
       newquizquestion = []
 
       4.times do
+        escapecounter = 0
         while newquizquestion == [] do
           newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
           escapecounter += 1
