@@ -15,7 +15,7 @@ class QuestsController < ApplicationController
     runjsonimport = false if Product.count>5000
 
     if runjsonimport == true then
-      loadnewproducts
+      loadnewproducts if !Rails.env.development?
     end
 
     #establish a player object
@@ -44,121 +44,18 @@ class QuestsController < ApplicationController
     @mytest = questionpick.statement
     @mytopic = questionpick.id
     @mysubject = questionpick.name
-    #TODO the escape counter simply breaks out of the endless loop.
-    #  Change to recursive callback functions and remove the puts alerts
-    escapecounter = 0
 
     checkmaxvalue = (Product.pergrammax(myfield)[0].top_value).to_f
     case questiondifficulty
     when 1
-      #medium difficulty - All random
       @mypoints = 10
-      if mytesttype == false then
-        testmin = 0.0001
-        testmax = checkmaxvalue * 0.70000
-      else
-        testmin = checkmaxvalue * 0.30000
-        testmax = checkmaxvalue + 1
-      end
-
-      #select uniq winner and four questions
-      newquizquestion = []
-      while newquizquestion == [] do
-        newquizquestion = Product.random(myfield, testmin, testmax)
-      end
-      @quizquestions = newquizquestion
-      @winnerid = @quizquestions[0]['id']
-      selectedids = @winnerid.to_s
-      if mytesttype == false then # note mytesttype == false for least
-        ansmin = @quizquestions[0][myfield] + 0.0001
-        ansmax = checkmaxvalue + 1
-      else
-        ansmin = 0.0001
-        ansmax = @quizquestions[0][myfield] - 0.0001
-      end
-      newquizquestion = []
-
-      4.times do
-        escapecounter = 0
-        while newquizquestion == [] do
-          newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
-          escapecounter += 1
-          break if escapecounter > 10
-        end
-        selectedids += " and id <> " + newquizquestion[0]['id'].to_s
-        @quizquestions += newquizquestion
-        newquizquestion = []
-      end
-
+      buildquestion_med(myfield, mytesttype, checkmaxvalue)
     when 2
-      #Challenging, select from a tight range of values
       @mypoints = 20
-      #select uniq winner and four questions
-      newquizquestion = []
-      while newquizquestion == [] do
-        newquizquestion = Product.random(myfield)
-      end
-      @quizquestions = newquizquestion
-      @winnerid = @quizquestions[0]['id']
-      selectedids = @winnerid.to_s
-      if mytesttype == false then # note mytesttype == false for least
-        ansmin = @quizquestions[0][myfield] + 0.0001
-        ansmax = @quizquestions[0][myfield] + (checkmaxvalue * 0.30000)
-      else
-        ansmin = @quizquestions[0][myfield] - (checkmaxvalue * 0.30000)
-        ansmax = @quizquestions[0][myfield] - 0.0001
-      end
-      newquizquestion = []
-
-      4.times do
-        escapecounter = 0
-        while newquizquestion == [] do
-          newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
-          escapecounter += 1
-          break if escapecounter > 10
-        end
-        selectedids += " and id <> " + newquizquestion[0]['id'].to_s
-        @quizquestions += newquizquestion
-        newquizquestion = []
-      end
-
+      buildquestion_hard(myfield, mytesttype, checkmaxvalue)
     else
-      #the easiest, Answer from the end 30% of value, wrong Answres from the other 60%
       @mypoints = 5
-      # note mytesttype == false for least
-      if mytesttype == false then
-        testmin = 0.0001
-        testmax = checkmaxvalue * 0.30000
-        ansmin = checkmaxvalue * 0.30000
-        ansmax = checkmaxvalue + 1
-      else
-        testmin = checkmaxvalue * 0.60000
-        testmax = checkmaxvalue + 1
-        ansmin = 0.0001
-        ansmax = checkmaxvalue * 0.60000
-      end
-
-      #select uniq winner and four questions
-      newquizquestion = []
-      while newquizquestion == [] do
-        newquizquestion = Product.random(myfield, testmin, testmax)
-      end
-      @quizquestions = newquizquestion
-      @winnerid = @quizquestions[0]['id']
-      selectedids = @winnerid.to_s
-      newquizquestion = []
-
-      4.times do
-        escapecounter = 0
-        while newquizquestion == [] do
-          newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
-          escapecounter += 1
-          break if escapecounter > 10
-        end
-        selectedids += " and id <> " + newquizquestion[0]['id'].to_s
-        @quizquestions += newquizquestion
-        newquizquestion = []
-      end
+      buildquestion_easy(myfield, mytesttype, checkmaxvalue)
     end
 
     @quizquestions.shuffle!
@@ -355,5 +252,119 @@ class QuestsController < ApplicationController
 
     @playersubject = obj.subject
   end
+
+
+  def buildquestion_easy (myfield, mytesttype, checkmaxvalue)
+    #the easiest, Answer from the end 30% of value, wrong Answres from the other 60%
+    @quizquestions = []
+
+    # note mytesttype == false for least
+    if mytesttype == false then
+      testmin = 0.0001
+      testmax = checkmaxvalue * 0.30000
+      ansmin = checkmaxvalue * 0.30000
+      ansmax = checkmaxvalue + 1
+    else
+      testmin = checkmaxvalue * 0.60000
+      testmax = checkmaxvalue + 1
+      ansmin = 0.0001
+      ansmax = checkmaxvalue * 0.60000
+    end
+
+    #select uniq winner and four questions
+    while @quizquestions == [] do
+      @quizquestions = Product.random(myfield, testmin, testmax)
+    end
+    @winnerid = @quizquestions[0]['id']
+    selectedids = @winnerid.to_s
+
+    4.times do
+      newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
+      if newquizquestion == [] then
+        buildquestion_easy(myfield, mytesttype, checkmaxvalue)
+        #View recursive error correction ... works. saw it hit 10x on 330 products.
+        #puts "****************************************RESET"
+        break
+      else
+        selectedids += " and id <> " + newquizquestion[0]['id'].to_s
+        @quizquestions += newquizquestion
+      end
+    end
+  end
+
+
+  def buildquestion_med (myfield, mytesttype, checkmaxvalue)
+    #medium difficulty - All random
+    @quizquestions = []
+
+    if mytesttype == false then
+      testmin = 0.0001
+      testmax = checkmaxvalue * 0.70000
+    else
+      testmin = checkmaxvalue * 0.30000
+      testmax = checkmaxvalue + 1
+    end
+
+    #select uniq winner and four questions
+    while @quizquestions == [] do
+      @quizquestions = Product.random(myfield, testmin, testmax)
+    end
+    @winnerid = @quizquestions[0]['id']
+    selectedids = @winnerid.to_s
+    # note mytesttype == false for least
+    if mytesttype == false then
+      ansmin = @quizquestions[0][myfield] + 0.0001
+      ansmax = checkmaxvalue + 1
+    else
+      ansmin = 0.0001
+      ansmax = @quizquestions[0][myfield] - 0.0001
+    end
+    newquizquestion = []
+
+    4.times do
+      newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
+      if newquizquestion == [] then
+        buildquestion_med(myfield, mytesttype, checkmaxvalue)
+        break
+      else
+        selectedids += " and id <> " + newquizquestion[0]['id'].to_s
+        @quizquestions += newquizquestion
+      end
+    end
+  end
+
+
+  def buildquestion_hard (myfield, mytesttype, checkmaxvalue)
+    #Challenging, select from a tight range of values
+    @quizquestions = []
+
+    #select uniq winner and four questions
+    while @quizquestions == [] do
+      @quizquestions = Product.random(myfield, 0, checkmaxvalue)
+    end
+    @winnerid = @quizquestions[0]['id']
+    selectedids = @winnerid.to_s
+
+    if mytesttype == false then # note mytesttype == false for least
+      ansmin = @quizquestions[0][myfield] + 0.0001
+      ansmax = @quizquestions[0][myfield] + (checkmaxvalue * 0.30000)
+    else
+      ansmin = @quizquestions[0][myfield] - (checkmaxvalue * 0.30000)
+      ansmax = @quizquestions[0][myfield] - 0.0001
+    end
+
+    4.times do
+      newquizquestion = Product.random(myfield, ansmin, ansmax, selectedids)
+      if newquizquestion == [] then
+        buildquestion_hard(myfield, mytesttype, checkmaxvalue)
+        break
+      else
+        selectedids += " and id <> " + newquizquestion[0]['id'].to_s
+        @quizquestions += newquizquestion
+      end
+    end
+  end
+
+
 
 end
