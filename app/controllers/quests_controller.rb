@@ -18,19 +18,17 @@ class QuestsController < ApplicationController
       loadnewproducts if !Rails.env.development?
     end
 
-    #establish a player object
-    $userid = newplayer if $userid.nil?
-    obj = Player.find_by(id: $userid.to_i)
+    establishplayerobject
 
-    if obj.subject == "" or obj.subject == nil then
+    if @playerobject.subject == "" or @playerobject.subject == nil then
       questionpick = Topic.random[0]
       @playersubject = ""
     else
-      @playersubject = obj.subject
+      @playersubject = @playerobject.subject
       questionpick = Topic.randomsubject(@playersubject.to_s)[0]
     end
 
-    scores = JSON.parse!(obj.scores)
+    scores = JSON.parse!(@playerobject.scores)
     @myscore = scores[questionpick.name].to_i
 
     #check level by topic
@@ -61,10 +59,10 @@ class QuestsController < ApplicationController
     @quizquestions.shuffle!
 
     #show any bonuses for answering questions
-    bonuses = obj.bonuses if !obj.nil?
+    bonuses = @playerobject.bonuses if !@playerobject.nil?
     @mybonus = []
     if !bonuses.nil? or bonuses != "" then
-      bonuses = JSON.parse!(obj.bonuses)
+      bonuses = JSON.parse!(@playerobject.bonuses)
       bonuses.each do |k,v|
         if k != "event" and v > 0 then
           @mybonus.push(k)
@@ -74,16 +72,16 @@ class QuestsController < ApplicationController
         end
       end
     end
-    obj.bonuses = JSON.fast_generate(bonuses)
-    obj.save
+    @playerobject.bonuses = JSON.fast_generate(bonuses)
+    @playerobject.save
   end
 
 
   def setsubject
-    obj = Player.find_by(id: $userid.to_i)
-    if !obj.nil? then
-      obj.subject = params['mysubject']
-      obj.save
+    establishplayerobject
+    if !@playerobject.nil? then
+      @playerobject.subject = params['mysubject']
+      @playerobject.save
     end
     redirect_to quests_path
   end
@@ -93,20 +91,7 @@ class QuestsController < ApplicationController
     #selection to lock in subject, or randomize it
     @subjectlist = Topic.subjectnames
 
-    #check/set user from cookie
-    if $userid.nil? then
-      $userid = cookies[:user_id]
-      if $userid.nil? then
-        $userid = newplayer
-      end
-    end
-
-    obj = Player.find_by(id: $userid.to_i)
-    #in the event that the Web-app data is cleared but a cookie remains:
-    if obj.nil? then
-      $userid = newplayer
-      obj = Player.find_by(id: $userid.to_i)
-    end
+    establishplayerobject
 
     @mytest = params['mytest']
     @mytopic = params['mytopic']
@@ -116,11 +101,11 @@ class QuestsController < ApplicationController
     #Baiting the player with bonuses
     #  track how many q's answered since last award and randomly ad award
     #  used further on in the function... going a little procedural oldschool here...
-    bonuses = obj.bonuses
+    bonuses = @playerobject.bonuses
     if bonuses == "{}" then
       bonuses = {"event" => 15}
     else
-      bonuses = JSON.parse!(obj.bonuses)
+      bonuses = JSON.parse!(@playerobject.bonuses)
     end
     bonuses['event'] += 1 #the longer you go with no event, the higher your chances of something happening
 
@@ -181,11 +166,11 @@ class QuestsController < ApplicationController
       @mystyle = "background-color: #9fde89;" #subdued green
       Topic.update_counters @mytopic, sucesses: 1
 
-      playerhash = obj.sucesses
+      playerhash = @playerobject.sucesses
       if playerhash.nil? or playerhash == "" then
         playerhash = {}
       else
-        playerhash = JSON.parse!(obj.sucesses)
+        playerhash = JSON.parse!(@playerobject.sucesses)
       end
 
       if playerhash[@mysubject.to_s].nil? then
@@ -193,14 +178,14 @@ class QuestsController < ApplicationController
       else
         playerhash[@mysubject.to_s] = playerhash[@mysubject.to_s] + 1
       end
-      obj.sucesses = JSON.fast_generate(playerhash)
+      @playerobject.sucesses = JSON.fast_generate(playerhash)
 
       #add points
-      playerhash = obj.scores
+      playerhash = @playerobject.scores
       if playerhash.nil? or playerhash == "" then
         playerhash = {}
       else
-        playerhash = JSON.parse!(obj.scores)
+        playerhash = JSON.parse!(@playerobject.scores)
       end
 
       if playerhash[@mysubject.to_s].nil? then
@@ -219,38 +204,56 @@ class QuestsController < ApplicationController
         end
         playerhash[@mysubject.to_s] = currentpoints + @mypoints
       end
-      obj.scores = JSON.fast_generate(playerhash)
+      @playerobject.scores = JSON.fast_generate(playerhash)
     else
       @yourresults = "Incorrect."
       @mystyle = "background-color: #de8989;" #subdued red
       Topic.update_counters @mytopic, failures: 1
 
-      playerhash = obj.failures
+      playerhash = @playerobject.failures
       if playerhash.nil? or playerhash == "" then
         playerhash = {}
       else
-        playerhash = JSON.parse!(obj.failures)
+        playerhash = JSON.parse!(@playerobject.failures)
       end
       if playerhash[@mysubject.to_s].nil? then
         playerhash[@mysubject.to_s] = 1
       else
         playerhash[@mysubject.to_s] = playerhash[@mysubject.to_s] + 1
       end
-      obj.failures = JSON.fast_generate(playerhash)
+      @playerobject.failures = JSON.fast_generate(playerhash)
 
       flash.delete("star")
     end
 
-    obj.bonuses = JSON.fast_generate(bonuses)
-    obj.save
+    @playerobject.bonuses = JSON.fast_generate(bonuses)
+    @playerobject.save
 
-    scores = JSON.parse!(obj.scores)
+    scores = JSON.parse!(@playerobject.scores)
     @myscore = scores[@mysubject].to_i
 
     @quizquestion = Product.find_by(id: params['iam'])
     @quizanswer = Product.find_by(id: params['answer'])
 
-    @playersubject = obj.subject
+    @playersubject = @playerobject.subject
+  end
+
+
+  def establishplayerobject
+    #use a class variable to set and check player status
+    #check/set user from cookie
+    if $userid.nil? then
+      $userid = cookies[:user_id]
+      if $userid.nil? then
+        $userid = newplayer
+      end
+    end
+
+    #in the event that the Web-app data is cleared but a cookie remains:
+    if @playerobject.nil? then
+      @playerobject = Player.find_by(id: $userid.to_i)
+    end
+
   end
 
 
@@ -364,7 +367,6 @@ class QuestsController < ApplicationController
       end
     end
   end
-
 
 
 end
