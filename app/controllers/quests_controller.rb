@@ -87,6 +87,8 @@ class QuestsController < ApplicationController
   end
 
 
+  #TODO a subpage function to request login when a ribbon is won
+
   def check
     #selection to lock in subject, or randomize it
     @subjectlist = Topic.subjectnames
@@ -140,24 +142,23 @@ class QuestsController < ApplicationController
     case diceroll
     when 1
       bonuses["cherry"] = rand(6)+6
-      flash["cherry"] = "Answer with Cherry for a TRIPLE score!"
-      #Use the cherry to answer a question for triple score!
+      flash["cherry"] = "Use Cherry for a TRIPLE score!"
       bonuses['event'] = 0
     when 2,3
       bonuses["grain"] = rand(6)+6
-      flash["grain"] = "Answer with Grain for a DOUBLE score!"
+      flash["grain"] = "Use Grain for a DOUBLE score!"
       bonuses['event'] = 0
     when 3,4
       bonuses["strawberry"] = rand(6)+6
-      flash["strawberry"] = "Answer with Strawberry for +20 points!"
+      flash["strawberry"] = "Use Strawberry for +20 points!"
       bonuses['event'] = 0
     when 5,6,7,8
       bonuses["broccoli"] = rand(6)+6
-      flash["broccoli"] = "Answer with Broccoli for +10 points!"
+      flash["broccoli"] = "Use Broccoli for +10 points!"
       bonuses['event'] = 0
     when 9,10,11,12
       bonuses["lettuce"] = rand(6)+6
-      flash["lettuce"] = "Answer with Lettuce for +5 points!"
+      flash["lettuce"] = "Use Lettuce +5 points!"
       bonuses['event'] = 0
     end
 
@@ -236,24 +237,6 @@ class QuestsController < ApplicationController
     @quizanswer = Product.find_by(id: params['answer'])
 
     @playersubject = @playerobject.subject
-  end
-
-
-  def establishplayerobject
-    #use a class variable to set and check player status
-    #check/set user from cookie
-    if $userid.nil? then
-      $userid = cookies[:user_id]
-      if $userid.nil? then
-        $userid = newplayer
-      end
-    end
-
-    #in the event that the Web-app data is cleared but a cookie remains:
-    if @playerobject.nil? then
-      @playerobject = Player.find_by(id: $userid.to_i)
-    end
-
   end
 
 

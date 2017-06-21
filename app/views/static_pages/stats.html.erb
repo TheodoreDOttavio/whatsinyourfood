@@ -1,17 +1,19 @@
 <div id="nutri-label" style="width: 300px; margin-left:175px; margin-top: 10px; background-color: #ffffff;">
 
-<h4>Global % of correct answers
+<h4>Your Accuracy (global accuracy)
   <span class="nutrivalue"><%= @name %> %</span>
 </h4>
 
 <% @results.each do |r| %>
-  <h6><%= r['percentcorrect'] %> %    <%= r['name'] %>
-  <span class="nutrivalue"><%= r['playerpercentcorrect'] %> %</span>
+  <!-- <%= r['percentcorrect'] %> % -->
+  <h6><%= r['playerpercentcorrect'] %>&nbsp;%&nbsp;    <%= r['name'] %>
+  <span class="nutrivalue"><%= r['playerscore'] %> pts
+  <img src=<%= r['playerribbon'] %>></span>
   </h6>
 <% end %>
 
 <h4>You Answered <span class="nutrivalue"><%= @playertotal %> Questions</span></h4>
-<h4>Your Score <span class="nutrivalue"><%= @playerpercent %> % Correct</span></h4>
+<h4>Your overall accuracy <span class="nutrivalue"><%= @playerpercent %> % Correct</span></h4>
 <h4>Testing on <span class="nutrivalue"><%= @productcount %> products</span></h4>
 <h4>Used by <span class="nutrivalue"><%= @playercount %> players</span></h4>
 </div>

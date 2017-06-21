@@ -1,4 +1,7 @@
 class StaticPagesController < ApplicationController
+
+  include ApplicationHelper
+
   def home
     $myheader = nil
     @needlogin = true
@@ -18,7 +21,6 @@ class StaticPagesController < ApplicationController
 
 
   def login
-    $myheader = nil
     #first- check to see if they just left both fields blank
     if params['myname'] == "display name" and params['mypassword'] == "password" then
       #Do nothing, just redirect
@@ -155,37 +157,10 @@ class StaticPagesController < ApplicationController
     @productcount = Product.count
     @playercount = Player.count
 
-    #check/set user from cookie
-    if $userid.nil? then
-      $userid = cookies[:user_id]
-      if $userid.nil? then
-        obj = Player.new
-        obj.save
-        $userid = obj.id
-        cookies[:user_id] = $userid
-      end
-    end
-    obj = Player.find($userid.to_i)
-
-    if obj.name == "no name" then
-      @name = "Your results"
-    else
-      @name = obj.name
-    end
-
-    #generate a hash of player succes counts
-    playersucesses = obj.sucesses
-    if playersucesses.nil? or playersucesses == "" then
-      playersucesses = {}
-    else
-      playersucesses = JSON.parse!(obj.sucesses)
-    end
-    playerfailures = obj.failures
-    if playerfailures.nil? or playerfailures == "" then
-      playerfailures = {}
-    else
-      playerfailures = JSON.parse!(obj.failures)
-    end
+    establishplayerobject
+    playersucesses = JSON.parse!(@playerobject.sucesses)
+    playerfailures = JSON.parse!(@playerobject.failures)
+    playerscores = JSON.parse!(@playerobject.scores)
 
     psucesses = 0
     pfailures = 0
@@ -204,21 +179,28 @@ class StaticPagesController < ApplicationController
       percentcorrect = percentcorrect *100
 
       playerpercentcorrect = 0
-      if playersucesses[t.id.to_s].nil? == false then
-        if playerfailures[t.id.to_s].nil? then
+      if playersucesses[t.name].nil? == false then
+        if playerfailures[t.name].nil? then
           playerpercentcorrect = 1
         else
-          playerpercentcorrect = playersucesses[t.id.to_s]/(playersucesses[t.id.to_s] + playerfailures[t.id.to_s] + 0.00) if playersucesses[t.id.to_s] != 0
+          playerpercentcorrect = playersucesses[t.name]/(playersucesses[t.name] + playerfailures[t.name] + 0.00) if playersucesses[t.id.to_s] != 0
         end
       end
       playerpercentcorrect = playerpercentcorrect *100
 
-      @results.push({"name" => t.statement,
+      playerscores[t.name] = 0 if playerscores[t.name].nil?
+      playerribbon = root_url + "assets/stats-20.png"
+      playerribbon = root_url + "assets/stats-10.png" if playerscores[t.name] < 500
+      playerribbon = root_url + "assets/stats-5.png" if playerscores[t.name] < 100
+
+      @results.push({"name" => t.name,
         "percentcorrect" => percentcorrect.round,
-        "playerpercentcorrect" => playerpercentcorrect.round
+        "playerpercentcorrect" => playerpercentcorrect.round,
+        "playerscore" => playerscores[t.name],
+        "playerribbon" => playerribbon
         })
-        psucesses += playersucesses[t.id.to_s].to_i
-        pfailures += playerfailures[t.id.to_s].to_i
+        psucesses += playersucesses[t.name].to_i
+        pfailures += playerfailures[t.name].to_i
     end
 
     playerpercent = 0

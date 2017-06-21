@@ -3,8 +3,7 @@ class Topic < ActiveRecord::Base
   scope :randomsubject, ->(subjectname) { where(name: subjectname).offset(rand(Topic.subjectcount(subjectname))).limit(1) }
   scope :subjectcount, ->(subjectname) { where(name: subjectname).count }
 
-  #TODO select sum :success and :failure by grouped :name field
-  scope :forstats, -> { order(:name, :test_field, :statement) }
+  scope :forstats, -> { select("name, SUM(sucesses) as sucesses, SUM(failures) as failures").order(:name).group(:name) }
 
   scope :subjectnames, -> { select(:name).distinct }
 end

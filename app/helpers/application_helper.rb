@@ -18,6 +18,24 @@ module ApplicationHelper
   end
 
 
+  def establishplayerobject
+    #use a class variable to set and check player status
+    #check/set user from cookie
+    if $userid.nil? then
+      $userid = cookies[:user_id]
+      if $userid.nil? then
+        $userid = newplayer
+      end
+    end
+
+    #in the event that the Web-app data is cleared but a cookie remains:
+    if @playerobject.nil? then
+      @playerobject = Player.find_by(id: $userid.to_i)
+    end
+
+  end
+  
+
   def gramstopergram(product_id)
     #nf_serving_weight_grams
     fieldlist = {
