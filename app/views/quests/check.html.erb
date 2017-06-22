@@ -1,4 +1,8 @@
 <!-- <h1><%= @mytest %> <%= @yourresults %></h1> -->
+<% if @needlogin and flash['levelup'] then %>
+  <%= render 'static_pages/loginbox' %>
+<% end %>
+
 <%= form_tag({action: :setsubject}, multipart: false) do %>
   <p style="text-align: center;">Pick your subject:
     <%= select_tag 'mysubject', options_from_collection_for_select(@subjectlist, "name", "name", @playersubject), include_blank: "Random", :onchange => "this.form.submit();" %>

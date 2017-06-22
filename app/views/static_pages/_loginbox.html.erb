@@ -1,0 +1,14 @@
+<!-- TODO css for login box -->
+<% if @needlogin == true then %>
+  <h2 style="padding: 40px 60px 0px 40px; text-align: center;">Keep your scores with a name and password</h2>
+
+  <%= form_tag({action: :login, controller: 'static_pages'}, multipart: false, style: "padding: 0px 60px 0px 40px;") do %>
+    <p class = "input_text_as_button">
+    <%= text_field_tag :myname, "display name" %>&nbsp;
+    <%= text_field_tag :mypassword, "password" %>&nbsp;&nbsp;&nbsp;
+    <%= submit_tag("login") %>
+    </p>
+  <% end %>
+<% else %>
+  <h2 style="padding: 40px 60px 40px 40px;">Welcome <%= @playername %></h2>
+<% end %>

@@ -10,19 +10,6 @@
 
 <h1 style="text-align: center;"><%= link_to "Begin!", 'quests' %></h1>
 
-<!-- TODO css for login box -->
-<% if @needlogin == true then %>
-  <h2 style="padding: 40px 60px 0px 40px;">Create a name and password if you would like to keep your scores</h2>
-
-  <%= form_tag({action: :login}, multipart: false, style: "padding: 0px 60px 0px 40px;") do %>
-    <p class = "input_text_as_button">
-    <%= text_field_tag :myname, "display name" %>&nbsp;
-    <%= text_field_tag :mypassword, "password" %>&nbsp;&nbsp;&nbsp;
-    <%= submit_tag("login") %>
-    </p>
-  <% end %>
-<% else %>
-  <h2 style="padding: 40px 60px 40px 40px;">Welcome <%= @playername %></h2>
-<% end %>
+<%= render 'static_pages/loginbox' %>
 
 <h2 style="padding: 5px 60px 0px 40px;"><%= @loginmessage %></h2>

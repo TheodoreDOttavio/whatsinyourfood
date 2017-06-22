@@ -1,5 +1,5 @@
 <h4><%= link_to "Delete", player, method: :delete, data: { confirm: "Are you sure?" } %>
 <%= player.id %>: <%= player.name %> - <%= if player.password? then 'Has PWD' else 'nil' end %>
  --- <%= getscore(player.sucesses, player.failures, :percent) %> % out of
-<%= getscore(player.sucesses, player.failures, :total) %> questions
+<%= getcount(player.sucesses, player.failures, :total) %> questions
 </h4>

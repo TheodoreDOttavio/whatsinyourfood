@@ -1,3 +1,7 @@
+<% if @needlogin then %>
+  <%= render 'static_pages/loginbox' %>
+<% end %>
+
 <div id="nutri-label" style="width: 300px; margin-left:175px; margin-top: 10px; background-color: #ffffff;">
 
 <h4>Your Accuracy (global accuracy)
@@ -6,10 +10,15 @@
 
 <% @results.each do |r| %>
   <!-- <%= r['percentcorrect'] %> % -->
-  <h6><%= r['playerpercentcorrect'] %>&nbsp;%&nbsp;    <%= r['name'] %>
-  <span class="nutrivalue"><%= r['playerscore'] %> pts
-  <img src=<%= r['playerribbon'] %>></span>
-  </h6>
+  <%= form_tag({action: :setsubject, controller: 'quests'}, multipart: false) do %>
+    <h6>
+    <%= hidden_field_tag :mysubject, r['name'] %>
+    <%= r['playerpercentcorrect'] %>&nbsp;%&nbsp;
+    <%= submit_tag(r['name']) %>
+    <span class="nutrivalue"><%= r['playerscore'] %> pts
+    <img src=<%= r['playerribbon'] %>></span>
+    </h6>
+  <% end %>
 <% end %>
 
 <h4>You Answered <span class="nutrivalue"><%= @playertotal %> Questions</span></h4>

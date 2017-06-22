@@ -33,8 +33,13 @@ module ApplicationHelper
       @playerobject = Player.find_by(id: $userid.to_i)
     end
 
+    if @playerobject.password != "" then
+      @needlogin = false
+    else
+      @needlogin = true
+    end
   end
-  
+
 
   def gramstopergram(product_id)
     #nf_serving_weight_grams
@@ -126,7 +131,7 @@ module ApplicationHelper
   end
 
 
-  def getscore (playersuccesfield, playerfailurefield, myparam)
+  def getcount (playersuccesfield, playerfailurefield, myparam)
     stot = 0
     if playersuccesfield.nil? == false then
       answ = JSON.parse!(playersuccesfield)

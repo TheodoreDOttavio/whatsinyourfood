@@ -3,20 +3,8 @@ class StaticPagesController < ApplicationController
   include ApplicationHelper
 
   def home
-    $myheader = nil
-    @needlogin = true
+    establishplayerobject
     @loginmessage = params['loginmsg']
-
-    $userid = cookies[:user_id]
-
-    if $userid.nil? == false then
-      obj = Player.find_by(id: $userid.to_i)
-      if obj.password != "" then
-        @needlogin = false
-        @playername = obj.name
-      end
-    end
-
   end
 
 
@@ -152,8 +140,6 @@ class StaticPagesController < ApplicationController
 
 
   def stats
-    $myheader = nil
-
     @productcount = Product.count
     @playercount = Player.count
 
