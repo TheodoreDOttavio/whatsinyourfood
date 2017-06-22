@@ -20,4 +20,6 @@
   <% end %>
 <% end %>
 
-<p>* Amounts are compared per gram due to different serving sizes.</p>
+<% if @myscore.to_i <= 10 then %>
+  <p>* Amounts are compared per gram due to different serving sizes.</p>
+<% end %>
