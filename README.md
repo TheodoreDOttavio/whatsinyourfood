@@ -15,6 +15,7 @@ As an exercise in using JSON requests
 As an exercise in user accounts
 - runs and records progress without login by using cookies
 - prompts for login on leveling up
+#TODO purge users with no login if the account was built a few days ago
 
 As an exercise in CSS for desktop vs mobile browsers
 - simplified views on mobile devices

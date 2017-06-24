@@ -1,15 +1,16 @@
 require File.expand_path('../boot', __FILE__)
 
-require "rails"
-# Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "sprockets/railtie"
+require "rails/all"
+# # Pick the frameworks you want:
+# require "active_model/railtie"
+# require "active_job/railtie"
+# require "active_record/railtie"
+# require "action_controller/railtie"
+# require "action_mailer/railtie"
+# require "action_view/railtie"
+# require "sprockets/railtie"
 # require "rails/test_unit/railtie"
+
 #adding two lines to patch gem Mobylette
 #  without this the rails s server crashes.
 require "action_view"
@@ -38,7 +39,6 @@ module Whatsinyourfood
 
     config.serve_static_files = true
 
-    #config.serve_static_files = true
     config.assets.precompile += %w( style.css )
   end
 end
