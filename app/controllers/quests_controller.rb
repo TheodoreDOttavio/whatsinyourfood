@@ -25,7 +25,7 @@ class QuestsController < ApplicationController
       @playersubject = ""
     else
       @playersubject = @playerobject.subject
-      questionpick = Topic.randomsubject(@playersubject.to_s)[0]
+      questionpick = Topic.randomquestion(@playersubject.to_s)[0]
     end
 
     scores = JSON.parse!(@playerobject.scores)

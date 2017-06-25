@@ -1,8 +1,14 @@
 require 'test_helper'
 
 class QuestTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
+  test "Confirm that rake db populate has found its website" do
+    assert_not_equal 0, Quest.count
+  end
+
+  # test "Pick a random subject and then a question" do
+  #   obj = Topic.random[0]
+  #   assert_not_nil obj
+  #   assert_not_nil Topic.randomquestion(obj.name)
   # end
 end
 

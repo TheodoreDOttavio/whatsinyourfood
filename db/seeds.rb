@@ -1,4 +1,4 @@
-puts "--  Adding Topics to quiz on"
+puts "--  seed.rb: Adding Topics to quiz on"
 
 Topic.destroy_all
 
