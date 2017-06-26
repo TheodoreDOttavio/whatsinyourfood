@@ -1,0 +1,217 @@
+---
+Topic_1:
+  id: 97
+  question: Which product has the most calories?
+  statement: 'The most calories:'
+  qtype: true
+  test_field: nf_calories_pergram
+  created_at: 2017-06-25 05:18:50.682902000 Z
+  updated_at: 2017-06-25 05:18:50.682902000 Z
+  name: Calories
+Topic_2:
+  id: 98
+  question: Which product has the most calories from fat?
+  statement: 'The most calories from fat:'
+  qtype: true
+  test_field: nf_calories_from_fat_pergram
+  created_at: 2017-06-25 05:18:50.789401000 Z
+  updated_at: 2017-06-25 05:18:50.789401000 Z
+  name: Calories
+Topic_3:
+  id: 99
+  question: Which product has the highest total fat content?
+  statement: 'The highest total fat content:'
+  qtype: true
+  test_field: nf_total_fat_pergram
+  created_at: 2017-06-25 05:18:50.905984000 Z
+  updated_at: 2017-06-25 05:18:50.905984000 Z
+  name: Fat
+Topic_4:
+  id: 100
+  question: Which product has the most saturated fat?
+  statement: 'The most saturated fat:'
+  qtype: true
+  test_field: nf_saturated_fat_pergram
+  created_at: 2017-06-25 05:18:51.023155000 Z
+  updated_at: 2017-06-25 05:18:51.023155000 Z
+  name: Fat
+Topic_5:
+  id: 101
+  question: Which product has the highest amount of cholesterol?
+  statement: 'The highest amount of cholesterol:'
+  qtype: true
+  test_field: nf_cholesterol_pergram
+  created_at: 2017-06-25 05:18:51.197227000 Z
+  updated_at: 2017-06-25 05:18:51.197227000 Z
+  name: Cholesterol
+Topic_6:
+  id: 102
+  question: Which product has the most salt?
+  statement: 'The most salt:'
+  qtype: true
+  test_field: nf_sodium_pergram
+  created_at: 2017-06-25 05:18:51.305481000 Z
+  updated_at: 2017-06-25 05:18:51.305481000 Z
+  name: Salt
+Topic_7:
+  id: 103
+  question: Which product has the most protein?
+  statement: 'The most protein:'
+  qtype: true
+  test_field: nf_protein_pergram
+  created_at: 2017-06-25 05:18:51.388689000 Z
+  updated_at: 2017-06-25 05:18:51.388689000 Z
+  name: Protein
+Topic_8:
+  id: 104
+  question: Which product has the most vitamin A?
+  statement: 'The most vitamin A:'
+  qtype: true
+  test_field: nf_vitamin_a_dv_pergram
+  created_at: 2017-06-25 05:18:51.472873000 Z
+  updated_at: 2017-06-25 05:18:51.472873000 Z
+  name: Vitamin A
+Topic_9:
+  id: 105
+  question: Which product has the most calcium?
+  statement: 'The most calcium:'
+  qtype: true
+  test_field: nf_calcium_dv_pergram
+  created_at: 2017-06-25 05:18:51.556109000 Z
+  updated_at: 2017-06-25 05:18:51.556109000 Z
+  name: Calcium
+Topic_10:
+  id: 106
+  question: Which product has the most iron?
+  statement: 'The most iron:'
+  qtype: true
+  test_field: nf_iron_dv_pergram
+  created_at: 2017-06-25 05:18:51.639364000 Z
+  updated_at: 2017-06-25 05:18:51.639364000 Z
+  name: Iron
+Topic_11:
+  id: 107
+  question: Which product has the most total carbohydrates?
+  statement: 'The most total carbohydrates:'
+  qtype: true
+  test_field: nf_total_carbohydrate_pergram
+  created_at: 2017-06-25 05:18:51.722624000 Z
+  updated_at: 2017-06-25 05:18:51.722624000 Z
+  name: Carbohydrates
+Topic_12:
+  id: 108
+  question: Which product has the most vitamin C?
+  statement: 'The most vitamin C:'
+  qtype: true
+  test_field: nf_vitamin_c_dv_pergram
+  created_at: 2017-06-25 05:18:51.830833000 Z
+  updated_at: 2017-06-25 05:18:51.830833000 Z
+  name: Vitamin C
+Topic_13:
+  id: 109
+  question: Which product has the least calories?
+  statement: 'The least calories:'
+  qtype: false
+  test_field: nf_calories_pergram
+  created_at: 2017-06-25 05:18:51.905772000 Z
+  updated_at: 2017-06-25 05:18:51.905772000 Z
+  name: Calories
+Topic_14:
+  id: 110
+  question: Which product has the least calories from fat?
+  statement: 'The least calories from fat:'
+  qtype: false
+  test_field: nf_calories_from_fat_pergram
+  created_at: 2017-06-25 05:18:52.022292000 Z
+  updated_at: 2017-06-25 05:18:52.022292000 Z
+  name: Calories
+Topic_15:
+  id: 111
+  question: Which product has the lowest total fat content?
+  statement: 'The lowest total fat content:'
+  qtype: false
+  test_field: nf_total_fat_pergram
+  created_at: 2017-06-25 05:18:52.113883000 Z
+  updated_at: 2017-06-25 05:18:52.113883000 Z
+  name: Fat
+Topic_16:
+  id: 112
+  question: Which product has the least saturated fat?
+  statement: 'The least saturated fat:'
+  qtype: false
+  test_field: nf_saturated_fat_pergram
+  created_at: 2017-06-25 05:18:52.230404000 Z
+  updated_at: 2017-06-25 05:18:52.230404000 Z
+  name: Fat
+Topic_17:
+  id: 113
+  question: Which product has the lowest amount of cholesterol?
+  statement: 'The lowest amount of cholesterol:'
+  qtype: false
+  test_field: nf_cholesterol_pergram
+  created_at: 2017-06-25 05:18:52.346945000 Z
+  updated_at: 2017-06-25 05:18:52.346945000 Z
+  name: Cholesterol
+Topic_18:
+  id: 114
+  question: Which product has the least salt?
+  statement: 'The least salt:'
+  qtype: false
+  test_field: nf_sodium_pergram
+  created_at: 2017-06-25 05:18:52.413538000 Z
+  updated_at: 2017-06-25 05:18:52.413538000 Z
+  name: Salt
+Topic_19:
+  id: 115
+  question: Which product has the least protein?
+  statement: 'The least protein:'
+  qtype: false
+  test_field: nf_protein_pergram
+  created_at: 2017-06-25 05:18:52.480220000 Z
+  updated_at: 2017-06-25 05:18:52.480220000 Z
+  name: Protein
+Topic_20:
+  id: 116
+  question: Which product has the least vitamin A?
+  statement: 'The least vitamin A:'
+  qtype: false
+  test_field: nf_vitamin_a_dv_pergram
+  created_at: 2017-06-25 05:18:52.588453000 Z
+  updated_at: 2017-06-25 05:18:52.588453000 Z
+  name: Vitamin A
+Topic_21:
+  id: 117
+  question: Which product has the least calcium?
+  statement: 'The least calcium:'
+  qtype: false
+  test_field: nf_calcium_dv_pergram
+  created_at: 2017-06-25 05:18:52.671695000 Z
+  updated_at: 2017-06-25 05:18:52.671695000 Z
+  name: Calcium
+Topic_22:
+  id: 118
+  question: Which product has the least iron?
+  statement: 'The least iron:'
+  qtype: false
+  test_field: nf_iron_dv_pergram
+  created_at: 2017-06-25 05:18:52.779942000 Z
+  updated_at: 2017-06-25 05:18:52.779942000 Z
+  name: Iron
+Topic_23:
+  id: 119
+  question: Which product has the least total carbohydrates?
+  statement: 'The least total carbohydrates:'
+  qtype: false
+  test_field: nf_total_carbohydrate_pergram
+  created_at: 2017-06-25 05:18:52.888095000 Z
+  updated_at: 2017-06-25 05:18:52.888095000 Z
+  name: Carbohydrates
+Topic_24:
+  id: 120
+  question: Which product has the least vitamin C?
+  statement: 'The least vitamin C:'
+  qtype: false
+  test_field: nf_vitamin_c_dv_pergram
+  created_at: 2017-06-25 05:18:52.996386000 Z
+  updated_at: 2017-06-25 05:18:52.996386000 Z
+  name: Vitamin C

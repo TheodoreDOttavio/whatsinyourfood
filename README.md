@@ -1,8 +1,10 @@
 #Whats in your Food?
 
-This application is a working sample of code that is (hopefully) more fun to review than typical blog sites, scheduling, or financial planning apps.
+This application is a work in progress sample of code that is (hopefully) more fun to review than typical blog sites, scheduling, or financial planning apps.
 
 https://whatsinyourfood.herokuapp.com
+
+#TODO recursive selection of questions creates an occasional crash (stack too deep)
 
 As an exercise in using JSON requests
 - match dissimilar datum

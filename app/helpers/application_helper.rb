@@ -12,9 +12,8 @@ module ApplicationHelper
   def newplayer
     obj = Player.new
     obj.save
-    userid = obj.id
-    cookies[:user_id] = userid
-    return userid
+    cookies[:user_id] = obj.id
+    return obj.id
   end
 
 

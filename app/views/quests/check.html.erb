@@ -4,13 +4,14 @@
 <% end %>
 
 <%= form_tag({action: :setsubject}, multipart: false) do %>
-  <p style="text-align: center;">Pick your subject:
+  <p style="text-align: center;">
+    <%= submit_tag('Pick your subject:', :id => "select_subject" ) %>
     <%= select_tag 'mysubject', options_from_collection_for_select(@subjectlist, "name", "name", @playersubject), include_blank: "Random", :onchange => "this.form.submit();" %>
   </p>
 <% end %>
 
 <p style="text-align: center;">
-  <%= link_to "Next >>", 'quests' %>
+  <%= link_to "Next >>", 'quests', :id => "button_next" %>
 </p>
 
 <% if @yourresults == 'Incorrect.' then %>

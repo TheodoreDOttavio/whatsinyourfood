@@ -4,9 +4,9 @@
 
   <%= form_tag({action: :login, controller: 'static_pages'}, multipart: false, style: "padding: 0px 60px 0px 40px;") do %>
     <p class = "input_text_as_button">
-    <%= text_field_tag :myname, "display name" %>&nbsp;
-    <%= text_field_tag :mypassword, "password" %>&nbsp;&nbsp;&nbsp;
-    <%= submit_tag("login") %>
+    <%= text_field_tag :myname, "display name", :id => "text_name" %>&nbsp;
+    <%= text_field_tag :mypassword, "password", :id => "text_password" %>&nbsp;&nbsp;&nbsp;
+    <%= submit_tag("login", :id => "button_login") %>
     </p>
   <% end %>
 <% else %>
