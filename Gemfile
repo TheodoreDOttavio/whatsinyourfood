@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 ruby '2.1.7'
 
 gem 'coffee-rails', '~> 4.1.0'
+gem 'db_fixtures_dump'
 gem 'jbuilder', '~> 2.0'          # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-rails'
 gem 'mobylette', '~> 3.5' #Note required addition to application.rb
