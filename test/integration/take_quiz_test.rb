@@ -5,7 +5,8 @@ class TakeQuizTest < Capybara::Rails::TestCase
   end
 
   test 'load quiz questions' do
-    Capybara.javascript_driver = :webkit
+    # Capybara.javascript_driver = :webkit
+    puts "Testing quiz question page load"
 
     visit quests_path
     #Is there a challenge page loaded?
@@ -30,19 +31,48 @@ class TakeQuizTest < Capybara::Rails::TestCase
     page.click_button('Pick your subject:')
 
     # take test, randomly answering questions and hitting next on the results page
-    for iteration in 0..23 do
-      myscore = page.find('#score').text#.split(" ")[0].to_i
-      #puts "#{myscore} at load #{iteration}"
+    optionalbuttons = ["broccoli", "cherry", "grain", "lettuce", "strawberry"]
+    for iteration in 0..500 do
+      mylastscore = page.find('#score').text.split(" ")[0].to_i
 
-puts page.find('#header h2').text
+      #check for bonuses
+      mychoice = Array.new
+
+      optionalbuttons.each do |bonus|
+        if page.has_button?("button_1_#{bonus}") then
+          for pick in 0..4 do
+            mychoice.push("button_#{pick.to_s}_#{bonus}")
+          end
+        end
+      end
+
+      for pick in 0..4 do
+        mychoice.push("button_#{pick.to_s}")
+      end
 
       #randomly select an answer
-      mydice = "button_#{rand(5).to_s}"
+      mydice = mychoice[rand(mychoice.count)] #{}"button_#{rand(5).to_s}"
+      puts "#{iteration}: #{mylastscore} pts for #{mychallenge}. Selecting #{mydice.split("_")[2]} #{mydice.split("_")[1]}"
 
-      #TODO check for bunses and follow button_subject
       page.click_button(mydice)
 
       assert page.has_link?('button_next'), "No link to next question page load: #{iteration}"
+
+      myscore = page.find('#score').text.split(" ")[0].to_i
+
+      #check for leveling up
+      if myscore >= 100 && mylastscore < 100 then
+        puts "#{iteration}: level up award detected"
+        assert page.has_content?('Level up')
+      end
+      if myscore >= 500 && mylastscore < 500 then
+        puts "#{iteration}: level up award detected"
+        assert page.has_content?('Level up')
+      end
+      if myscore >= 1000 && mylastscore < 1000 then
+        puts "#{iteration}: level up award detected"
+        assert page.has_content?('master')
+      end
 
       page.click_link('button_next')
     end

@@ -15,7 +15,7 @@ class QuestsController < ApplicationController
     runjsonimport = false if Product.count>5000
 
     if runjsonimport == true then
-      loadnewproducts if !Rails.env.development?
+      loadnewproducts if Rails.env.production?
     end
 
     establishplayerobject

@@ -1,4 +1,4 @@
-<% if flash.count == 0 then %>
+
   <% if @mypoints then %>
     <h1><span class = "nutrivalue">
       <img src=<%= root_url + "assets/ribbon-#{@mypoints}.png" %>></span>
@@ -9,12 +9,10 @@
     <h1>What is in Your Food?</h1>
     <h2>Test your knowledge of nutrition requirements</h2>
   <% end %>
-<% else %>
-  <h1>What is in Your Food?</h1>
-<% end %>
+
 
 <% flash.each do |key, value| %>
-  <h2><img src=<%= root_url + "assets/header-#{key}.png" %>>
+  <h2  id = "flash"><img src=<%= root_url + "assets/header-#{key}.png" %>>
   <%= value %></h2>
   <% flash.delete(key) %>
 <% end %>
