@@ -37,6 +37,8 @@ module ApplicationHelper
     else
       @needlogin = true
     end
+
+    @loginmessage = params['loginmsg']
   end
 
 

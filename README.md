@@ -4,13 +4,11 @@ This application is a work in progress sample of code that is (hopefully) more f
 
 https://whatsinyourfood.herokuapp.com
 
-#TODO recursive selection of questions creates an occasional crash (stack too deep)
+#TODO recursive selection of questions creates an occasional crash when product datum is under 200 records (stack too deep)
 
 As an exercise in using JSON requests
 - match dissimilar datum
 - generate a quiz question about the food ingredients
-
-#TODO CSS to differentiate brand name
 #TODO regex cleanup of product size/volume to reduce redundant products
 #TODO Refactor to compare with local hash pairs vs repeated database lookups
 
@@ -21,6 +19,4 @@ As an exercise in user accounts
 
 As an exercise in CSS for desktop vs mobile browsers
 - simplified views on mobile devices
-
-#TODO - create login box CSS
-#TODO - Stats page needs custom CSS for form submits
+#TODO CSS for mobile is incomplete...

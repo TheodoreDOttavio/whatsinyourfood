@@ -4,7 +4,10 @@ class StaticPagesController < ApplicationController
 
   def home
     establishplayerobject
-    @loginmessage = params['loginmsg']
+  end
+
+
+  def about
   end
 
 
