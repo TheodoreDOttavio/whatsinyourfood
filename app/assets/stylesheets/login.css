@@ -1,20 +1,20 @@
 #login {
   border-width: 1px;
-  border-color: #000000;
+  border-color: #ffffff;
   border-style: solid;
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: #cccef4;
   width: 550px;
   padding: 0px 3px 3px 2px;
   margin-left: 50px;
   margin-top: 10px;
 }
 #login h1 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bolder;
   color: #333333;
   text-align: center;
-  padding: 2px 0px 2px 0px;
+  padding: 1px 0px 1px 0px;
 }
 #login input {
   border-width: 1px;
