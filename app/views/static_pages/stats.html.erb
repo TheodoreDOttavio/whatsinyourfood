@@ -1,28 +1,27 @@
+<div id="stats">
+  <h4>Your Accuracy (global accuracy)
+    <span class="statsvalue"><%= @name %> %</span>
+  </h4>
+
+  <% @results.each do |r| %>
+    <!-- <%= r['percentcorrect'] %> % -->
+    <%= form_tag({action: :setsubject, controller: 'quests'}, multipart: false) do %>
+      <h6>
+      <%= hidden_field_tag :mysubject, r['name'] %>
+      <%= r['playerpercentcorrect'] %>&nbsp;%&nbsp;
+      <%= submit_tag(r['name']) %>
+      <span class="statsvalue"><%= r['playerscore'] %> pts
+      <img src=<%= r['playerribbon'] %>></span>
+      </h6>
+    <% end %>
+  <% end %>
+
+  <h4>You Answered <span class="statsvalue"><%= @playertotal %> Questions</span></h4>
+  <h4>Your overall accuracy <span class="statsvalue"><%= @playerpercent %> % Correct</span></h4>
+  <h4>Testing on <span class="statsvalue"><%= @productcount %> products</span></h4>
+  <h4>Used by <span class="statsvalue"><%= @playercount %> players</span></h4>
+</div>
+
 <% if @needlogin then %>
   <%= render 'static_pages/loginbox' %>
 <% end %>
-
-<div id="nutri-label" style="width: 300px; margin-left:175px; margin-top: 10px; background-color: #ffffff;">
-
-<h4>Your Accuracy (global accuracy)
-  <span class="nutrivalue"><%= @name %> %</span>
-</h4>
-
-<% @results.each do |r| %>
-  <!-- <%= r['percentcorrect'] %> % -->
-  <%= form_tag({action: :setsubject, controller: 'quests'}, multipart: false) do %>
-    <h6>
-    <%= hidden_field_tag :mysubject, r['name'] %>
-    <%= r['playerpercentcorrect'] %>&nbsp;%&nbsp;
-    <%= submit_tag(r['name']) %>
-    <span class="nutrivalue"><%= r['playerscore'] %> pts
-    <img src=<%= r['playerribbon'] %>></span>
-    </h6>
-  <% end %>
-<% end %>
-
-<h4>You Answered <span class="nutrivalue"><%= @playertotal %> Questions</span></h4>
-<h4>Your overall accuracy <span class="nutrivalue"><%= @playerpercent %> % Correct</span></h4>
-<h4>Testing on <span class="nutrivalue"><%= @productcount %> products</span></h4>
-<h4>Used by <span class="nutrivalue"><%= @playercount %> players</span></h4>
-</div>

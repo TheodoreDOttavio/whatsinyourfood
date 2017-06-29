@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 ruby '2.1.7'
 
 gem 'coffee-rails', '~> 4.1.0'
-gem 'db_fixtures_dump'
+gem 'db_fixtures_dump' #adds db to yml function => db:fixtures:dump
 gem 'jbuilder', '~> 2.0'          # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-rails'
 gem 'minitest-rails-capybara'
@@ -31,6 +31,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'rails_12factor'
-  gem 'pg'
+  # gem 'rails_12factor'
+  # gem 'pg'
 end
