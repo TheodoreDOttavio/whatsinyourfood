@@ -10,6 +10,7 @@ module ApplicationHelper
 
 
   def newplayer
+    Player.clean
     obj = Player.new
     obj.save
     cookies[:user_id] = obj.id

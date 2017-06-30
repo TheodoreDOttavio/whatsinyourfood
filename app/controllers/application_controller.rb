@@ -81,28 +81,6 @@ response = Unirest.post "https://twinword-sentiment-analysis.p.mashape.com/analy
   }
   ...use the score for varience.
 
-  ...and for comments, a Text spinner!
-  response = Unirest.post "https://pozzad-text-spinner.p.mashape.com/textspinner/spin",
-  headers:{
-    "X-Mashape-Key" => "Kh6nGtA4nXmshOKQSehm72xY5olDp1nTnUljsnvR1blvOPdH5l",
-    "Content-Type" => "application/x-www-form-urlencoded",
-    "Accept" => "application/json"
-  },
-  parameters:{
-    "text" => "{{omg|wtf|seriously?|}} This {{question|one|test|}} {{is ridiculous|is stupid|is sad|is lame|is impossible|makes no sense|needs to go}}!",
-    "variationsNum" => 1
-  }
-
- #negative
-{{omg |wtf |WTF |seriously? |}}This {{question|one|test|}} {{is ridiculous|is stupid|is sad|is lame|is impossible|makes no sense|needs to go}}!
-
-#positive
-{{Lol|lol|LOL|HA|Ja|}}{{ So true!| That was easy!| I got this!| Rockin' it!|}}{{ :)| :-)| :p||}}
-
-#neutral
-{{meh |ummm... |whatever |nope. |who writes these? |}}{{This one was too easy|not so tough|:/|}}
-
-
 gem "browser"
 
 browser = Browser.new(:ua => "some string", :accept_language => "en-us")

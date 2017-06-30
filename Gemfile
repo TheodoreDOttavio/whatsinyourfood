@@ -31,6 +31,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'rails_12factor'
-  gem 'pg'
+  # gem 'rails_12factor'
+  # gem 'pg'
 end

@@ -1,6 +1,6 @@
 <!-- TODO css for login box -->
 <div id="login">
-  <% if @needlogin == true then %>
+  <% if @needlogin then %>
     <h1>Keep your scores with a name and password</h1>
 
     <%= form_tag({action: :login, controller: 'static_pages'}, multipart: false) do %>
