@@ -17,7 +17,7 @@
         <%= image_submit_tag("#{root_url}assets/header-#{name}.png", :name => "option[#{name}]") %>
       <% end %>
       <%= image_submit_tag("#{root_url}assets/header-#{@mypoints.to_s}.png", :name => "option[default]") %>
-    <%= q.brand_name + "  " + removecommas(q.item_name) %></p>
+      <span class = "brand"><%= q.brand_name %></span>&nbsp;<%= removecommas(q.item_name) %></p>
   <% end %>
 <% end %>
 

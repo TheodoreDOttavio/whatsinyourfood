@@ -1,4 +1,6 @@
-<div style="padding: 10px 200px 10px 200px;">
+
+<div style="padding: 20px 150px 20px 310px;">
+  <h1 style="text-align: center;"><%= link_to 'Begin!', 'quests' %></h1>
   <div class="cycle-slideshow"
     data-cycle-fx="scrollHorz"
     data-cycle-speed="200">
@@ -8,17 +10,4 @@
   </div>
 </div>
 
-<h1 style="text-align: center;"><%= link_to "Go!", 'quests' %></h1>
-
-<% if @needlogin == true then %>
-  <p style="padding: 40px 60px 0px 40px;">Create a name and password if you would like to keep your scores</p>
-  <%= form_tag({action: :login}, multipart: false, style: "padding: 0px 60px 0px 40px;") do %>
-    <p class = "mobile_input_text_as_button">
-      <%= text_field_tag :myname, "display name" %>&nbsp;
-    <%= text_field_tag :mypassword, "password" %>&nbsp;&nbsp;&nbsp;
-    <%= submit_tag("login") %>
-    </p>
-  <% end %>
-<% else %>
-  <h2 style="padding: 40px 60px 40px 40px;">Welcome <%= @playername %></h2>
-<% end %>
+<%= render 'static_pages/loginbox.mobile' %>

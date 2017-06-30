@@ -1,0 +1,28 @@
+#mobile-login {
+  border-width: 1px;
+  border-color: #ffffff;
+  border-style: solid;
+  border-radius: 2em;
+  background-color: #cccef4;
+  width: 90%;
+  padding: 0px 3px 3px 2px;
+  margin: 10px 50px 10px 50px;
+}
+#mobile-login h1 {
+  font-size: 2.3em;
+  font-weight: bolder;
+  color: #333333;
+  text-align: center;
+  padding: 1px 0px 1px 0px;
+}
+#mobile-login input {
+  border-width: 1px;
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 2em;
+  font-weight: bolder;
+  text-align: center;
+  color: #454545;
+  padding: 5px;
+  margin: 10px 10px 4px 10px;
+}
